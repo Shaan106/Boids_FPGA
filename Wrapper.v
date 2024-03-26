@@ -24,8 +24,25 @@
  *
  **/
 
-module Wrapper (clock, reset);
-	input clock, reset;
+module Wrapper (CLK100MHZ, CPU_RESETN, LED);
+	input CLK100MHZ, CPU_RESETN;
+	output[15:0] LED;
+	
+	assign LED = instAddr[15:0];
+	
+	reg[10:0] counter;
+	wire clock; // 50 mhz clock
+	wire reset;
+	
+    assign reset = ~CPU_RESETN; 
+	
+	always @(posedge CLK100MHZ) begin
+	   counter <= counter + 1;
+	end
+	
+	assign clock =  counter[0];
+	
+	
 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -35,7 +52,7 @@ module Wrapper (clock, reset);
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "";
+	localparam INSTR_FILE = "Test Files/Memory Files/sort";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 

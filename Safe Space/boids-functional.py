@@ -7,6 +7,7 @@ pygame.init()
 pixel_width = 512
 int_width = int(2**32)
 pixel_size = 2**32 / pixel_width
+margin = 32 * pixel_size
 width, height = pixel_width, pixel_width  # Window size
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Boids Simulation')
@@ -14,7 +15,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 300
+num_boids = 200
 visual_range = 75 * pixel_size
 
 # Boids list
@@ -24,10 +25,10 @@ boids = []
 def init_boids():
     for _ in range(num_boids):
         boid = {
-            'x': random.randint(0, int_width),
-            'y': random.randint(0, int_width),
-            'dx': random.randint(-5 * pixel_size, 5 * pixel_size),
-            'dy': random.randint(-5 * pixel_size, 5 * pixel_size)
+            'x': random.randint(margin, int_width-margin),
+            'y': random.randint(margin, int_width-margin),
+            'dx': 1,#random.randint(-5 * pixel_size, 5 * pixel_size),
+            'dy': 1,#random.randint(-5 * pixel_size, 5 * pixel_size)
         }
         boids.append(boid)
 
@@ -37,7 +38,6 @@ def distance(boid1, boid2):
 
 
 def keep_within_bounds(boid):
-    margin = 32 * pixel_size
     turn_factor = 2 * pixel_size
     if boid['x'] < margin:
         boid['dx'] += turn_factor
@@ -89,8 +89,28 @@ def match_velocity(boid):
     if num_neighbors > 0:
         avg_dx /= num_neighbors
         avg_dy /= num_neighbors
+        # print(1, (avg_dx - boid['dx']) * matching_factor)
         boid['dx'] += (avg_dx - boid['dx']) * matching_factor
         boid['dy'] += (avg_dy - boid['dy']) * matching_factor
+
+def scary(boid):
+    scary_factor = 1e9
+    move_x, move_y = 0, 0
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+
+    if distance(boid, {'x': mouse_x*pixel_size, 'y': mouse_y*pixel_size}) < visual_range:
+        move_x = 1/(boid['x']/pixel_size - mouse_x)
+        move_y = 1/(boid['y']/pixel_size - mouse_y)
+        # print(move_x * scary_factor, move_y * scary_factor)
+    # boid['dx'] += move_x * scary_factor  # make shifts
+    # boid['dy'] += move_y * scary_factor
+    print()
+    if move_x != 0:
+        print("-----------------")
+        print(move_x * scary_factor, move_y * scary_factor)
+        print(boid['dx'], boid['dy'])
+    boid['dx'] += move_x * scary_factor  # make shifts
+    boid['dy'] += move_y * scary_factor
 
 
 def limit_speed(boid):
@@ -116,6 +136,7 @@ def update_boids():
         fly_towards_center(boid)
         avoid_others(boid)
         match_velocity(boid)
+        scary(boid)
         limit_speed(boid)
         keep_within_bounds(boid)
         boid['x'] += boid['dx']
@@ -128,8 +149,10 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-
+    mouse_x, mouse_y = pygame.mouse.get_pos()
+    # draw visual range circle around mouse
     screen.fill((0, 0, 0))
+    # pygame.draw.circle(screen, (255, 255, 255), (mouse_x, mouse_y), visual_range // pixel_size, 1)
     update_boids()
     # quit()
     for boid in boids:

@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 500
+num_boids = 100
 visual_range = 75 * pixel_size
 
 # Boids list
@@ -41,16 +41,16 @@ def keep_within_bounds(boid):
     turn_factor = 2 * pixel_size
     if boid['x'] < margin:
         boid['dx'] += turn_factor
-    if boid['x'] > width - margin:
+    if boid['x'] > width * pixel_size - margin:
         boid['dx'] -= turn_factor
     if boid['y'] < margin:
         boid['dy'] += turn_factor
-    if boid['y'] > height - margin:
+    if boid['y'] > height * pixel_size - margin:
         boid['dy'] -= turn_factor
 
 
 def fly_towards_center(boid):
-    centering_factor = 0.005 * pixel_size
+    centering_factor = 0.005
     center_x, center_y = 0, 0
     num_neighbors = 0
     for other_boid in boids:
@@ -67,7 +67,7 @@ def fly_towards_center(boid):
 
 def avoid_others(boid):
     min_distance = 20 * pixel_size
-    avoid_factor = 0.05 * pixel_size
+    avoid_factor = 0.05
     move_x, move_y = 0, 0
     for other_boid in boids:
         if other_boid is not boid and distance(boid, other_boid) < min_distance:
@@ -78,7 +78,7 @@ def avoid_others(boid):
 
 
 def match_velocity(boid):
-    matching_factor = 0.05 * pixel_size
+    matching_factor = 0.05
     avg_dx, avg_dy = 0, 0
     num_neighbors = 0
     for other_boid in boids:
@@ -94,7 +94,7 @@ def match_velocity(boid):
 
 
 def limit_speed(boid):
-    speed_limit = 4 * pixel_size
+    speed_limit = 20
     speed = abs(boid['dx']) + abs(boid['dy'])
     mag = int(math.log2(speed))
     shift = max(mag - speed_limit, 0)
@@ -107,17 +107,17 @@ def draw_boid(screen, boid):
     angle = math.atan2(boid['dy'], boid['dx'])
     end_x = boid['x']//pixel_size + math.cos(angle) * 2
     end_y = boid['y']//pixel_size + math.sin(angle) * 2
-    print(boid['x']//pixel_size, boid['y']//pixel_size, end_x, end_y)
+    # print(boid['x']//pixel_size, boid['y']//pixel_size, end_x, end_y)
     # pygame.draw.rect(screen, (255, 255, 255), (boid['x'], boid['y'], 2, 2))
     pygame.draw.line(screen, (255, 255, 255), (boid['x']//pixel_size, boid['y']//pixel_size), (end_x, end_y), 1)
 
 def update_boids():
     for boid in boids:
         fly_towards_center(boid)
-        # avoid_others(boid)
-        # match_velocity(boid)
-        # limit_speed(boid)
-        # keep_within_bounds(boid)
+        avoid_others(boid)
+        match_velocity(boid)
+        limit_speed(boid)
+        keep_within_bounds(boid)
         boid['x'] += boid['dx']
         boid['y'] += boid['dy']
 

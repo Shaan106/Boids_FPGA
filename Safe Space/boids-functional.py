@@ -15,8 +15,9 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 300
+num_boids = 100
 visual_range = 75 * pixel_size
+initial_speed = 5 * pixel_size
 
 # Boids list
 boids = []
@@ -27,8 +28,8 @@ def init_boids():
         boid = {
             'x': random.randint(margin, int_width-margin),
             'y': random.randint(margin, int_width-margin),
-            'dx': 1,#random.randint(-5 * pixel_size, 5 * pixel_size),
-            'dy': 1,#random.randint(-5 * pixel_size, 5 * pixel_size)
+            'dx': random.randint(-5 * pixel_size, 5 * pixel_size),
+            'dy': random.randint(-initial_speed, initial_speed)
         }
         boids.append(boid)
 
@@ -93,6 +94,7 @@ def match_velocity(boid):
         boid['dx'] += (avg_dx - boid['dx']) * matching_factor
         boid['dy'] += (avg_dy - boid['dy']) * matching_factor
 
+
 def scary(boid):
     scary_factor = 1e9
     move_x, move_y = 0, 0
@@ -102,8 +104,8 @@ def scary(boid):
         dis_x = abs(boid['x'] - mouse_x*pixel_size)
         dis_y = abs(boid['y'] - mouse_y*pixel_size)
 
-        move_x = visual_range - dis_x
-        move_y = visual_range - dis_y
+        move_x = visual_range - dis_y
+        move_y = visual_range - dis_x
         if boid['x'] < mouse_x*pixel_size:
             move_x = -move_x
         if boid['y'] < mouse_y*pixel_size:
@@ -138,6 +140,7 @@ def draw_boid(screen, boid):
     # pygame.draw.rect(screen, (255, 255, 255), (boid['x'], boid['y'], 2, 2))
     pygame.draw.line(screen, (255, 255, 255), (boid['x']//pixel_size, boid['y']//pixel_size), (end_x, end_y), 1)
 
+
 def update_boids():
     for boid in boids:
         fly_towards_center(boid)
@@ -148,6 +151,7 @@ def update_boids():
         keep_within_bounds(boid)
         boid['x'] += boid['dx']
         boid['y'] += boid['dy']
+
 
 init_boids()
 

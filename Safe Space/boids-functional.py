@@ -117,11 +117,11 @@ def scary(boid):
         # print(move_x * scary_factor, move_y * scary_factor)
     # boid['dx'] += move_x * scary_factor  # make shifts
     # boid['dy'] += move_y * scary_factor
-    print()
-    if move_x != 0:
-        print("-----------------")
-        print(move_x * scary_factor, move_y * scary_factor)
-        print(boid['dx'], boid['dy'])
+    # print()
+    # if move_x != 0:
+    #     print("-----------------")
+    #     print(move_x * scary_factor, move_y * scary_factor)
+    #     print(boid['dx'], boid['dy'])
     boid['dx'] += move_x * scary_factor  # make shifts
     boid['dy'] += move_y * scary_factor
 

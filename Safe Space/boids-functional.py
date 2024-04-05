@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 200
+num_boids = 300
 visual_range = 75 * pixel_size
 
 # Boids list
@@ -99,8 +99,15 @@ def scary(boid):
     mouse_x, mouse_y = pygame.mouse.get_pos()
 
     if distance(boid, {'x': mouse_x*pixel_size, 'y': mouse_y*pixel_size}) < visual_range:
-        move_x = 1/(boid['x']/pixel_size - mouse_x)
-        move_y = 1/(boid['y']/pixel_size - mouse_y)
+        dis_x = abs(boid['x'] - mouse_x*pixel_size)
+        dis_y = abs(boid['y'] - mouse_y*pixel_size)
+
+        move_x = visual_range - dis_x
+        move_y = visual_range - dis_y
+        if boid['x'] < mouse_x*pixel_size:
+            move_x = -move_x
+        if boid['y'] < mouse_y*pixel_size:
+            move_y = -move_y
         # print(move_x * scary_factor, move_y * scary_factor)
     # boid['dx'] += move_x * scary_factor  # make shifts
     # boid['dy'] += move_y * scary_factor

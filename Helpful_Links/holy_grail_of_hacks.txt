@@ -1,0 +1,4 @@
+Stuff to show in our presentation
+
+ - crazy avg bit hack (x&y) + ((x^y)>>1)
+    - what bits are same and then take avg of bits that are not same (ie 1 >> 1) shift means /2 which takes avg

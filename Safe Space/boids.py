@@ -11,11 +11,12 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 100
+num_boids = 300
 visual_range = 75
 
 # Boids list
 boids = []
+
 
 def init_boids():
     for _ in range(num_boids):
@@ -27,16 +28,19 @@ def init_boids():
         }
         boids.append(boid)
 
+
 def distance(boid1, boid2):
-    return math.sqrt((boid1['x'] - boid2['x']) ** 2 + (boid1['y'] - boid2['y']) ** 2)
+    return abs(boid1['x'] - boid2['x']) + abs(boid1['y'] - boid2['y'])
+
 
 def n_closest_boids(boid, n):
     sorted_boids = sorted(boids, key=lambda other_boid: distance(boid, other_boid))
     return sorted_boids[1:n+1]
 
+
 def keep_within_bounds(boid):
-    margin = 200
-    turn_factor = 1
+    margin = 50
+    turn_factor = 2
     if boid['x'] < margin:
         boid['dx'] += turn_factor
     if boid['x'] > width - margin:
@@ -45,6 +49,7 @@ def keep_within_bounds(boid):
         boid['dy'] += turn_factor
     if boid['y'] > height - margin:
         boid['dy'] -= turn_factor
+
 
 def fly_towards_center(boid):
     centering_factor = 0.005
@@ -58,8 +63,9 @@ def fly_towards_center(boid):
     if num_neighbors > 0:
         center_x /= num_neighbors
         center_y /= num_neighbors
-        boid['dx'] += (center_x - boid['x']) * centering_factor
+        boid['dx'] += (center_x - boid['x']) * centering_factor  # make shifts
         boid['dy'] += (center_y - boid['y']) * centering_factor
+
 
 def avoid_others(boid):
     min_distance = 20
@@ -69,8 +75,9 @@ def avoid_others(boid):
         if other_boid is not boid and distance(boid, other_boid) < min_distance:
             move_x += boid['x'] - other_boid['x']
             move_y += boid['y'] - other_boid['y']
-    boid['dx'] += move_x * avoid_factor
+    boid['dx'] += move_x * avoid_factor  # make shifts
     boid['dy'] += move_y * avoid_factor
+
 
 def match_velocity(boid):
     matching_factor = 0.05
@@ -88,17 +95,20 @@ def match_velocity(boid):
         boid['dy'] += (avg_dy - boid['dy']) * matching_factor
 
 def limit_speed(boid):
-    speed_limit = 15
-    speed = math.sqrt(boid['dx'] ** 2 + boid['dy'] ** 2)
+    speed_limit = 4
+    speed = abs(boid['dx']) + abs(boid['dy'])
+    mag = int(math.log2(speed))
+    shift = max(mag - 4, 0)
     if speed > speed_limit:
-        boid['dx'] = (boid['dx'] / speed) * speed_limit
-        boid['dy'] = (boid['dy'] / speed) * speed_limit
+        boid['dx'] = boid['dx'] / 2**shift
+        boid['dy'] = boid['dy'] / 2**shift
 
 
 def draw_boid(screen, boid):
     angle = math.atan2(boid['dy'], boid['dx'])
     end_x = boid['x'] + math.cos(angle) * 10
     end_y = boid['y'] + math.sin(angle) * 10
+
     pygame.draw.line(screen, (255, 255, 255), (boid['x'], boid['y']), (end_x, end_y), 2)
 
 def update_boids():

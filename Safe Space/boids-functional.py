@@ -4,15 +4,18 @@ import math
 
 # Initialization
 pygame.init()
-width, height = 800, 600  # Window size
+pixel_width = 512
+int_width = int(2**32)
+pixel_size = 2**32 / pixel_width
+width, height = pixel_width, pixel_width  # Window size
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Boids Simulation')
 clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 300
-visual_range = 75
+num_boids = 500
+visual_range = 75 * pixel_size
 
 # Boids list
 boids = []
@@ -21,10 +24,10 @@ boids = []
 def init_boids():
     for _ in range(num_boids):
         boid = {
-            'x': random.random() * width,
-            'y': random.random() * height,
-            'dx': random.random() * 10 - 5,
-            'dy': random.random() * 10 - 5,
+            'x': random.randint(0, int_width),
+            'y': random.randint(0, int_width),
+            'dx': random.randint(-5 * pixel_size, 5 * pixel_size),
+            'dy': random.randint(-5 * pixel_size, 5 * pixel_size)
         }
         boids.append(boid)
 
@@ -33,14 +36,9 @@ def distance(boid1, boid2):
     return abs(boid1['x'] - boid2['x']) + abs(boid1['y'] - boid2['y'])
 
 
-def n_closest_boids(boid, n):
-    sorted_boids = sorted(boids, key=lambda other_boid: distance(boid, other_boid))
-    return sorted_boids[1:n+1]
-
-
 def keep_within_bounds(boid):
-    margin = 50
-    turn_factor = 2
+    margin = 32 * pixel_size
+    turn_factor = 2 * pixel_size
     if boid['x'] < margin:
         boid['dx'] += turn_factor
     if boid['x'] > width - margin:
@@ -52,7 +50,7 @@ def keep_within_bounds(boid):
 
 
 def fly_towards_center(boid):
-    centering_factor = 0.005
+    centering_factor = 0.005 * pixel_size
     center_x, center_y = 0, 0
     num_neighbors = 0
     for other_boid in boids:
@@ -68,8 +66,8 @@ def fly_towards_center(boid):
 
 
 def avoid_others(boid):
-    min_distance = 20
-    avoid_factor = 0.05
+    min_distance = 20 * pixel_size
+    avoid_factor = 0.05 * pixel_size
     move_x, move_y = 0, 0
     for other_boid in boids:
         if other_boid is not boid and distance(boid, other_boid) < min_distance:
@@ -80,7 +78,7 @@ def avoid_others(boid):
 
 
 def match_velocity(boid):
-    matching_factor = 0.05
+    matching_factor = 0.05 * pixel_size
     avg_dx, avg_dy = 0, 0
     num_neighbors = 0
     for other_boid in boids:
@@ -94,11 +92,12 @@ def match_velocity(boid):
         boid['dx'] += (avg_dx - boid['dx']) * matching_factor
         boid['dy'] += (avg_dy - boid['dy']) * matching_factor
 
+
 def limit_speed(boid):
-    speed_limit = 4
+    speed_limit = 4 * pixel_size
     speed = abs(boid['dx']) + abs(boid['dy'])
     mag = int(math.log2(speed))
-    shift = max(mag - 4, 0)
+    shift = max(mag - speed_limit, 0)
     if speed > speed_limit:
         boid['dx'] = boid['dx'] / 2**shift
         boid['dy'] = boid['dy'] / 2**shift
@@ -106,18 +105,19 @@ def limit_speed(boid):
 
 def draw_boid(screen, boid):
     angle = math.atan2(boid['dy'], boid['dx'])
-    end_x = boid['x'] + math.cos(angle) * 10
-    end_y = boid['y'] + math.sin(angle) * 10
-
-    pygame.draw.line(screen, (255, 255, 255), (boid['x'], boid['y']), (end_x, end_y), 2)
+    end_x = boid['x']//pixel_size + math.cos(angle) * 2
+    end_y = boid['y']//pixel_size + math.sin(angle) * 2
+    print(boid['x']//pixel_size, boid['y']//pixel_size, end_x, end_y)
+    # pygame.draw.rect(screen, (255, 255, 255), (boid['x'], boid['y'], 2, 2))
+    pygame.draw.line(screen, (255, 255, 255), (boid['x']//pixel_size, boid['y']//pixel_size), (end_x, end_y), 1)
 
 def update_boids():
     for boid in boids:
         fly_towards_center(boid)
-        avoid_others(boid)
-        match_velocity(boid)
-        limit_speed(boid)
-        keep_within_bounds(boid)
+        # avoid_others(boid)
+        # match_velocity(boid)
+        # limit_speed(boid)
+        # keep_within_bounds(boid)
         boid['x'] += boid['dx']
         boid['y'] += boid['dy']
 
@@ -131,9 +131,10 @@ while running:
 
     screen.fill((0, 0, 0))
     update_boids()
+    # quit()
     for boid in boids:
         draw_boid(screen, boid)
     pygame.display.flip()
-    clock.tick(30)
+    # clock.tick(30)
 
 pygame.quit()

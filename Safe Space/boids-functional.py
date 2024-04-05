@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 100
+num_boids = 300
 visual_range = 75 * pixel_size
 initial_speed = 5 * pixel_size
 
@@ -38,6 +38,10 @@ def distance(boid1, boid2):
     return abs(boid1['x'] - boid2['x']) + abs(boid1['y'] - boid2['y'])
 
 
+def nearest_n(boid, n):
+    return sorted(boids, key=lambda other_boid: distance(boid, other_boid))[:n]
+
+
 def keep_within_bounds(boid):
     turn_factor = 2 * pixel_size
     if boid['x'] < margin:
@@ -54,7 +58,7 @@ def fly_towards_center(boid):
     centering_factor = 0.005
     center_x, center_y = 0, 0
     num_neighbors = 0
-    for other_boid in boids:
+    for other_boid in nearest_n(boid, 16):
         if distance(boid, other_boid) < visual_range:
             center_x += other_boid['x']
             center_y += other_boid['y']
@@ -70,7 +74,7 @@ def avoid_others(boid):
     min_distance = 20 * pixel_size
     avoid_factor = 0.05
     move_x, move_y = 0, 0
-    for other_boid in boids:
+    for other_boid in nearest_n(boid, 16):
         if other_boid is not boid and distance(boid, other_boid) < min_distance:
             move_x += boid['x'] - other_boid['x']
             move_y += boid['y'] - other_boid['y']
@@ -79,10 +83,10 @@ def avoid_others(boid):
 
 
 def match_velocity(boid):
-    matching_factor = 0.05
+    matching_factor = 0.5
     avg_dx, avg_dy = 0, 0
     num_neighbors = 0
-    for other_boid in boids:
+    for other_boid in nearest_n(boid, 16):
         if distance(boid, other_boid) < visual_range:
             avg_dx += other_boid['dx']
             avg_dy += other_boid['dy']
@@ -147,8 +151,8 @@ def update_boids():
         avoid_others(boid)
         match_velocity(boid)
         scary(boid)
-        limit_speed(boid)
         keep_within_bounds(boid)
+        limit_speed(boid)
         boid['x'] += boid['dx']
         boid['y'] += boid['dy']
 

@@ -94,7 +94,7 @@ def match_velocity(boid):
 
 
 def limit_speed(boid):
-    speed_limit = 20
+    speed_limit = 23
     speed = abs(boid['dx']) + abs(boid['dy'])
     mag = int(math.log2(speed))
     shift = max(mag - speed_limit, 0)

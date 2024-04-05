@@ -14,7 +14,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 100
+num_boids = 300
 visual_range = 75 * pixel_size
 
 # Boids list
@@ -94,7 +94,7 @@ def match_velocity(boid):
 
 
 def limit_speed(boid):
-    speed_limit = 23
+    speed_limit = 26
     speed = abs(boid['dx']) + abs(boid['dy'])
     mag = int(math.log2(speed))
     shift = max(mag - speed_limit, 0)
@@ -135,6 +135,6 @@ while running:
     for boid in boids:
         draw_boid(screen, boid)
     pygame.display.flip()
-    # clock.tick(30)
+    clock.tick(30)
 
 pygame.quit()

@@ -73,10 +73,10 @@ set_property -dict { PACKAGE_PIN V11   IOSTANDARD LVCMOS33 } [get_ports { LED[15
 ##Buttons
 set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { CPU_RESETN }]; #IO_L3P_T0_DQS_AD1P_15 Sch=cpu_resetn
 #set_property -dict { PACKAGE_PIN N17   IOSTANDARD LVCMOS33 } [get_ports { BTNC }]; #IO_L9P_T1_DQS_14 Sch=btnc
-#set_property -dict { PACKAGE_PIN M18   IOSTANDARD LVCMOS33 } [get_ports { BTNU }]; #IO_L4N_T0_D05_14 Sch=btnu
-#set_property -dict { PACKAGE_PIN P17   IOSTANDARD LVCMOS33 } [get_ports { BTNL }]; #IO_L12P_T1_MRCC_14 Sch=btnl
-#set_property -dict { PACKAGE_PIN M17   IOSTANDARD LVCMOS33 } [get_ports { BTNR }]; #IO_L10N_T1_D15_14 Sch=btnr
-#set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { BTND }]; #IO_L9N_T1_DQS_D13_14 Sch=btnd
+set_property -dict { PACKAGE_PIN M18   IOSTANDARD LVCMOS33 } [get_ports { BTNU }]; #IO_L4N_T0_D05_14 Sch=btnu
+set_property -dict { PACKAGE_PIN P17   IOSTANDARD LVCMOS33 } [get_ports { BTNL }]; #IO_L12P_T1_MRCC_14 Sch=btnl
+set_property -dict { PACKAGE_PIN M17   IOSTANDARD LVCMOS33 } [get_ports { BTNR }]; #IO_L10N_T1_D15_14 Sch=btnr
+set_property -dict { PACKAGE_PIN P18   IOSTANDARD LVCMOS33 } [get_ports { BTND }]; #IO_L9N_T1_DQS_D13_14 Sch=btnd
 
 
 ##Pmod Headers
@@ -209,3 +209,38 @@ set_property -dict { PACKAGE_PIN C12   IOSTANDARD LVCMOS33 } [get_ports { CPU_RE
 #set_property -dict { PACKAGE_PIN L14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[2] }]; #IO_L2P_T0_D02_14 Sch=qspi_dq[2]
 #set_property -dict { PACKAGE_PIN M14   IOSTANDARD LVCMOS33 } [get_ports { QSPI_DQ[3] }]; #IO_L2N_T0_D03_14 Sch=qspi_dq[3]
 #set_property -dict { PACKAGE_PIN L13   IOSTANDARD LVCMOS33 } [get_ports { QSPI_CSN }]; #IO_L6P_T0_FCS_B_14 Sch=qspi_csn
+
+
+# VGA Stuff
+
+#// VGA Port
+set_property PACKAGE_PIN D8 [get_ports {VGA_B[3]}]
+set_property PACKAGE_PIN D7 [get_ports {VGA_B[2]}]
+set_property PACKAGE_PIN C7 [get_ports {VGA_B[1]}]
+set_property PACKAGE_PIN B7 [get_ports {VGA_B[0]}]
+set_property PACKAGE_PIN A6 [get_ports {VGA_G[3]}]
+set_property PACKAGE_PIN B6 [get_ports {VGA_G[2]}]
+set_property PACKAGE_PIN A5 [get_ports {VGA_G[1]}]
+set_property PACKAGE_PIN C6 [get_ports {VGA_G[0]}]
+set_property PACKAGE_PIN A4 [get_ports {VGA_R[3]}]
+set_property PACKAGE_PIN C5 [get_ports {VGA_R[2]}]
+set_property PACKAGE_PIN B4 [get_ports {VGA_R[1]}]
+set_property PACKAGE_PIN A3 [get_ports {VGA_R[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_B[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_G[0]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_R[3]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_R[2]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_R[1]}]
+set_property IOSTANDARD LVCMOS33 [get_ports {VGA_R[0]}]
+
+#// Sync Ports
+set_property PACKAGE_PIN B11 [get_ports hSync]
+set_property PACKAGE_PIN B12 [get_ports vSync]
+set_property IOSTANDARD LVCMOS33 [get_ports hSync]
+set_property IOSTANDARD LVCMOS33 [get_ports vSync]

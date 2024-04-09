@@ -24,9 +24,21 @@
  *
  **/
 
-module Wrapper (CLK100MHZ, CPU_RESETN, LED);
-	input CLK100MHZ, CPU_RESETN;
-	output[15:0] LED;
+module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync, VGA_R, VGA_G, VGA_B);
+
+    input CLK100MHZ, CPU_RESETN; 
+    input BTNU;
+    input BTNL;
+    input BTND;
+    input BTNR;
+    
+    output[15:0] LED;
+    output hSync; 		// H Sync Signal
+    output vSync; 		// Veritcal Sync Signal
+    output[3:0] VGA_R;  // Red Signal Bits
+    output[3:0] VGA_G;  // Green Signal Bits
+    output[3:0] VGA_B;  // Blue Signal output with 
+
 	
 	assign LED = instAddr[15:0];
 	
@@ -42,8 +54,6 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED);
 	
 	assign clock =  counter[0];
 	
-	
-
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
 	wire[31:0] instAddr, instData, 
@@ -89,5 +99,21 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED);
 		.addr(memAddr[11:0]), 
 		.dataIn(memDataIn), 
 		.dataOut(memDataOut));
+	
+
+	
+    VGAController VGAControlModule(.clk(CLK100MHZ),
+                                   .reset(reset),
+                                   .hSync(hSync),
+                                   .vSync(vSync),
+                                   .VGA_R(VGA_R),
+                                   .VGA_G(VGA_G),
+                                   .VGA_B(VGA_B),
+                                   .BTNU(BTNU),
+                                   .BTNL(BTNL),
+                                   .BTND(BTND),
+                                   .BTNR(BTNR));
+   
+
 
 endmodule

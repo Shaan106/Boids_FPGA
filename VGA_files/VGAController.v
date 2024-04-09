@@ -15,7 +15,7 @@ module VGAController(
 	input BTNR);
 	
 	// Lab Memory Files Location
-	localparam FILES_PATH = "C:/Users/ay140/Downloads/lab6_kit/lab6_kit/";  // TODO
+	localparam FILES_PATH = "C:/Users/ay140/Downloads/lab6_kit/lab6_kit/"; 
 
 	// Clock divider 100 MHz -> 25 MHz
 	wire clk25; // 25MHz clock

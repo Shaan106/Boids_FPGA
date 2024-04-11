@@ -15,7 +15,7 @@ clock = pygame.time.Clock()
 running = True
 
 # Boids parameters
-num_boids = 300
+num_boids = 200
 visual_range = 75 * pixel_size
 initial_speed = 5 * pixel_size
 
@@ -143,6 +143,7 @@ def draw_boid(screen, boid):
     # print(boid['x']//pixel_size, boid['y']//pixel_size, end_x, end_y)
     # pygame.draw.rect(screen, (255, 255, 255), (boid['x'], boid['y'], 2, 2))
     pygame.draw.line(screen, (255, 255, 255), (boid['x']//pixel_size, boid['y']//pixel_size), (end_x, end_y), 1)
+
 
 
 def update_boids():

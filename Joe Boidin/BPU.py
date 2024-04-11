@@ -80,7 +80,12 @@ def distance(boid1, boid2):
 
 
 def nearest_n(boid, n):  # TODO: figure out how to implement this efficiently
-    return sorted(boids, key=lambda other_boid: distance(boid, other_boid))[:n]
+    distances = [distance(boid, other_boid) for other_boid in boids]
+    for epoch in range(int(math.log2(num_boids) - math.log2(n))):
+        next_size = num_boids // (epoch + 2)
+        for i in range(0, next_size):
+            distances[i] = min(distances[2*i], distances[2*i + 1])
+    return distances[:n]
 
 
 def update_boids(boid_id):

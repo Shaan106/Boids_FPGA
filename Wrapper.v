@@ -101,6 +101,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.dataOut(memDataOut));
 	
 
+    wire cursorType;
+    
+    assign cursorType = BTNR | BTNL;
 	
     VGAController VGAControlModule(.clk(CLK100MHZ),
                                    .reset(reset),
@@ -112,7 +115,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
                                    .BTNU(BTNU),
                                    .BTNL(BTNL),
                                    .BTND(BTND),
-                                   .BTNR(BTNR));
+                                   .BTNR(BTNR),
+                                   .cursorType(cursorType));
    
 
 

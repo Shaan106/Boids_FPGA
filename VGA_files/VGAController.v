@@ -12,7 +12,10 @@ module VGAController(
 	input BTNU,
 	input BTNL,
 	input BTND,
-	input BTNR);
+	input BTNR,
+	
+	input cursorType // this is what to show for the cursor
+	);
 	
 	// Lab Memory Files Location
 	localparam FILES_PATH = "../RAM_files/"; 
@@ -67,21 +70,27 @@ module VGAController(
 //		.wEn(1'b0)); 						       // We're always reading
 		
 		
-//		wire[6:0] spriteIndexTest = 7'b0000110;
-//		assign spriteIndex = spriteIndexTest;
+    wire[6:0] spriteIndexTest = 7'b0000010;
+    
+    wire[6:0] dashIndex = 7'b0000001;
+    wire[6:0] dotIndex = 7'b0001010;
+    
+//    assign spriteIndex = spriteIndexTest;
+
+    assign spriteIndex = cursorType ? dashIndex : dotIndex;
 		
-//	 RAM #(
-//		.DEPTH(235000), 		       // Set depth to contain every color		
-//		.DATA_WIDTH(1), 		       // Set data width according to the bits per color
-//		.ADDRESS_WIDTH(18),     // Set address width according to the color count
-//		.MEMFILE({FILES_PATH, "sprites.mem"}))  // Memory initialization
-//	 SPRITE(
-//		.clk(clk), 							   	   // Rising edge of the 100 MHz clk
-//		.addr((spriteIndex-1) * 2500 + (y-box_y)*50 + (x-box_x)),					       // Address from the ImageData RAM
-//		.dataOut(box_black),				       // Color at current pixel
-//		.wEn(1'b0)); 						       // We're always reading
+	 RAM #(
+		.DEPTH(235000), 		       // Set depth to contain every color		
+		.DATA_WIDTH(1), 		       // Set data width according to the bits per color
+		.ADDRESS_WIDTH(18),     // Set address width according to the color count
+		.MEMFILE({FILES_PATH, "sprites.mem"}))  // Memory initialization
+	 SPRITE(
+		.clk(clk), 							   	   // Rising edge of the 100 MHz clk
+		.addr((spriteIndex-1) * 2500 + (y-box_y)*50 + (x-box_x)),					       // Address from the ImageData RAM
+		.dataOut(box_black),				       // Color at current pixel
+		.wEn(1'b0)); 						       // We're always reading
 	
-//    wire box_black;
+    wire box_black;
 	                   
 	                
 	
@@ -145,8 +154,8 @@ module VGAController(
 	reg[8:0] box_y = 9'd50;
 	
 		
-//	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50) && box_black;
-	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50);
+	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50) && box_black;
+//	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50);
 	
 	assign squareColor = 12'b010011010010; 
 	

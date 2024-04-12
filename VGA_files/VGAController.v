@@ -121,13 +121,26 @@ module VGAController(
 
 
 	// this is an attempt to get image.mem to change over time
-
+	
+	// drawing a moving boid (test)
+	
+	reg[9:0] movingBoidX;
+	
+    always @(posedge clk) begin
+	   movingBoidX <= movingBoidX + 1'b1;
+	end
+	
 	wire boids_display_wen;
-	assign boids_display_wen = BTNU ? 1'b1 : 1'b0;
-
-	wire[PALETTE_ADDRESS_WIDTH-1:0] testWriteData;
-	assign testWriteData = square ? 8'd42 : 8'd31;
-
+	assign boids_display_wen = (BTNU) ? 1'b1 : 1'b0;
+	
+//	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50) && box_black;
+    assign checkForMovingBoid = ( x == movingBoidX);
+    
+    wire[PALETTE_ADDRESS_WIDTH-1:0] testWriteData;
+    
+    assign whatToShow = square | checkForMovingBoid;
+    
+	assign testWriteData = whatToShow ? 8'd42 : 8'd31;
 
 	RAM #(		
 		.DEPTH(PIXEL_COUNT), 				     // Set RAM depth to contain every pixel

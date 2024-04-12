@@ -119,16 +119,28 @@ module VGAController(
 	wire[PALETTE_ADDRESS_WIDTH-1:0] colorAddr; 	 // Color address for the color palette
 	assign imgAddress = x + 640*y;				 // Address calculated coordinate
 
+
+	// this is an attempt to get image.mem to change over time
+
+	wire boids_display_wen;
+	assign boids_display_wen = BTNU ? 1'b1 : 1'b0;
+
+	wire[PALETTE_ADDRESS_WIDTH-1:0] testWriteData;
+	assign testWriteData = square ? 8'd42 : 8'd31;
+
+
 	RAM #(		
 		.DEPTH(PIXEL_COUNT), 				     // Set RAM depth to contain every pixel
 		.DATA_WIDTH(PALETTE_ADDRESS_WIDTH),      // Set data width according to the color palette
-		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH),     // Set address with according to the pixel count
-		.MEMFILE({FILES_PATH, "image.mem"})) // Memory initialization
+		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH),     // Set address with according to the pixel count 
+		.MEMFILE({FILES_PATH, "boids_display.mem"}))  
 	ImageData(
 		.clk(clk), 						 // Falling edge of the 100 MHz clk
 		.addr(imgAddress),					 // Image data address
 		.dataOut(colorAddr),				 // Color palette address
-		.wEn(1'b0)); 						 // We're always reading
+		.dataIn(testWriteData),
+		.wEn(boids_display_wen)); 	
+
 
 	// Color Palette to Map Color Address to 12-Bit Color
 	wire[BITS_PER_COLOR-1:0] colorData; // 12-bit color data at current pixel
@@ -159,7 +171,7 @@ module VGAController(
 	
 	assign squareColor = 12'b010011010010; 
 	
-	assign colorOut = active ? colorData : 12'd0; // When not active, output black
+	assign colorOut = active ? colorData : 12'd0; // When not active, output white
 	assign realColor = square ? squareColor : colorOut;
 
 	// Quickly assign the output colors to their channels using concatenation
@@ -185,3 +197,14 @@ module latch_8bit(
         if (EN) Q <= D;
     end
 endmodule
+
+	// RAM #(		
+	// 	.DEPTH(PIXEL_COUNT), 				     // Set RAM depth to contain every pixel
+	// 	.DATA_WIDTH(PALETTE_ADDRESS_WIDTH),      // Set data width according to the color palette
+	// 	.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH),     // Set address with according to the pixel count
+	// 	.MEMFILE({FILES_PATH, "image.mem"})) // Memory initialization
+	// ImageData(
+	// 	.clk(clk), 						 // Falling edge of the 100 MHz clk
+	// 	.addr(imgAddress),					 // Image data address
+	// 	.dataOut(colorAddr),				 // Color palette address
+	// 	.wEn(1'b0)); 						 // We're always reading

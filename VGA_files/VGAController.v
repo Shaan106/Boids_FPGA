@@ -138,53 +138,39 @@ module VGAController(
 	reg[8:0] boid_y_vals[15:0];
     reg isBoidInPixel;
     
-    genvar i;
-    genvar j;
+    integer k;
+    initial begin
+        for (k = 1; k < 16; k = k + 1) begin
+			boid_x_vals[k] = 10 * k;
+			boid_y_vals[k] = 10 * k;
+		end
+    end
+    
+    integer i;
+    integer j;
     
 	always @(posedge screenEnd) begin
-		boid_x_vals[0] <= boid_x_vals[0] + 1;
-		boid_y_vals[0] <= boid_y_vals[0] + 1;
+		boid_x_vals[0] = boid_x_vals[0] + 1;
+		boid_y_vals[0] = boid_y_vals[0] + 1;
 
-//		boid_x_vals[1] <= boid_x_vals[1] + 2'b01;
-//		boid_y_vals[1] <= boid_y_vals[1] + 2'b10;
-		integer j;
-
-		initial begin
 			for (j = 1; j < 16; j = j + 1) begin
-				boid_x_vals[j] = boid_x_vals[j] + j;
+				boid_x_vals[j] = boid_x_vals[j] + 1;
 				boid_y_vals[j] = boid_y_vals[j] + 1;
 			end
-		end
+
 
 	end
 
-	
 	always @(posedge clk) begin
 	//    isBoidInPixel = ((x == boid_x_vals[0]) && (y == boid_y_vals[0])) ? 1'b1 : 1'b0;
-
-		integer i;
-
-		initial begin
+	       isBoidInPixel = 1'b0;
 
 			for (i = 0; i < 16; i = i + 1) begin
 				if ((x == boid_x_vals[i]) && (y == boid_y_vals[i])) begin
 					isBoidInPixel = 1'b1;
 				end
-				if ((x != boid_x_vals[i]) || (y != boid_y_vals[i])) begin
-					isBoidInPixel = 1'b0;
-				end
-			end
 		end
 	
-//		isBoidInPixel <= 1'b0;
-//		if ((x == boid_x_vals[0]) && (y == boid_y_vals[0]))
-//            isBoidInPixel <= 1'b1;
-//        else
-//            isBoidInPixel <= 1'b0;
-//        end
-//        else if (x == boid_x_vals[1] && y == boid_y_vals[1]) begin
-//            isBoidInPixel <= 1'b1;
-//        end
 	end
 	
     

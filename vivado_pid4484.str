@@ -4,11 +4,11 @@ Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
 SW Build: 3247384 on Thu Jun 10 19:36:33 MDT 2021
 IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
 
-Process ID (PID): 4044
+Process ID (PID): 4484
 License: Customer
 Mode: GUI Mode
 
-Current time: 	Fri Apr 12 12:52:31 EDT 2024
+Current time: 	Fri Apr 12 13:54:04 EDT 2024
 Time zone: 	Eastern Standard Time (America/New_York)
 
 OS: Windows 10
@@ -47,7 +47,7 @@ Vivado layouts directory: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/da
 PlanAhead jar file: 	C:/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
 Vivado log file: 	C:/Users/ay140/Boids_FPGA/vivado.log
 Vivado journal file: 	C:/Users/ay140/Boids_FPGA/vivado.jou
-Engine tmp dir: 	C:/Users/ay140/Boids_FPGA/.Xil/Vivado-4044-P2-03
+Engine tmp dir: 	C:/Users/ay140/Boids_FPGA/.Xil/Vivado-4484-P2-03
 
 Xilinx Environment Variables
 ----------------------------
@@ -59,20 +59,19 @@ XILINX_VIVADO: C:/Xilinx/Vivado/2021.1
 XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2021.1
 
 
-GUI allocated memory:	308 MB
+GUI allocated memory:	256 MB
 GUI max memory:		3,072 MB
-Engine allocated memory: 1,332 MB
+Engine allocated memory: 1,333 MB
 
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 
 */
 
 // TclEventType: START_GUI
-// TclEventType: PROJECT_OPEN_DIALOG
 // Tcl Message: start_gui 
 // TclEventType: PROJECT_OPEN_DIALOG
-// [GUI Memory]: 79 MB (+80350kb) [00:00:04]
-// [Engine Memory]: 1,332 MB (+1245731kb) [00:00:04]
+// [GUI Memory]: 84 MB (+85565kb) [00:00:04]
+// [Engine Memory]: 1,333 MB (+1245895kb) [00:00:04]
 // bz (cs):  Open Project : addNotify
 // Opening Vivado Project: C:\Users\ay140\Boids_FPGA\version_1.xpr. Version: Vivado v2021.1 
 // TclEventType: DEBUG_PROBE_SET_CHANGE
@@ -81,6 +80,10 @@ Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // TclEventType: MSGMGR_MOVEMSG
 // TclEventType: FILE_SET_CHANGE
 // TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
 // TclEventType: RUN_CURRENT
 // TclEventType: PROJECT_DASHBOARD_NEW
 // TclEventType: PROJECT_DASHBOARD_GADGET_NEW
@@ -96,9 +99,11 @@ Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 // TclEventType: PROJECT_DASHBOARD_GADGET_NEW
 // TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
 // TclEventType: PROJECT_NEW
-// [GUI Memory]: 105 MB (+23096kb) [00:00:07]
-// [GUI Memory]: 126 MB (+16489kb) [00:00:07]
-// WARNING: HEventQueue.dispatchEvent() is taking  2513 ms.
+// [GUI Memory]: 99 MB (+11355kb) [00:00:07]
+// [GUI Memory]: 105 MB (+761kb) [00:00:08]
+// [GUI Memory]: 116 MB (+6017kb) [00:00:08]
+// [GUI Memory]: 124 MB (+2821kb) [00:00:08]
+// WARNING: HEventQueue.dispatchEvent() is taking  2937 ms.
 // Tcl Message: open_project C:/Users/ay140/Boids_FPGA/version_1.xpr 
 // Tcl Message: Scanning sources... Finished scanning sources 
 // Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'. 

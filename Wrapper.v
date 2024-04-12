@@ -40,7 +40,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
     output[3:0] VGA_B;  // Blue Signal output with 
 
 	
-	assign LED = instAddr[15:0];
+	assign LED[7:0] = instAddr[7:0];
 	
 	reg[10:0] counter;
 	wire clock; // 50 mhz clock
@@ -116,7 +116,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
                                    .BTNL(BTNL),
                                    .BTND(BTND),
                                    .BTNR(BTNR),
-                                   .cursorType(cursorType));
+                                   .cursorType(cursorType),
+                                   .LED(LED));
    
 
 

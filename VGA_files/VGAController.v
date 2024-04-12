@@ -134,11 +134,38 @@ module VGAController(
 	assign boids_display_wen = (BTNU) ? 1'b1 : 1'b0;
 	
 //	assign square = (x > box_x && x < box_x + 50 && y > box_y && y < box_y+50) && box_black;
-    assign checkForMovingBoid = ( x == movingBoidX);
+
+	reg[9:0] boid_x_vals[15:0];
+	reg[8:0] boid_y_vals[15:0];
+
+	always @(posedge screenEnd) begin
+		boid_x_vals[0] <= boid_x_vals[0] + 2'b10;
+		boid_y_vals[0] <= boid_y_vals[0] + 2'b01;
+
+		boid_x_vals[1] <= boid_x_vals[1] + 2'b01;
+		boid_y_vals[1] <= boid_y_vals[1] + 2'b10;
+
+		for (int i = 2; i < 16; i = i + 1) begin
+			boid_x_vals[i] <= boid_x_vals[i] + 1'b1;
+			boid_y_vals[i] <= boid_y_vals[i] + 1'b1;
+		end
+	end
+
+	reg isBoidInPixel;
+	always @(posedge clk) begin
+		isBoidInPixel <= 1'b0;
+		for (int i = 0; i < 16; i = i + 1) begin
+			if (x == boid_x_vals[i] && y == boid_y_vals[i]) begin
+				isBoidInPixel <= 1'b1;
+			end
+		end
+	end
+
+	assign checkForMovingBoid = ( x == movingBoidX);
     
     wire[PALETTE_ADDRESS_WIDTH-1:0] testWriteData;
     
-    assign whatToShow = square | checkForMovingBoid;
+    assign whatToShow = square | isBoidInPixel;
     
 	assign testWriteData = whatToShow ? 8'd42 : 8'd31;
 

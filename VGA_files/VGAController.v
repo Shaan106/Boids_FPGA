@@ -16,8 +16,12 @@ module VGAController(
 	
 	input cursorType, // this is what to show for the cursor
 	
+	output screenEnd_out,
 	output[15:0] LED
 	);
+
+	// this is sending the screenEnd signal out of VGA controller so that boid mem can be updated on its posedge
+	assign screenEnd_out = screenEnd;
 	
 	// Lab Memory Files Location
 	localparam FILES_PATH = "../RAM_files/"; 
@@ -202,6 +206,9 @@ module VGAController(
 		.wEn(boids_display_wen)); 	
 
 
+	wire[PALETTE_ADDRESS_WIDTH-1:0] trashOut1;
+
+
 	// Color Palette to Map Color Address to 12-Bit Color
 	wire[BITS_PER_COLOR-1:0] colorData; // 12-bit color data at current pixel
 
@@ -257,14 +264,3 @@ module latch_8bit(
         if (EN) Q <= D;
     end
 endmodule
-
-	// RAM #(		
-	// 	.DEPTH(PIXEL_COUNT), 				     // Set RAM depth to contain every pixel
-	// 	.DATA_WIDTH(PALETTE_ADDRESS_WIDTH),      // Set data width according to the color palette
-	// 	.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH),     // Set address with according to the pixel count
-	// 	.MEMFILE({FILES_PATH, "image.mem"})) // Memory initialization
-	// ImageData(
-	// 	.clk(clk), 						 // Falling edge of the 100 MHz clk
-	// 	.addr(imgAddress),					 // Image data address
-	// 	.dataOut(colorAddr),				 // Color palette address
-	// 	.wEn(1'b0)); 						 // We're always reading

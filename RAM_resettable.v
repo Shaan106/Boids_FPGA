@@ -80,10 +80,12 @@ module RAM_resettable #(
     // read/write address
     wire[ADDR_WIDTH-1:0] ram1_read_addr, ram1_write_addr;
     assign ram1_read_addr = read_addr;
+    assign ram2_write_addr = (~reset_RAM) ? reset_addr : write_addr; //if reset RAM = 0 then write reset_addr.
     assign ram1_addr = (ram1_we) ? ram1_write_addr : ram1_read_addr;
 
     wire[ADDR_WIDTH-1:0] ram2_read_addr, ram2_write_addr;
     assign ram2_read_addr = read_addr;
+    assign ram2_write_addr = (reset_RAM) ? reset_addr : write_addr; //if reset RAM = 1 then write addr = reset_addr, ow write_addr
     assign ram2_addr = (ram2_we) ? ram2_write_addr : ram2_read_addr;
 
 

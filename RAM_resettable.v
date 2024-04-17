@@ -6,11 +6,14 @@ module RAM_resettable #(
     input clk, we, reset;
     input [ADDR_WIDTH-1:0] write_addr, read_addr;
     input write_data;
-    output reg read_data;
+    output read_data;
+    
+    reg read_data_reg;
+    assign read_data = read_data_reg;
 
     // Two RAMs, one being written/read and one being reset
-    reg ram1 [DEPTH-1:0];
-    reg ram2 [DEPTH-1:0];
+    reg[DEPTH-1:0] ram1;
+    reg[DEPTH-1:0] ram2;
 
     // Control which RAM we're writing to
     reg current_ram = 0;
@@ -41,9 +44,9 @@ module RAM_resettable #(
     // Read
     always @(posedge clk) begin
         if (current_ram)
-            read_data <= ram1[read_addr];
+            read_data_reg <= ram1[read_addr];
         else
-            read_data <= ram2[read_addr];
+            read_data_reg <= ram2[read_addr];
     end
 
 endmodule

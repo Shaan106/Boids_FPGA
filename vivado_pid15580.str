@@ -1,0 +1,1301 @@
+/*
+
+Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
+SW Build: 3247384 on Thu Jun 10 19:36:33 MDT 2021
+IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
+
+Process ID (PID): 15580
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Wed Apr 17 14:50:58 EDT 2024
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 12
+
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	C:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2
+Java executable: 	C:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	ay140
+User home directory: C:/Users/ay140
+User working directory: C:/Users/ay140/Desktop/Boids_FPGA
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2021.1
+RDI_DATADIR: C:/Xilinx/Vivado/2021.1/data
+RDI_BINDIR: C:/Xilinx/Vivado/2021.1/bin
+
+Vivado preferences file: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/vivado.xml
+Vivado preferences directory: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/
+Vivado layouts directory: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/data/layouts
+PlanAhead jar file: 	C:/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
+Vivado log file: 	C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
+Vivado journal file: 	C:/Users/ay140/Desktop/Boids_FPGA/vivado.jou
+Engine tmp dir: 	C:/Users/ay140/Desktop/Boids_FPGA/.Xil/Vivado-15580-P1-07
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_HLS: C:/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2021.1
+XILINX_VIVADO: C:/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2021.1
+
+
+GUI allocated memory:	308 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,333 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 107 MB (+109451kb) [00:00:04]
+// [Engine Memory]: 1,333 MB (+1246398kb) [00:00:04]
+// bz (cs):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\ay140\Desktop\Boids_FPGA\version_1.xpr. Version: Vivado v2021.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project C:/Users/ay140/Desktop/Boids_FPGA/version_1.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// Tcl Message: open_project C:/Users/ay140/Desktop/Boids_FPGA/version_1.xpr 
+// Tcl Message: INFO: [Project 1-313] Project file moved from 'C:/Users/ay140/Boids_FPGA' since last save. 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 120 MB (+8784kb) [00:00:08]
+// WARNING: HEventQueue.dispatchEvent() is taking  2643 ms.
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,333 MB. GUI used memory: 62 MB. Current time: 4/17/24, 2:50:58 PM EDT
+// Project name: version_1; location: C:/Users/ay140/Desktop/Boids_FPGA; part: xc7a100tcsg324-1
+// Tcl Message: open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1329.191 ; gain = 0.000 
+dismissDialog("Open Project"); // bz
+// [GUI Memory]: 138 MB (+11699kb) [00:00:12]
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// [GUI Memory]: 146 MB (+1713kb) [00:00:19]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 3, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), CPU : processor (processor.v)]", 4, true, false, false, false, false, true); // D - Double Click - Node
+// [GUI Memory]: 164 MB (+11365kb) [00:00:22]
+// WARNING: HEventQueue.dispatchEvent() is taking  1223 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper_tb (Wrapper_tb.v)]", 13, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper_tb (Wrapper_tb.v)]", 13, true, false, false, false, false, true); // D - Double Click - Node
+// WARNING: HEventQueue.dispatchEvent() is taking  1146 ms.
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 2); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Non-module Files]", 2); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1145 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("VGAController.v", 185, 328); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, Wrapper.v]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, Wrapper.v]", 3, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, Wrapper.v]", 3, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("Wrapper.v", 203, 231); // bP
+selectCodeEditor("Wrapper.v", 188, 192); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false); // D
+// [GUI Memory]: 175 MB (+2228kb) [00:01:09]
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, VGAController.v]", 2, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("VGAController.v", 188, 109); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 10 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), VGAControlModule : VGAController (VGAController.v)]", 8); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), RegisterFile : regfile (regfile.v)]", 4); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), RegisterFile : regfile (regfile.v)]", 4); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), CPU : processor (processor.v)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 1, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 1, true, false, false, false, false, true); // D - Double Click - Node
+selectCodeEditor("Wrapper.v", 87, 243); // bP
+selectCodeEditor("Wrapper.v", 87, 243, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 96, 242); // bP
+selectCodeEditor("Wrapper.v", 96, 242, false, false, false, false, true); // bP - Double Click
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 9); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Constraints]", 9); // D
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 10); // D
+collapseTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Simulation Sources]", 10); // D
+// Elapsed time: 44 seconds
+selectCodeEditor("Wrapper.v", 329, 437); // bP
+// Elapsed time: 11 seconds
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // E
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cs): Add Sources: addNotify
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 16 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files]", 1); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, BPU.v]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, BPU.v]", 2, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1110 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, BPU.v]", 2, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Syntax Error Files, BPU.v]", 2, false, false, false, false, false, true); // D - Double Click
+selectCodeEditor("BPU.v", 185, 98); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 78 seconds
+selectCodeEditor("BPU.v", 800, 260); // bP
+selectButton(PAResourceCommand.PACommandNames_ADD_SOURCES, "Sources_add_sources"); // E
+// Run Command: PAResourceCommand.PACommandNames_ADD_SOURCES
+// c (cs): Add Sources: addNotify
+selectButton("NEXT", "Next >"); // JButton
+selectButton(PAResourceQtoS.SrcChooserPanel_ADD_HDL_AND_NETLIST_FILES_TO_YOUR_PROJECT, "Add Files"); // a
+setFileChooser("C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v");
+selectButton("FINISH", "Finish"); // JButton
+// 'g' command handler elapsed time: 11 seconds
+dismissDialog("Add Sources"); // c
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v 
+// TclEventType: FILE_SET_CHANGE
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 12 seconds
+expandTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 1); // D
+// Elapsed time: 15 seconds
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), Boid_display_mem : RAM_resettable (RAM_resettable.v)]", 7, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), Boid_display_mem : RAM_resettable (RAM_resettable.v)]", 7, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), Boid_display_mem : RAM_resettable (RAM_resettable.v)]", 7, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1141 ms.
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].x_output_tristate : tristate (tristate.v)]", 10, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false, false, false, false, false, true); // D - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 9, false, false, false, false, false, true); // D - Double Click
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+selectCodeEditor("VGAController.v", 267, 36); // bP
+selectButton(PAResourceEtoH.FileSetPanel_MESSAGES, "4"); // h
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]. ]", 3, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\VGA_files\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+// WARNING: HEventQueue.dispatchEvent() is taking  1118 ms.
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'. Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v. 	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v. ]", 4, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+// WARNING: HEventQueue.dispatchEvent() is taking  1128 ms.
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]. ]", 3, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\VGA_files\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'. Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v. 	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v. ]", 4, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]. ]", 3, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\VGA_files\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Analysis Results, sim_1, [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'. Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v. 	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v. ]", 4, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\RAM.v;-;;-;16;-;line;-;2;-;;-;16;-;"); // ah
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v (2)", 5); // m
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// Elapsed time: 12 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 14:57:47 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 51 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-2576] procedural assignment to a non-register x_loc is not permitted [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:37]. ]", 1, true); // ah - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\BPU\BPU.v;-;;-;16;-;line;-;37;-;;-;16;-;"); // ah
+// WARNING: HEventQueue.dispatchEvent() is taking  1113 ms.
+selectCodeEditor("BPU.v", 69, 349); // bP
+selectCodeEditor("BPU.v", 69, 349, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("BPU.v", 50, 354); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 14:59:00 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 21 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-1031] box_y is not declared [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGAController.v:110]. ]", 1, true); // ah - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\VGA_files\VGAController.v;-;;-;16;-;line;-;110;-;;-;16;-;"); // ah
+selectCodeEditor("VGAController.v", 278, 286); // bP
+selectCodeEditor("VGAController.v", 100, 318); // bP
+selectCodeEditor("VGAController.v", 392, 250); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 14:59:41 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 29 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-1031] PALETTE_ADDRESS_WIDTH is not declared [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:157]. ]", 1, true); // ah - Node
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;157;-;;-;16;-;"); // ah
+// Elapsed time: 29 seconds
+selectCodeEditor("Wrapper.v", 270, 175); // bP
+selectCodeEditor("Wrapper.v", 270, 175, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 270, 261); // bP
+selectCodeEditor("Wrapper.v", 270, 261, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 101, 128); // bP
+selectCodeEditor("Wrapper.v", 101, 128, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 26, 92); // bP
+selectCodeEditor("Wrapper.v", 75, 148); // bP
+selectCodeEditor("Wrapper.v", 75, 148, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 209, 91); // bP
+selectCodeEditor("Wrapper.v", 209, 91, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 317, 193); // bP
+selectCodeEditor("Wrapper.v", 317, 193, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 461, 194); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:01:28 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+// [GUI Memory]: 184 MB (+373kb) [00:10:39]
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 40 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7136] In the module 'RAM_resettable' declared at 'C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:1', parameter 'ADDRESS_WIDTH' used as named parameter override, does not exist [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:176]. ]", 1, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;176;-;;-;16;-;"); // ah
+// [GUI Memory]: 194 MB (+866kb) [00:11:22]
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-7136] In the module 'RAM_resettable' declared at 'C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:1', parameter 'ADDRESS_WIDTH' used as named parameter override, does not exist [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:176]. ]", 1, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;176;-;;-;16;-;"); // ah
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 122, 381); // bP
+selectCodeEditor("Wrapper.v", 122, 381, false, false, false, false, true); // bP - Double Click
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), Boid_display_mem : RAM_resettable (RAM_resettable.v)]", 7, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), Boid_display_mem : RAM_resettable (RAM_resettable.v)]", 7, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1107 ms.
+selectCodeEditor("RAM_resettable.v", 118, 38); // bP
+selectCodeEditor("RAM_resettable.v", 118, 38, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "RAM_resettable.v", 'c'); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6156] failed synthesizing module 'Wrapper' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:27]. ]", 2, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;27;-;;-;16;-;"); // ah
+selectCodeEditor("Wrapper.v", 443, 329); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:02:46 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 306 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-685] variable 'boid_data_read' should not be used in output port connection [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:186]. ]", 1, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;186;-;;-;16;-;"); // ah
+selectCodeEditor("Wrapper.v", 192, 183); // bP
+selectCodeEditor("Wrapper.v", 192, 183, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 79 seconds
+selectCodeEditor("Wrapper.v", 199, 446); // bP
+selectCodeEditor("Wrapper.v", 199, 446, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 93, 141); // bP
+selectCodeEditor("Wrapper.v", 93, 141, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 175, 448); // bP
+selectCodeEditor("Wrapper.v", 175, 448, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 106, 447); // bP
+selectCodeEditor("Wrapper.v", 109, 445, false, false, false, false, true); // bP - Double Click
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-685] variable 'boid_data_read' should not be used in output port connection [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:186]. ]", 1, false); // ah
+selectCodeEditor("Wrapper.v", 181, 451); // bP
+selectCodeEditor("Wrapper.v", 181, 451, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 6); // m
+selectCodeEditor("RAM_resettable.v", 313, 58); // bP
+selectCodeEditor("RAM_resettable.v", 313, 57, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 315, 57); // bP
+selectCodeEditor("RAM_resettable.v", 315, 57); // bP
+selectCodeEditor("RAM_resettable.v", 315, 57); // bP
+selectCodeEditor("RAM_resettable.v", 315, 57, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 12 seconds
+selectCodeEditor("RAM_resettable.v", 187, 149); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 34 seconds
+selectCodeEditor("RAM_resettable.v", 98, 181); // bP
+selectCodeEditor("RAM_resettable.v", 98, 180, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 98, 180, false, false, false, true, false); // bP - Popup Trigger
+// [GUI Memory]: 204 MB (+162kb) [00:19:48]
+selectMenuItem(RDIResourceCommand.RDICommands_COPY, "Copy"); // an
+selectCodeEditor("RAM_resettable.v", 109, 453); // bP
+selectCodeEditor("RAM_resettable.v", 109, 453, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+selectCodeEditor("RAM_resettable.v", 116, 488); // bP
+selectCodeEditor("RAM_resettable.v", 116, 488, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("RAM_resettable.v", 96, 179); // bP
+selectCodeEditor("RAM_resettable.v", 96, 179, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 116, 199); // bP
+selectCodeEditor("RAM_resettable.v", 116, 199, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+// Elapsed time: 22 seconds
+selectCodeEditor("Wrapper.v", 101, 127); // bP
+selectCodeEditor("Wrapper.v", 101, 127, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 310, 127); // bP
+selectCodeEditor("Wrapper.v", 173, 126); // bP
+selectCodeEditor("Wrapper.v", 161, 94); // bP
+selectCodeEditor("Wrapper.v", 109, 104); // bP
+selectCodeEditor("Wrapper.v", 109, 104, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 175, 400); // bP
+selectCodeEditor("Wrapper.v", 174, 400, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 179, 144); // bP
+selectCodeEditor("Wrapper.v", 179, 144, false, false, false, false, true); // bP - Double Click
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "VGAController.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:11:51 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 23 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+// [GUI Memory]: 218 MB (+3969kb) [00:21:26]
+selectCodeEditor("Wrapper.v", 302, 421); // bP
+selectCodeEditor("Wrapper.v", 302, 421, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "VGAController.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "VGAController.v", 4); // m
+selectCodeEditor("VGAController.v", 131, 328); // bP
+selectCodeEditor("VGAController.v", 131, 328, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 11 seconds
+selectCodeEditor("VGAController.v", 104, 264); // bP
+selectCodeEditor("VGAController.v", 104, 264, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper_tb.v", 3); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+selectCodeEditor("Wrapper.v", 354, 395); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:13:10 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// [GUI Memory]: 231 MB (+2638kb) [00:24:24]
+// ag (cs): Synthesis Completed: addNotify
+// Elapsed time: 125 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:15:17 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Implementation Failed: addNotify
+// Elapsed time: 28 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC, Netlist, Net, [DRC MDRV-1] Multiple Driver Nets: Net boid_counter[0] has multiple drivers: boid_counter_reg[0]__0/Q, and boid_counter_reg[0]/Q.. ]", 8, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC, Netlist, Net, [DRC MDRV-1] Multiple Driver Nets: Net boid_counter[0] has multiple drivers: boid_counter_reg[0]__0/Q, and boid_counter_reg[0]/Q.. , [DRC MDRV-1] Multiple Driver Nets: Net boid_counter[4] has multiple drivers: boid_counter_reg[4]/Q, and boid_counter_reg[4]__0/Q.. ]", 12, false, false, false, false, false, true); // ah - Double Click
+// Elapsed time: 32 seconds
+selectCodeEditor("Wrapper.v", 68, 104); // bP
+selectCodeEditor("Wrapper.v", 333, 508); // bP
+// Elapsed time: 16 seconds
+selectCodeEditor("Wrapper.v", 98, 233); // bP
+selectCodeEditor("Wrapper.v", 98, 233, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 108, 248); // bP
+selectCodeEditor("Wrapper.v", 38, 229); // bP
+selectCodeEditor("Wrapper.v", 258, 332); // bP
+selectCodeEditor("Wrapper.v", 74, 334); // bP
+selectCodeEditor("Wrapper.v", 51, 226); // bP
+selectCodeEditor("Wrapper.v", 263, 219); // bP
+selectCodeEditor("Wrapper.v", 228, 236); // bP
+selectCodeEditor("Wrapper.v", 304, 216); // bP
+selectCodeEditor("Wrapper.v", 288, 237); // bP
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 295, 366); // bP
+// Elapsed time: 14 seconds
+selectCodeEditor("Wrapper.v", 110, 349); // bP
+selectCodeEditor("Wrapper.v", 139, 366); // bP
+selectCodeEditor("Wrapper.v", 138, 366, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 156, 384); // bP
+selectCodeEditor("Wrapper.v", 156, 384, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 189, 231); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("Wrapper.v", 367, 441); // bP
+selectCodeEditor("Wrapper.v", 73, 334); // bP
+selectCodeEditor("Wrapper.v", 261, 384); // bP
+selectCodeEditor("Wrapper.v", 208, 384); // bP
+selectCodeEditor("Wrapper.v", 177, 333); // bP
+selectCodeEditor("Wrapper.v", 398, 334); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 12 seconds
+selectCodeEditor("Wrapper.v", 348, 364); // bP
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:18:12 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Completed: addNotify
+// Elapsed time: 134 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:20:28 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Implementation Failed: addNotify
+// HMemoryUtils.trashcanNow. Engine heap size: 1,333 MB. GUI used memory: 105 MB. Current time: 4/17/24, 3:21:02 PM EDT
+// Elapsed time: 44 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'switchRam_reg/Q' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:205]. ]", 1, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC, Netlist, Net, [DRC MDRV-1] Multiple Driver Nets: Net writing_to_boids has multiple drivers: writing_to_boids_reg/Q, and writing_to_boids_reg__0/Q.. ]", 8, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC, Netlist, Net, [DRC MDRV-1] Multiple Driver Nets: Net writing_to_boids has multiple drivers: writing_to_boids_reg/Q, and writing_to_boids_reg__0/Q.. ]", 8, false); // ah
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Opt Design, DRC, Netlist, Net, [DRC MDRV-1] Multiple Driver Nets: Net writing_to_boids has multiple drivers: writing_to_boids_reg/Q, and writing_to_boids_reg__0/Q.. ]", 8, false, false, false, false, false, true); // ah - Double Click
+selectCodeEditor("Wrapper.v", 118, 196); // bP
+selectCodeEditor("Wrapper.v", 118, 196, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 18 seconds
+selectCodeEditor("Wrapper.v", 274, 279); // bP
+// Elapsed time: 17 seconds
+selectCodeEditor("Wrapper.v", 104, 318); // bP
+selectCodeEditor("Wrapper.v", 104, 318, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 105, 337); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 235, 456); // bP
+selectCodeEditor("Wrapper.v", 166, 212); // bP
+selectCodeEditor("Wrapper.v", 51, 382); // bP
+selectCodeEditor("Wrapper.v", 63, 214); // bP
+selectCodeEditor("Wrapper.v", 63, 214, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 231, 329); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 157, 418); // bP
+selectCodeEditor("Wrapper.v", 141, 254); // bP
+selectCodeEditor("Wrapper.v", 60, 249); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("Wrapper.v", 610, 256); // bP
+selectCodeEditor("Wrapper.v", 292, 501); // bP
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:23:02 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Completed: addNotify
+// Elapsed time: 164 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:25:48 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Implementation Failed: addNotify
+// Elapsed time: 73 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Place Design, DRC, Floorplan, Pblock, [DRC UTLZ-1] Resource utilization: LUT as Distributed RAM over-utilized in Top Level Design (This design requires more LUT as Distributed RAM cells than are available in the target device. This design requires 19456 of such cell types but only 19000 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter drc.disableLUTOverUtilError to 1 to change this error to warning.). ]", 8, true); // ah - Node
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, (String) null, 9, false, false, false, false, false, true); // ah - Double Click
+// Elapsed time: 41 seconds
+selectCodeEditor("Wrapper.v", 148, 223); // bP
+selectCodeEditor("Wrapper.v", 148, 223, false, false, false, false, true); // bP - Double Click
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("Wrapper.v", 144, 234); // bP
+selectCodeEditor("Wrapper.v", 144, 234, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper_tb.v", 3); // m
+closeView(PAResourceOtoP.PAViews_CODE, "Code"); // D
+// Elapsed time: 19 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "BPU.v", 5); // m
+// Elapsed time: 19 seconds
+selectCodeEditor("BPU.v", 410, 139); // bP
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:28:46 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Completed: addNotify
+// Elapsed time: 157 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:31:26 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Implementation Failed: addNotify
+// Elapsed time: 100 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Implementation, Place Design, DRC, Floorplan, Pblock, [DRC UTLZ-1] Resource utilization: LUT as Distributed RAM over-utilized in Top Level Design (This design requires more LUT as Distributed RAM cells than are available in the target device. This design requires 19456 of such cell types but only 19000 compatible sites are available in the target device. Please analyze your synthesis results and constraints to ensure the design is mapped to Xilinx primitives as expected. If so, please consider targeting a larger device. Please set tcl parameter drc.disableLUTOverUtilError to 1 to change this error to warning.). ]", 8, true); // ah - Node
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 2); // m
+selectCodeEditor("RAM_resettable.v", 705, 266); // bP
+selectCodeEditor("RAM_resettable.v", 170, 24); // bP
+selectCodeEditor("RAM_resettable.v", 170, 24, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Project Summary", 0); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+// Elapsed time: 25 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation]", 16, true); // o - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation]", 16, true, false, false, false, true, false); // o - Popup Trigger - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Implementation]", 16, true, false, false, false, true, false); // o - Popup Trigger - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design]", 15, true); // o - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_NETLIST_DESIGN
+// bz (cs):  Open Synthesized Design : addNotify
+// Tcl Message: open_run synth_1 -name synth_1 
+// Tcl Message: Design is defaulting to impl run constrset: constrs_1 Design is defaulting to synth run part: xc7a100tcsg324-1 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,414 MB. GUI used memory: 106 MB. Current time: 4/17/24, 3:34:22 PM EDT
+// TclEventType: READ_XDC_FILE_START
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: POWER_CNS_STALE
+// TclEventType: POWER_REPORT_STALE
+// TclEventType: SDC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: PLACEDB_MODIFIY_PRE
+// TclEventType: LOC_CONSTRAINT_ADD
+// TclEventType: SIGNAL_MODIFY
+// TclEventType: READ_XDC_FILE_END
+// TclEventType: FLOORPLAN_MODIFY
+// TclEventType: DESIGN_NEW
+// HMemoryUtils.trashcanNow. Engine heap size: 1,428 MB. GUI used memory: 106 MB. Current time: 4/17/24, 3:34:25 PM EDT
+// [Engine Memory]: 1,428 MB (+29309kb) [00:43:37]
+// TclEventType: DESIGN_NEW
+// [Engine Memory]: 1,530 MB (+32740kb) [00:43:38]
+// Device: addNotify
+// TclEventType: HFED_INIT_ROUTE_STORAGE_COMPLETED
+// RouteApi::loadEngineXgdAndInitRouteStorage elapsed time: 1.3s
+// DeviceView Instantiated
+// WARNING: HEventQueue.dispatchEvent() is taking  1374 ms.
+// TclEventType: CURR_DESIGN_SET
+// Tcl Message: INFO: [Device 21-403] Loading part xc7a100tcsg324-1 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.207 . Memory (MB): peak = 1680.215 ; gain = 0.000 
+// Tcl Message: INFO: [Netlist 29-17] Analyzing 11338 Unisim elements for replacement INFO: [Netlist 29-28] Unisim Transformation completed in 5 CPU seconds INFO: [Project 1-479] Netlist was created with Vivado 2021.1 INFO: [Project 1-570] Preparing netlist for logic optimization 
+// Tcl Message: Parsing XDC File [C:/Users/ay140/Desktop/Boids_FPGA/master.xdc] Finished Parsing XDC File [C:/Users/ay140/Desktop/Boids_FPGA/master.xdc] 
+// Tcl Message: INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s). 
+// Tcl Message: Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1967.762 ; gain = 0.000 
+// Tcl Message: INFO: [Project 1-111] Unisim Transformation Summary:   A total of 9600 instances were transformed.   RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 9600 instances  
+// Device view-level: 0.0
+// Tcl Message: open_run: Time (s): cpu = 00:00:23 ; elapsed = 00:00:18 . Memory (MB): peak = 2064.855 ; gain = 735.664 
+// 'dU' command handler elapsed time: 19 seconds
+// Elapsed time: 19 seconds
+dismissDialog("Open Synthesized Design"); // bz
+selectTab((HResource) null, (HResource) null, "Sources", 0); // aK
+selectTab((HResource) null, (HResource) null, "Netlist", 1); // aK
+// RouteApi::initDelayMediator elapsed time: 5.7s
+// [Engine Memory]: 1,964 MB (+374270kb) [00:43:44]
+// RouteApi: Init Delay Mediator Swing Worker Finished
+// Elapsed time: 10 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Report Utilization]", 25, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RESOURCE_UTILIZATION
+// a (cs): Report Utilization: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Report Utilization"); // a
+// bz (cs):  Report Utilization : addNotify
+// Tcl Message: report_utilization -name utilization_1 
+// TclEventType: UTILIZATION_RESULT_GENERATED
+// [Engine Memory]: 2,063 MB (+1127kb) [00:43:58]
+// HMemoryUtils.trashcanNow. Engine heap size: 2,075 MB. GUI used memory: 167 MB. Current time: 4/17/24, 3:34:47 PM EDT
+// HMemoryUtils.trashcanNow. Engine heap size: 2,104 MB. GUI used memory: 158 MB. Current time: 4/17/24, 3:34:48 PM EDT
+dismissDialog("Report Utilization"); // bz
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Open Synthesized Design, Report Methodology]", 22, false); // o
+// Run Command: PAResourceCommand.PACommandNames_REPORT_METHODOLOGY
+// a (cs): Report Methodology: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Report Methodology"); // a
+// bz (cs):  Report Methodology : addNotify
+// Tcl Message: report_methodology -name ultrafast_methodology_1 
+// Tcl Message: Command: report_methodology -name ultrafast_methodology_1 
+// Tcl Message: INFO: [Timing 38-35] Done setting XDC timing constraints. 
+// Tcl Message: INFO: [Timing 38-35] Done setting XDC timing constraints. 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,337 MB. GUI used memory: 157 MB. Current time: 4/17/24, 3:35:12 PM EDT
+// Tcl Message: INFO: [DRC 23-133] Running Methodology with 2 threads 
+// TclEventType: METHODOLOGY_ADDED
+// [Engine Memory]: 2,386 MB (+230253kb) [00:44:28]
+// Tcl Message: report_methodology completed successfully 
+// Tcl Message: report_methodology: Time (s): cpu = 00:00:35 ; elapsed = 00:00:19 . Memory (MB): peak = 3109.000 ; gain = 301.953 
+// Elapsed time: 20 seconds
+dismissDialog("Report Methodology"); // bz
+// Elapsed time: 10 seconds
+selectTab((HResource) null, (HResource) null, "Utilization", 6); // aK
+// Elapsed time: 27 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 6); // m
+// Elapsed time: 14 seconds
+selectCodeEditor("RAM_resettable.v", 146, 423); // bP
+selectCodeEditor("RAM_resettable.v", 146, 425, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 14 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectCodeEditor("RAM.v", 216, 22); // bP
+selectCodeEditor("RAM.v", 216, 22, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 244, 146); // bP
+selectCodeEditor("RAM.v", 540, 202); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 6); // m
+// PAPropertyPanels.initPanels (Boid_display_mem (RAM_resettable)) elapsed time: 0.4s
+// Elapsed time: 16 seconds
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "46841", 1, true); // y - Node
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "46841", 1, true, false, false, false, false, true); // y - Double Click - Node
+selectCodeEditor("RAM_resettable.v", 178, 314); // bP
+selectCodeEditor("RAM_resettable.v", 306, 385); // bP
+selectCodeEditor("RAM_resettable.v", 310, 384, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 310, 384); // bP
+selectCodeEditor("RAM_resettable.v", 310, 384); // bP
+selectCodeEditor("RAM_resettable.v", 310, 384, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 310, 384); // bP
+// Elapsed time: 50 seconds
+selectCodeEditor("RAM_resettable.v", 118, 245); // bP
+selectCodeEditor("RAM_resettable.v", 117, 245, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectCodeEditor("RAM.v", 78, 145); // bP
+selectCodeEditor("RAM.v", 79, 144, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 215, 150); // bP
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 6); // m
+selectCodeEditor("RAM_resettable.v", 114, 263); // bP
+selectCodeEditor("RAM_resettable.v", 114, 263, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 173, 26); // bP
+selectCodeEditor("RAM_resettable.v", 173, 26, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 91, 316); // bP
+selectCodeEditor("RAM_resettable.v", 91, 316, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 155, 489); // bP
+selectCodeEditor("RAM_resettable.v", 154, 489, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 95, 291); // bP
+selectCodeEditor("RAM_resettable.v", 95, 291, false, false, false, false, true); // bP - Double Click
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "Boid_display_mem (RAM_resettable)", 0, true, false, false, false, true, false); // y - Popup Trigger - Node
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "Boid_display_mem (RAM_resettable)", 0, true); // y - Node
+// Elapsed time: 12 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectCodeEditor("RAM.v", 176, 220); // bP
+selectCodeEditor("RAM.v", 176, 220, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 261, 211); // bP
+selectCodeEditor("RAM.v", 261, 211, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 175, 227); // bP
+selectCodeEditor("RAM.v", 175, 226, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 181, 216); // bP
+selectCodeEditor("RAM.v", 181, 216, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM.v", 80, 255); // bP
+// Elapsed time: 50 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 6); // m
+selectCodeEditor("RAM_resettable.v", 206, 303); // bP
+selectCodeEditor("RAM_resettable.v", 206, 303, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 146, 183); // bP
+selectCodeEditor("RAM_resettable.v", 146, 183, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 24 seconds
+selectCodeEditor("RAM_resettable.v", 181, 28); // bP
+selectCodeEditor("RAM_resettable.v", 178, 30); // bP
+selectCodeEditor("RAM_resettable.v", 178, 30, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 16 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 5); // m
+selectCodeEditor("RAM_resettable.v", 141, 179); // bP
+selectCodeEditor("RAM_resettable.v", 129, 151); // bP
+selectCodeEditor("RAM_resettable.v", 129, 151, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 21 seconds
+selectCodeEditor("RAM_resettable.v", 347, 466); // bP
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectCodeEditor("RAM.v", 49, 292); // bP
+selectCodeEditor("RAM.v", 163, 372); // bP
+selectCodeEditor("RAM.v", 113, 347); // bP
+selectCodeEditor("RAM.v", 113, 347, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 5); // m
+// Elapsed time: 14 seconds
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "46841", 1, true); // y - Node
+selectTreeTable("PAResourceTtoZ.UtilizationHierViewTreeTablePanel_TABLE(Hierarchy)", "Boid_display_mem (RAM_resettable) ; 46841 ; 45 ; 20354 ; 564 ; 0 ; 0 ; 0 ; 0", 1, "46841", 1, true, false, false, false, false, true); // y - Double Click - Node
+selectCodeEditor("RAM_resettable.v", 227, 465); // bP
+selectCodeEditor("RAM_resettable.v", 204, 467); // bP
+// Elapsed time: 13 seconds
+selectCodeEditor("RAM_resettable.v", 72, 404); // bP
+selectCodeEditor("RAM_resettable.v", 72, 404, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 72, 404); // bP
+selectCodeEditor("RAM_resettable.v", 116, 478); // bP
+// Elapsed time: 18 seconds
+selectCodeEditor("RAM_resettable.v", 132, 409); // bP
+selectCodeEditor("RAM_resettable.v", 84, 413); // bP
+typeControlKey((HResource) null, "RAM_resettable.v", 'c'); // bP
+selectCodeEditor("RAM_resettable.v", 414, 176); // bP
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+selectCodeEditor("RAM_resettable.v", 77, 467); // bP
+typeControlKey((HResource) null, "RAM_resettable.v", 'c'); // bP
+selectCodeEditor("RAM_resettable.v", 425, 257); // bP
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+selectCodeEditor("RAM_resettable.v", 61, 495); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("RAM_resettable.v", 460, 359); // bP
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:43:01 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Slice Logic, Slice LUTs, LUT as Memory, LUT as Distributed RAM]", 5, false); // l
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Slice Logic, Slice LUTs, LUT as Memory, LUT as Distributed RAM]", 5, false, false, false, false, false, true); // l - Double Click
+selectTreeTable("PAResourceTtoZ.UtilizationInstTreeTablePanel_UTILIZATION_INST_TREE_TABLE(LUT as Distributed RAM)", "Boid_display_mem (RAM_resettable) ; 38400", 1, "38400", 1, false); // K
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// ag (cs): Synthesis Completed: addNotify
+// Elapsed time: 157 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_RUN_IMPLEMENTATION
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:45:50 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// [GUI Memory]: 245 MB (+2087kb) [00:56:11]
+// ag (cs): Implementation Failed: addNotify
+// Elapsed time: 73 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Implementation Failed"); // ag
+selectTab((HResource) null, (HResource) null, "Utilization", 6); // aK
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Slice Logic, Slice LUTs]", 3, true); // l - Node
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Slice Logic, Slice LUTs]", 3, true, false, false, false, false, true); // l - Double Click - Node
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Summary]", 1, false); // l
+selectTree(PAResourceQtoS.ReportUtilTab_REPORT_UTILIZATION_NAVIGATION_TREE, "[Report Contents, Summary]", 1, false, false, false, false, false, true); // l - Double Click
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUT ; 50201 ; 63400 ; 79.18138", 0, "50201", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUT ; 50201 ; 63400 ; 79.18138", 0, "63400", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUTRAM ; 38400 ; 19000 ; 202.10526", 1, "19000", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUT ; 50201 ; 63400 ; 79.18138", 0, "79.18138", 3); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUTRAM ; 38400 ; 19000 ; 202.10526", 1, "202.10526", 3); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUTRAM ; 38400 ; 19000 ; 202.10526", 1, "19000", 2); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUTRAM ; 38400 ; 19000 ; 202.10526", 1, "38400", 1); // s
+selectTable(PAResourceOtoP.ProjectSummaryUtilizationPanel_PROJECT_SUMMARY_UTILIZATION_TABLE, "LUTRAM ; 38400 ; 19000 ; 202.10526", 1, "19000", 2); // s
+// Elapsed time: 133 seconds
+selectCodeEditor("RAM_resettable.v", 180, 278); // bP
+selectCodeEditor("RAM_resettable.v", 180, 278, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 160, 245); // bP
+selectCodeEditor("RAM_resettable.v", 160, 245, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 313, 271); // bP
+selectCodeEditor("RAM_resettable.v", 298, 278); // bP
+selectCodeEditor("RAM_resettable.v", 283, 285); // bP
+// Elapsed time: 22 seconds
+selectCodeEditor("RAM_resettable.v", 107, 307); // bP
+selectCodeEditor("RAM_resettable.v", 63, 416); // bP
+selectCodeEditor("RAM_resettable.v", 89, 438); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:50:16 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 12 seconds
+selectCodeEditor("RAM_resettable.v", 116, 372); // bP
+selectCodeEditor("RAM_resettable.v", 116, 372, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 42 seconds
+selectCodeEditor("RAM_resettable.v", 97, 251); // bP
+selectCodeEditor("RAM_resettable.v", 98, 251, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 106, 250); // bP
+selectCodeEditor("RAM_resettable.v", 106, 250, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 12 seconds
+selectCodeEditor("RAM_resettable.v", 165, 264); // bP
+// Elapsed time: 13 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Device", 1); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 2); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 5); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM.v", 4); // m
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "RAM_resettable.v", 5); // m
+selectCodeEditor("RAM_resettable.v", 132, 260, false, false, false, true, false); // bP - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_CUT, "Cut"); // an
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+typeControlKey((HResource) null, "RAM_resettable.v", 'v'); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("RAM_resettable.v", 148, 304); // bP
+selectCodeEditor("RAM_resettable.v", 407, 169); // bP
+selectCodeEditor("RAM_resettable.v", 142, 388); // bP
+selectCodeEditor("RAM_resettable.v", 142, 388, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 337, 206); // bP
+selectCodeEditor("RAM_resettable.v", 260, 123); // bP
+selectCodeEditor("RAM_resettable.v", 260, 123, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("RAM_resettable.v", 362, 131); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectButton(PAResourceQtoS.SyntheticaStateMonitor_CANCEL, "Cancel"); // h
+// bz (cs):  Resetting Runs : addNotify
+selectButton("OptionPane.button", "Cancel Process"); // JButton
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_RESET
+// Tcl Message: reset_run synth_1 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+dismissDialog("Resetting Runs"); // bz
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Synthesis, Run Synthesis]", 14, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_SYNTHESIS
+// bz (cs):  Resetting Runs : addNotify
+// f (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// bz (cs):  Starting Design Runs : addNotify
+dismissDialog("Launch Runs"); // f
+// TclEventType: DESIGN_STALE
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs synth_1 -jobs 6 
+// Tcl Message: [Wed Apr 17 15:52:40 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log 
+dismissDialog("Starting Design Runs"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 477 seconds
+selectTab((HResource) null, (HResource) null, "Log", 2); // aK
+selectTab((HResource) null, (HResource) null, "Messages", 1); // aK
+selectTab((HResource) null, (HResource) null, "Reports", 3); // aK
+selectTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Synthesis ;  ;  ;  ; ", 0, "Synthesis", 0, true); // O - Node
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Implementation ;  ;  ;  ; ", 1); // O
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Synthesis ;  ;  ;  ; ", 0); // O
+expandTreeTable(PAResourceEtoH.ExpReportTreePanel_EXP_REPORT_TREE_TABLE, "Synth Design (synth_design) ;  ;  ;  ; ", 1); // O
+selectTab((HResource) null, (HResource) null, "Design Runs", 4); // aK
+// Elapsed time: 17 seconds
+selectCodeEditor("RAM_resettable.v", 318, 274); // bP
+selectCodeEditor("RAM_resettable.v", 103, 225); // bP
+// Elapsed time: 124 seconds
+selectCodeEditor("RAM_resettable.v", 289, 104); // bP

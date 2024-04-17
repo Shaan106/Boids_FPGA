@@ -105,12 +105,12 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
 	localparam 
 		VIDEO_WIDTH = 640,  // Standard VGA Width
-		VIDEO_HEIGHT = 480; // Standard VGA Height
+		VIDEO_HEIGHT = 480, // Standard VGA Height
 
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 
-		MAX_BOIDS = 32,
+		MAX_BOIDS = 8,
 		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
 
 
@@ -153,10 +153,10 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	// ------------------------ creating Boid display memory ------------------------
 
 
-	wire[PIXEL_ADDRESS_WIDTH-1:0] imgAddress;  	 // Image address for the image data
-	wire[PALETTE_ADDRESS_WIDTH-1:0] colorAddr; 	 // Color address for the color palette
-	assign imgAddress = x + 640*y;				 // Address calculated coordinate
-	wire pixelColorOut, pixelColorIn, pixelWriteEnable;
+//	wire[PIXEL_ADDRESS_WIDTH-1:0] imgAddress;  	 // Image address for the image data
+//	wire[PALETTE_ADDRESS_WIDTH-1:0] colorAddr; 	 // Color address for the color palette
+//	assign imgAddress = x + 640*y;				 // Address calculated coordinate
+//	wire pixelColorOut, pixelColorIn, pixelWriteEnable;
 
 	reg writing_to_boids;
 	wire writing_to_boids_wire; // this is input to resettable RAM
@@ -165,15 +165,15 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire; // this is the input read loc for RAM.
 	// assign[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire = boid_read_address;
 
-	reg boid_data_read;
+
 	wire boid_read_data;
-	assign boid_read_data = boid_data_read;
+	
 
 	reg switchRam; // one cycle pulse to switch to a clear RAM
 
 	RAM_resettable #(
 		.DEPTH(PIXEL_COUNT), //depth = how many pixels on screen.
-		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
+		.ADDR_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
 	) Boid_display_mem(
 		.clk(clock),
 		.we(writing_to_boids_wire),
@@ -183,7 +183,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.read_addr(boid_read_address_wire),
 
 		.write_data(writing_to_boids_wire), //if we is on, then write data = 1
-		.read_data(boid_data_read) //read data is a reg - it's a 1 or 0.
+		.read_data(boid_read_data) //read data is a reg - it's a 1 or 0.
 	);
 
 
@@ -194,18 +194,25 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	assign chosen_boid_to_read = boid_counter;
 
 	// at every screenEnd, enable writing to boids and set initial boid = 0
-	always @(posedge screenEnd_out) begin
-		writing_to_boids <= 1;
-		switchRam <= 1;
-		boid_counter <= 0;
-	end
+//	always @(posedge screenEnd_out) begin
+//		writing_to_boids <= 1;
+//		switchRam <= 1;
+////		boid_counter <= 0;
+//	end
 
 	always @(posedge clock) begin
-		if (writing_to_boids) begin
-			switchRam <= 0; //this is a one cycle pulse to switch to a clear RAM
-			boid_counter <= boid_counter + 1;
+	   
+	   if (screenEnd_out) begin
+	       writing_to_boids = 0;
+	       switchRam = 1;
+	   end
+	
+	   if (writing_to_boids) begin
+			switchRam = 0; //this is a one cycle pulse to switch to a clear RAM
+			boid_counter = boid_counter + 1;
 			if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
-				writing_to_boids <= 0;
+				writing_to_boids = 0;
+				boid_counter = 0;
 			end
 		end
 	end
@@ -232,7 +239,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 								   .screenEnd_out(screenEnd_out),
                                    .LED(LED),
 								   .boid_read_address(boid_read_address_wire),
-								   .isBoidInPixel(boid_read_data) //outputs whether there is a boid in the pixel given by address
+								   .boid_read_data(boid_read_data) //outputs whether there is a boid in the pixel given by address
 								   
 								   );
    

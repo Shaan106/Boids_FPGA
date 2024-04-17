@@ -17,7 +17,7 @@ module VGAController(
 	output[15:0] LED,
 
 	output[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address,
-	input boid_read_data;
+	input boid_read_data
 	);
 
 	// this is sending the screenEnd signal out of VGA controller so that boid mem can be updated on its posedge
@@ -37,7 +37,7 @@ module VGAController(
 
 	localparam 
 		VIDEO_WIDTH = 640,  // Standard VGA Width
-		VIDEO_HEIGHT = 480; // Standard VGA Height
+		VIDEO_HEIGHT = 480, // Standard VGA Height
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 		BITS_PER_COLOR = 12, 	  								 // Nexys A7 uses 12 bits/color
@@ -105,14 +105,14 @@ module VGAController(
 	// Quickly assign the output colors to their channels using concatenation
 	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;
 	
-	always @(posedge screenEnd) begin
+//	always @(posedge screenEnd) begin
 
-	   box_y = BTNU ? box_y-1 : box_y;
-	   box_y = BTND ? box_y+1 : box_y;
-	   box_x = BTNL ? box_x-1 : box_x;
-	   box_x = BTNR ? box_x+1 : box_x;
+////	   box_y = BTNU ? box_y-1 : box_y;
+////	   box_y = BTND ? box_y+1 : box_y;
+////	   box_x = BTNL ? box_x-1 : box_x;
+////	   box_x = BTNR ? box_x+1 : box_x;
 
-	end
+//	end
 	
 endmodule
 

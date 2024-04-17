@@ -101,10 +101,26 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.dataOut(memDataOut));
 
 
+	// -------------------------- local params ---------------------------------
+
+	localparam 
+		VIDEO_WIDTH = 640,  // Standard VGA Width
+		VIDEO_HEIGHT = 480; // Standard VGA Height
+
+		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
+		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
+
+		MAX_BOIDS = 32,
+		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
+
+
+	// -------------------------- creating BPUs ---------------------------------
+
+
 	// creating BPU instances and choosing relevant output.
-	wire[9:0] x_loc_out;
-	wire[8:0] y_loc_out;
-	wire[11:0] boid_address_out;
+	wire[9:0] x_loc_out; //x loc of chosen boid
+	wire[8:0] y_loc_out; // y loc of chosen boid
+	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address_out; //address of chosen boid
 
 	wire[BITS_FOR_BOIDS-1:0] chosen_boid_to_read; //set value - loop through all boids
 
@@ -135,56 +151,63 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
    endgenerate
 
 	// ------------------------ creating Boid display memory ------------------------
-	localparam 
-		VIDEO_WIDTH = 640,  // Standard VGA Width
-		VIDEO_HEIGHT = 480; // Standard VGA Height
-	localparam 
-		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
-		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
-		BITS_PER_COLOR = 12, 	  								 // Nexys A7 uses 12 bits/color
-		PALETTE_COLOR_COUNT = 256, 								 // Number of Colors available
-		PALETTE_ADDRESS_WIDTH = $clog2(PALETTE_COLOR_COUNT) + 1; // Use built in log2 Command
-		MAX_BOIDS = 32;
-		BITS_FOR_BOIDS = $clog2(MAX_BOIDS);
+
 
 	wire[PIXEL_ADDRESS_WIDTH-1:0] imgAddress;  	 // Image address for the image data
 	wire[PALETTE_ADDRESS_WIDTH-1:0] colorAddr; 	 // Color address for the color palette
 	assign imgAddress = x + 640*y;				 // Address calculated coordinate
-
-	// Boids Mem
-
 	wire pixelColorOut, pixelColorIn, pixelWriteEnable;
 
-	RAM Boid_display_mem(		
-		.DEPTH(PIXEL_COUNT), 				     // Set RAM depth to contain every pixel
-		.DATA_WIDTH(1),      // Set data width according to the color palette
-		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH)     // Set address with according to the pixel count 
-		// .MEMFILE({FILES_PATH, "boids_display.mem"}))  
-	ImageData(
-		.clk(clock), 						 // Falling edge of the 100 MHz clk
-		.addr(boid_address_out),					 // Image data address
-		.dataOut(pixelColorOut),				 // Color palette address
-		.dataIn(pixelColorIn),
-		.wEn(pixelWriteEnable)); 	
+	reg writing_to_boids;
+	wire writing_to_boids_wire; // this is input to resettable RAM
+	assign writing_to_boids_wire = writing_to_boids;
+
+	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire; // this is the input read loc for RAM.
+	// assign[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire = boid_read_address;
+
+	reg boid_data_read;
+	wire boid_read_data;
+	assign boid_read_data = boid_data_read;
+
+	RAM_resettable #(
+		.DEPTH(PIXEL_COUNT), //depth = how many pixels on screen.
+		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
+	) Boid_display_mem(
+		.clk(clock),
+		.we(writing_to_boids_wire),
+		.reset(reset),
+
+		.write_addr(boid_address_out),
+		.read_addr(boid_read_address_wire),
+
+		.write_data(writing_to_boids_wire), //if we is on, then write data = 1
+		.read_data(boid_data_read) //read data is a reg - it's a 1 or 0.
+	);
 
 
-	// ---------- this could all be wrong ----------------
-	// pixelWriteEnable = screenEnd_out; // high for 1 cycle
-	// assign chosen_boid_to_read = counter[BITS_FOR_BOIDS-1:0]; // loop through all boids
-	// assign pixelWriteEnable = counter[5]; // 1/16th of 25mhz clock, 1/64th of 100mhz clock
-	// assign pixelColorIn = 1'b1; // because the boid_address_out will always only be the location of a boid.
+	//-----------------------boid mem updating-----------------------------
 
+	// counter for looping through boids
+	reg[BITS_FOR_BOIDS-1:0] boid_counter;
+	assign chosen_boid_to_read = boid_counter;
 
+	// at every screenEnd, enable writing to boids and set initial boid = 0
 	always @(posedge screenEnd_out) begin
+		writing_to_boids <= 1;
+		boid_counter <= 0;
+	end
 
-		// boid mem = all blank
-
-		// update boid mem with new boid locations 
-		// - have tristate implementation to get one of N boids' mem location
-
+	always @(posedge clock) begin
+		if (writing_to_boids) begin
+			boid_counter <= boid_counter + 1;
+			if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
+				writing_to_boids <= 0;
+			end
+		end
 	end
 
 
+	//---------------------data to VGA controller--------------------------
 
 	// at screen refresh end, update boid memory.
 
@@ -202,9 +225,13 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
                                    .BTNL(BTNL),
                                    .BTND(BTND),
                                    .BTNR(BTNR),
-                                   .cursorType(cursorType),
 								   .screenEnd_out(screenEnd_out),
-                                   .LED(LED));
+                                   .LED(LED),
+
+								   .boid_read_address(boid_read_address_wire),
+								   .isBoidInPixel(boid_read_data) //outputs whether there is a boid in the pixel given by address
+								   
+								   );
    
 
 

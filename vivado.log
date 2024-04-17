@@ -2,177 +2,67 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Wed Apr 17 14:50:44 2024
-# Process ID: 15580
+# Start of session at: Wed Apr 17 16:04:36 2024
+# Process ID: 15164
 # Current directory: C:/Users/ay140/Desktop/Boids_FPGA
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14568 C:\Users\ay140\Desktop\Boids_FPGA\version_1.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1568 C:\Users\ay140\Desktop\Boids_FPGA\version_1.xpr
 # Log file: C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
 # Journal file: C:/Users/ay140/Desktop/Boids_FPGA\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/ay140/Desktop/Boids_FPGA/version_1.xpr
-INFO: [Project 1-313] Project file moved from 'C:/Users/ay140/Boids_FPGA' since last save.
-WARNING: [filemgmt 56-2] Default IP Output Path : Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/version_1.gen/sources_1', nor could it be found using path 'C:/Users/ay140/Boids_FPGA/version_1.gen/sources_1'.
-WARNING: [filemgmt 56-2] IPUserFilesDir: Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/version_1.ip_user_files', nor could it be found using path 'C:/Users/ay140/Boids_FPGA/version_1.ip_user_files'.
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/version_1.gen/sources_1'.
+WARNING: [filemgmt 56-3] IPUserFilesDir: Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/version_1.ip_user_files'.
 Scanning sources...
 Finished scanning sources
-WARNING: [Project 1-509] GeneratedRun file for 'synth_1' not found
-WARNING: [Project 1-509] GeneratedRun file for 'impl_1' not found
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'.
-open_project: Time (s): cpu = 00:00:15 ; elapsed = 00:00:07 . Memory (MB): peak = 1329.191 ; gain = 0.000
-update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v
-update_compile_order -fileset sources_1
-add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v
+open_project: Time (s): cpu = 00:00:09 ; elapsed = 00:00:06 . Memory (MB): peak = 1353.066 ; gain = 0.000
 update_compile_order -fileset sources_1
 launch_runs synth_1 -jobs 6
 WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
 WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
 Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
 	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 14:57:47 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 14:59:00 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 14:59:41 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:01:28 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:02:46 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:11:51 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:13:10 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Wed Apr 17 15:15:17 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:18:12 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Wed Apr 17 15:20:28 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:23:02 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Wed Apr 17 15:25:48 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:28:46 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Wed Apr 17 15:31:26 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log
-open_run synth_1 -name synth_1
-Design is defaulting to impl run constrset: constrs_1
-Design is defaulting to synth run part: xc7a100tcsg324-1
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.207 . Memory (MB): peak = 1680.215 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 11338 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 5 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2021.1
-INFO: [Project 1-570] Preparing netlist for logic optimization
-Parsing XDC File [C:/Users/ay140/Desktop/Boids_FPGA/master.xdc]
-Finished Parsing XDC File [C:/Users/ay140/Desktop/Boids_FPGA/master.xdc]
-INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.052 . Memory (MB): peak = 1967.762 ; gain = 0.000
-INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 9600 instances were transformed.
-  RAM128X1D => RAM128X1D (MUXF7(x2), RAMD64E(x4)): 9600 instances
-
-open_run: Time (s): cpu = 00:00:23 ; elapsed = 00:00:18 . Memory (MB): peak = 2064.855 ; gain = 735.664
-report_utilization -name utilization_1
-report_methodology -name ultrafast_methodology_1
-Command: report_methodology -name ultrafast_methodology_1
-INFO: [Timing 38-35] Done setting XDC timing constraints.
-INFO: [Timing 38-35] Done setting XDC timing constraints.
-INFO: [DRC 23-133] Running Methodology with 2 threads
-report_methodology completed successfully
-report_methodology: Time (s): cpu = 00:00:35 ; elapsed = 00:00:19 . Memory (MB): peak = 3109.000 ; gain = 301.953
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:43:01 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-WARNING: [Project 1-478] Design 'synth_1' is stale and will not be used when launching 'impl_1'
-[Wed Apr 17 15:45:50 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/impl_1/runme.log
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
-WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
-Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:50:16 2024] Launched synth_1...
+[Wed Apr 17 16:06:19 2024] Launched synth_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
 reset_run synth_1
 WARNING: [Vivado 12-1017] Problems encountered:
-1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1
+1. PID not specified
 
 launch_runs synth_1 -jobs 6
 WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
 WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
 Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
 	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
-[Wed Apr 17 15:52:40 2024] Launched synth_1...
+[Wed Apr 17 16:13:34 2024] Launched synth_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. PID not specified
+
+launch_runs synth_1 -jobs 6
+WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
+WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
+Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
+	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
+[Wed Apr 17 16:18:08 2024] Launched synth_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. PID not specified
+
+launch_runs synth_1 -jobs 6
+WARNING: [HDL 9-3756] overwriting previous definition of module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v:2]
+WARNING: [filemgmt 20-1318] Duplicate Design Unit 'RAM()' found in library 'xil_defaultlib'
+Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
+	(Active) Duplicate found at line 2 of file C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v
+[Wed Apr 17 16:21:12 2024] Launched synth_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/version_1.runs/synth_1/runme.log
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. PID not specified
+
+exit
+INFO: [Common 17-206] Exiting Vivado at Wed Apr 17 16:24:46 2024...

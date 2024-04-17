@@ -2,21 +2,16 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Wed Apr 17 14:50:44 2024
-# Process ID: 15580
+# Start of session at: Wed Apr 17 16:04:36 2024
+# Process ID: 15164
 # Current directory: C:/Users/ay140/Desktop/Boids_FPGA
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14568 C:\Users\ay140\Desktop\Boids_FPGA\version_1.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent1568 C:\Users\ay140\Desktop\Boids_FPGA\version_1.xpr
 # Log file: C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
 # Journal file: C:/Users/ay140/Desktop/Boids_FPGA\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/ay140/Desktop/Boids_FPGA/version_1.xpr
 update_compile_order -fileset sources_1
-update_compile_order -fileset sources_1
-add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v
-update_compile_order -fileset sources_1
-add_files -norecurse C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v
-update_compile_order -fileset sources_1
 launch_runs synth_1 -jobs 6
 wait_on_run synth_1
 reset_run synth_1
@@ -29,42 +24,3 @@ reset_run synth_1
 launch_runs synth_1 -jobs 6
 wait_on_run synth_1
 reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-launch_runs impl_1 -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-launch_runs impl_1 -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-launch_runs impl_1 -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-launch_runs impl_1 -jobs 6
-wait_on_run impl_1
-open_run synth_1 -name synth_1
-report_utilization -name utilization_1
-report_methodology -name ultrafast_methodology_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-launch_runs impl_1 -jobs 6
-wait_on_run impl_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1
-reset_run synth_1
-launch_runs synth_1 -jobs 6
-wait_on_run synth_1

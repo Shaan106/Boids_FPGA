@@ -79,8 +79,6 @@ module VGAController(
 
 	assign currentPixel_colour_info = isBoidInPixel ? boid_colour : background_colour;
 
-
-
 	//is Boid in Pixel depends on the x and y
 	wire[PIXEL_ADDRESS_WIDTH-1:0] currentPixelAddress;  	 // Image address for the image data
 	assign currentPixelAddress = x + 640*y;				 // Address calculated coordinate
@@ -94,7 +92,7 @@ module VGAController(
 
 		//assigns address to read to current Pixel Address,
 		//assigns isBoidInPixel to the data read from the boid memory
-		
+
 		boid_read_address_reg <= currentPixelAddress;
 		isBoidInPixel <= boid_read_data;
 

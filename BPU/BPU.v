@@ -32,7 +32,10 @@ module BPU(clock, x_loc, y_loc, addr_enable, address);
 
     always @(posedge clock) begin
         
-        address_reg = x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
+        address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
+        
+        x_loc <= x_loc + 1;
+        y_loc <= y_loc + 1;
             
     end
 

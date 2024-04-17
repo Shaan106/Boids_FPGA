@@ -169,13 +169,15 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	wire boid_read_data;
 	assign boid_read_data = boid_data_read;
 
+	reg switchRam; // one cycle pulse to switch to a clear RAM
+
 	RAM_resettable #(
 		.DEPTH(PIXEL_COUNT), //depth = how many pixels on screen.
 		.ADDRESS_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
 	) Boid_display_mem(
 		.clk(clock),
 		.we(writing_to_boids_wire),
-		.reset(reset),
+		.reset(switchRam),
 
 		.write_addr(boid_address_out),
 		.read_addr(boid_read_address_wire),
@@ -194,11 +196,13 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	// at every screenEnd, enable writing to boids and set initial boid = 0
 	always @(posedge screenEnd_out) begin
 		writing_to_boids <= 1;
+		switchRam <= 1;
 		boid_counter <= 0;
 	end
 
 	always @(posedge clock) begin
 		if (writing_to_boids) begin
+			switchRam <= 0; //this is a one cycle pulse to switch to a clear RAM
 			boid_counter <= boid_counter + 1;
 			if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
 				writing_to_boids <= 0;
@@ -227,7 +231,6 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
                                    .BTNR(BTNR),
 								   .screenEnd_out(screenEnd_out),
                                    .LED(LED),
-
 								   .boid_read_address(boid_read_address_wire),
 								   .isBoidInPixel(boid_read_data) //outputs whether there is a boid in the pixel given by address
 								   

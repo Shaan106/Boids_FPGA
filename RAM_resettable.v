@@ -72,7 +72,7 @@ module RAM_resettable #(
     end
 
     // reading from the correct RAM
-    assign read_data = (current_ram) ? ram1_dataOut : ram2_dataOut;
+    assign read_data = (current_ram) ? ram2_dataOut : ram1_dataOut;
 
     // writing corect data to correct RAM
     assign ram1_dataIn = (current_ram) ? 1'b0 : write_data; // if current ram is 0 then write new boid to ram1
@@ -101,7 +101,13 @@ module RAM_resettable #(
     assign ram1_we = (~reset_RAM) | ((~current_ram) & we); 
 
     assign ram2_we = (reset_RAM) | ((current_ram) & we); 
+    
+    assign LED[8] = ram1_dataOut;
+    assign LED[9] = ram2_dataOut;
 
+    assign LED[10] = reset_RAM;
+    assign LED[11] = current_ram;
+    assign LED[12] = we;
     assign LED[13] = ram1_we;
     assign LED[14] = ram2_we;
 

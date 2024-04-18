@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Wed Apr 17 21:03:36 2024
+| Date         : Wed Apr 17 21:41:55 2024
 | Host         : P2-03 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Wrapper_methodology_drc_routed.rpt -pb Wrapper_methodology_drc_routed.pb -rpx Wrapper_methodology_drc_routed.rpx
 | Design       : Wrapper
@@ -23,13 +23,15 @@ Table of Contents
           Floorplan: design_1
       Design limits: <entire design considered>
              Max violations: <unlimited>
-             Violations found: 93
-+-----------+------------------+-------------------------------+------------+
-| Rule      | Severity         | Description                   | Violations |
-+-----------+------------------+-------------------------------+------------+
-| TIMING-17 | Critical Warning | Non-clocked sequential cell   | 81         |
-| TIMING-18 | Warning          | Missing input or output delay | 12         |
-+-----------+------------------+-------------------------------+------------+
+             Violations found: 128
++-----------+------------------+------------------------------------------+------------+
+| Rule      | Severity         | Description                              | Violations |
++-----------+------------------+------------------------------------------+------------+
+| TIMING-17 | Critical Warning | Non-clocked sequential cell              | 102        |
+| DPIR-1    | Warning          | Asynchronous driver check                | 10         |
+| SYNTH-14  | Warning          | DSP cannot absorb non-zero init register | 4          |
+| TIMING-18 | Warning          | Missing input or output delay            | 12         |
++-----------+------------------+------------------------------------------+------------+
 
 2. REPORT DETAILS
 -----------------
@@ -430,12 +432,187 @@ Related violations: <none>
 
 TIMING-17#80 Critical Warning
 Non-clocked sequential cell  
-The clock pin switchRam_reg/C is not reached by a timing clock
+The clock pin ledA_reg/C is not reached by a timing clock
 Related violations: <none>
 
 TIMING-17#81 Critical Warning
 Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/address_reg_reg/CLK is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#82 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#83 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#84 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#85 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#86 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#87 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#88 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#89 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#90 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#91 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/x_reg_reg[9]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#92 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[0]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#93 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[1]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#94 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[2]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#95 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[3]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#96 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[4]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#97 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[5]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#98 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[6]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#99 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[7]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#100 Critical Warning
+Non-clocked sequential cell  
+The clock pin loop1[0].BoidProcessorUnit/y_reg_reg[8]/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#101 Critical Warning
+Non-clocked sequential cell  
+The clock pin switchRam_reg/C is not reached by a timing clock
+Related violations: <none>
+
+TIMING-17#102 Critical Warning
+Non-clocked sequential cell  
 The clock pin writing_to_boids_reg/C is not reached by a timing clock
+Related violations: <none>
+
+DPIR-1#1 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[0] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#2 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[1] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#3 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[2] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#4 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[3] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#5 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[4] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#6 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[5] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#7 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[6] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#8 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[7] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#9 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[8] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+DPIR-1#10 Warning
+Asynchronous driver check  
+DSP VGAControlModule/boid_read_address_reg_reg input pin VGAControlModule/boid_read_address_reg_reg/C[9] is connected to registers with an asynchronous reset. This is preventing the possibility of merging these registers in to the DSP Block since the DSP block registers only possess synchronous reset capability.  It is suggested to recode or change these registers to remove the reset or use a synchronous reset to get the best optimization for performance, power and area.
+Related violations: <none>
+
+SYNTH-14#1 Warning
+DSP cannot absorb non-zero init register  
+Register loop1[0].BoidProcessorUnit/x_reg_reg[1] cannot be absorbed into DSP block due to its non-zero INIT value.
+Related violations: <none>
+
+SYNTH-14#2 Warning
+DSP cannot absorb non-zero init register  
+Register loop1[0].BoidProcessorUnit/x_reg_reg[3] cannot be absorbed into DSP block due to its non-zero INIT value.
+Related violations: <none>
+
+SYNTH-14#3 Warning
+DSP cannot absorb non-zero init register  
+Register loop1[0].BoidProcessorUnit/y_reg_reg[1] cannot be absorbed into DSP block due to its non-zero INIT value.
+Related violations: <none>
+
+SYNTH-14#4 Warning
+DSP cannot absorb non-zero init register  
+Register loop1[0].BoidProcessorUnit/y_reg_reg[3] cannot be absorbed into DSP block due to its non-zero INIT value.
 Related violations: <none>
 
 TIMING-18#1 Warning

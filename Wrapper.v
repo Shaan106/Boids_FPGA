@@ -181,7 +181,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.reset(switchRam),
 
 		.write_addr(boid_address_out),
-		.read_addr(boid_read_address_wire2),
+		.read_addr(boid_read_address_wire),
 
 		.write_data(1'b1), //if we is on, then write data = 1
 		.read_data(boid_read_data), //read data is a reg - it's a 1 or 0.
@@ -203,20 +203,23 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 ////		boid_counter <= 0;
 //	end
 
+    reg ledA = 0; // for testing purposes.
+
 	always @(posedge clock) begin
 	   
 	   if (screenEnd_out) begin
+	       ledA = ~ledA;
 	       writing_to_boids = 1;
 	       switchRam = 1; // could change this to choose RAM out here.
-	   end
-	
-	   if (writing_to_boids) begin
-			switchRam = 0; //this is a one cycle pulse to switch to a clear RAM
-			boid_counter = boid_counter + 1;
-			if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
-				writing_to_boids = 0;
-				boid_counter = 0;
-			end
+	   end else begin
+	       if (writing_to_boids) begin
+                switchRam = 0; //this is a one cycle pulse to switch to a clear RAM
+                boid_counter = boid_counter + 1;
+                if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
+                    writing_to_boids = 0;
+                    boid_counter = 0;
+                end
+            end
 		end
 	end
 	
@@ -227,7 +230,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 //	assign LED[4:2] = boid_counter[ 2 : 0];
 //	assign LED[7:5] = 3'b0;
 
-    assign LED [12:0]  =  boid_read_address_wire2[14:0];
+//    assign LED [12:0]  =  boid_read_address_wire2[14:0];
+    assign LED[0] = ledA;
     assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
 
 	//---------------------data to VGA controller--------------------------

@@ -11,7 +11,7 @@
 #define WIDTH PIXEL_WIDTH
 #define HEIGHT PIXEL_WIDTH
 
-#define NUM_BOIDS 64
+#define NUM_BOIDS 256
 #define NUM_NEIGHBORS 8
 #define INITIAL_SPEED 10 * PIXEL_SIZE
 #define FORCE_AMPLIFIER 1
@@ -66,11 +66,11 @@ int distance(Boid *b1, Boid *b2) {
     return abs(b1->x - b2->x) + abs(b1->y - b2->y);
 }
 
-Velocity fly_towards_center(Boid *boid, Boid *neighbors[], int numNeighbors) {
+Velocity fly_towards_center(Boid *boid, Boid *neighbors[]) {
     int centerX = 0, centerY = 0;
-    for (int i = 0; i < numNeighbors; i++) {
-        centerX += neighbors[i]->x / numNeighbors;
-        centerY += neighbors[i]->y / numNeighbors;
+    for (int i = 0; i < NUM_NEIGHBORS; i++) {
+        centerX += neighbors[i]->x / NUM_NEIGHBORS;
+        centerY += neighbors[i]->y / NUM_NEIGHBORS;
     }
     Velocity a;
     a.dx = (centerX - boid->x) >> COHESION_FACTOR;
@@ -79,9 +79,9 @@ Velocity fly_towards_center(Boid *boid, Boid *neighbors[], int numNeighbors) {
     return a;
 }
 
-Velocity avoid_others(Boid *boid, Boid *neighbors[], int numNeighbors) {
+Velocity avoid_others(Boid *boid, Boid *neighbors[]) {
     int repelX = 0, repelY = 0;
-    for (int i = 0; i < numNeighbors; i++) {
+    for (int i = 0; i < NUM_NEIGHBORS; i++) {
         if (distance(boid, neighbors[i]) < PERCEPTION_RADIUS) {
             repelX += (boid->x - neighbors[i]->x);
             repelY += (boid->y - neighbors[i]->y);
@@ -93,11 +93,11 @@ Velocity avoid_others(Boid *boid, Boid *neighbors[], int numNeighbors) {
     return a;
 }
 
-Velocity match_velocity(Boid *boid, Boid *neighbors[], int numNeighbors) {
+Velocity match_velocity(Boid *boid, Boid *neighbors[]) {
     int avgDX = 0, avgDY = 0;
-    for (int i = 0; i < numNeighbors; i++) {
-        avgDX += neighbors[i]->dx / numNeighbors;
-        avgDY += neighbors[i]->dy / numNeighbors;
+    for (int i = 0; i < NUM_NEIGHBORS; i++) {
+        avgDX += neighbors[i]->dx / NUM_NEIGHBORS;
+        avgDY += neighbors[i]->dy / NUM_NEIGHBORS;
     }
     Velocity a;
     a.dx = (avgDX) >> ALIGNMENT_FACTOR;
@@ -120,26 +120,29 @@ Velocity limit_speed(Velocity unlimited_a) {
 void updateBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
         Boid *boid = &boids[i];
-        Boid *neighbors[NUM_NEIGHBORS] = {0};
-        int numNeighbors = 0;
+        Boid *neighbors[NUM_NEIGHBORS] = {NULL};
+
 
         // Find nearest neighbors
         for (int j = 0; j < NUM_BOIDS; j++) {
-            if (i != j && distance(boid, &boids[j]) < PERCEPTION_RADIUS) {
-                neighbors[numNeighbors++] = &boids[j];
+            for (int k = 0; k < NUM_NEIGHBORS; k++) {
+                if (neighbors[k] == NULL) {
+                    neighbors[k] = &boids[j];
+                    break;
+                }
+                if (distance(boid, &boids[j]) < distance(boid, neighbors[k])) {
+                    neighbors[k] = &boids[j];
+                    break;
+                }
             }
-            if (numNeighbors == NUM_NEIGHBORS) {
-                break;
-            }
+
         }
         Velocity speed = {boid->dx, boid->dy};
-        if (numNeighbors > 0) {
-            Velocity cohesion = fly_towards_center(boid, neighbors, numNeighbors);
-            Velocity separaction = avoid_others(boid, neighbors, numNeighbors);
-            Velocity alignment = match_velocity(boid, neighbors, numNeighbors);
-            speed.dx += cohesion.dx + separaction.dx + alignment.dx;
-            speed.dy += cohesion.dy + separaction.dy + alignment.dy;
-        }
+        Velocity cohesion = fly_towards_center(boid, neighbors);
+        Velocity separaction = avoid_others(boid, neighbors);
+        Velocity alignment = match_velocity(boid, neighbors);
+        speed.dx += cohesion.dx + separaction.dx + alignment.dx;
+        speed.dy += cohesion.dy + separaction.dy + alignment.dy;
         speed = limit_speed(speed);
         Velocity bounds = keepWithinBounds(boid);
         boid->dx = speed.dx + bounds.dx;

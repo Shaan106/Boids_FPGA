@@ -36,7 +36,10 @@ typedef struct {
     int dy;
 } Velocity;
 
-
+typedef struct {
+    Boid* boid_ptr;
+    int distance;
+} BracketItem;
 
 Boid boids[NUM_BOIDS];
 
@@ -123,21 +126,26 @@ void updateBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
         Boid *boid = &boids[i];
         Boid *neighbors[NUM_NEIGHBORS] = {NULL};
-
-
-        // Find nearest neighbors
-        for (int j = 0; j < NUM_BOIDS; j++) {
-            for (int k = 0; k < NUM_NEIGHBORS; k++) {
-                if (neighbors[k] == NULL) {
-                    neighbors[k] = &boids[j];
-                    break;
-                }
-                if (distance(boid, &boids[j]) < distance(boid, neighbors[k])) {
-                    neighbors[k] = &boids[j];
-                    break;
+        BracketItem* bracket[NUM_BOIDS];
+        for (int i = 0; i < NUM_BOIDS; i++) {
+            int dis = distance(boid, &boids[i]);
+            // BracketItem item = (dis > PERCEPTION_RADIUS) ? (BracketItem){boid, dis} : (BracketItem){&boids[i], dis};
+            BracketItem item = (BracketItem){&boids[i], dis};
+            bracket[i] = &item;
+        }
+        int count = NUM_BOIDS;
+        while (count > NUM_NEIGHBORS) {
+            count /= 2;
+            for (int i = 0; i < count; i++) {
+                if (bracket[i * 2]->distance < bracket[i * 2 + 1]->distance) {
+                    bracket[i] = bracket[i * 2];
+                } else {
+                    bracket[i] = bracket[i * 2 + 1];
                 }
             }
-
+        }
+        for (int i = 0; i < NUM_NEIGHBORS; i++) {
+            neighbors[i] = bracket[i]->boid_ptr;
         }
         Velocity speed = {boid->dx, boid->dy};
         Velocity cohesion = fly_towards_center(boid, neighbors);
@@ -154,28 +162,6 @@ void updateBoids() {
         boid->y += boid->dy;
     }
 }
-
-// Boid[] nearest_neighbors(Boid *boid, int count) {
-//     if (count == 2) {
-
-//     }
-//     else {
-//         Boid neighbors[count] = {0};
-//         neighbors[0:count/2] = nearest_neighbors(boid, count/2);
-//         neighbors[count/2:count] = nearest_neighbors(boid + count/2, count/2);
-//         return neighbors;
-//     }
-//     Boid neighbors[NUM_NEIGHBORS] = {0};
-//     for (int i = 0; i < NUM_BOIDS; i++) {
-//         if (boid != &boids[i]) {
-//             int distance = abs(boid->x - boids[i].x) + abs(boid->y - boids[i].y);
-//             if (distance < PERCEPTION_RADIUS) {
-//                 // Add to neighbors
-//             }
-//         }
-//     }
-//     return neighbors;
-// }
 
 int main(int argc, char *argv[]) {
     SDL_Init(SDL_INIT_VIDEO);

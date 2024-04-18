@@ -1,12 +1,14 @@
 module RAM_resettable #(
     parameter DEPTH = 1024,
     parameter ADDR_WIDTH = 10
-) (clk,we,write_addr,write_data,read_addr,read_data,reset);
+) (clk,we,write_addr,write_data,read_addr,read_data,reset,LED);
 
     input clk, we, reset;
     input [ADDR_WIDTH-1:0] write_addr, read_addr;
     input write_data;
     output read_data;
+
+    input [15:0] LED;
     
     // Control which RAM we're writing to
     reg current_ram = 0;
@@ -98,35 +100,10 @@ module RAM_resettable #(
     // reset RAM = 0 or current RAM = 0 and we
     assign ram1_we = (~reset_RAM) | ((~current_ram) & we); 
 
-    // ram 2 we when
-    // reset RAM = 1 or current RAM = 1 and we
     assign ram2_we = (reset_RAM) | ((current_ram) & we); 
 
+    assign LED[13] = ram1_we;
+    assign LED[14] = ram2_we;
 
-
-    // RAM_resettable #(
-	// 	.DEPTH(PIXEL_COUNT), //depth = how many pixels on screen.
-	// 	.ADDR_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
-	// ) Boid_display_mem(
-	// 	.clk(clock),
-	// 	.we(writing_to_boids_wire),
-	// 	.reset(switchRam),
-
-	// 	.write_addr(boid_address_out),
-	// 	.read_addr(boid_read_address_wire),
-
-	// 	.write_data(writing_to_boids_wire), //if we is on, then write data = 1
-	// 	.read_data(boid_read_data) //read data is a reg - it's a 1 or 0.
-	// );
-    
-
-
-    
-
-    // // Read
-    // always @(posedge clk) begin
-    //     read_data_reg_1 <= ram1[read_addr];
-    //     read_data_reg_2 <= ram2[read_addr];
-    // end
 
 endmodule

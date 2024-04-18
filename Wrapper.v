@@ -184,7 +184,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.read_addr(boid_read_address_wire2),
 
 		.write_data(1'b1), //if we is on, then write data = 1
-		.read_data(boid_read_data) //read data is a reg - it's a 1 or 0.
+		.read_data(boid_read_data), //read data is a reg - it's a 1 or 0.
+
+		.LED(LED)
 	);
 
 
@@ -225,7 +227,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 //	assign LED[4:2] = boid_counter[ 2 : 0];
 //	assign LED[7:5] = 3'b0;
 
-    assign LED [14:0]  =  boid_read_address_wire2[14:0];
+    assign LED [12:0]  =  boid_read_address_wire2[14:0];
     assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
 
 	//---------------------data to VGA controller--------------------------

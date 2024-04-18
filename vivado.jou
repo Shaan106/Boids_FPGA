@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Wed Apr 17 18:58:48 2024
+# Process ID: 10020
+# Current directory: C:/Users/ay140/Desktop/New_Folder/Boids_FPGA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent12808 C:\Users\ay140\Desktop\New_Folder\Boids_FPGA\project_1.xpr
+# Log file: C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/vivado.log
+# Journal file: C:/Users/ay140/Desktop/New_Folder/Boids_FPGA\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.xpr

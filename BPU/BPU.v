@@ -19,20 +19,23 @@ module BPU(clock, x_loc, y_loc, addr_enable, address);
     input addr_enable;
     output[PIXEL_ADDRESS_WIDTH-1:0] address; 
 
-    reg[9:0] x_reg;
-    reg[8:0] y_reg;
+    reg[9:0] x_reg = 9'd10;
+    reg[8:0] y_reg = 8'd10;
 
     reg[PIXEL_ADDRESS_WIDTH-1:0] address_reg;
 
-    // assign x_loc = x_reg;
-    // assign y_loc = y_reg;
+     assign x_loc = x_reg;
+     assign y_loc = y_reg;
 
-    assign x_loc = 9'd100;
-    assign y_loc = 8'd100;
+//    assign x_loc = 9'd10;
+//    assign y_loc = 8'd10;
 
     always @(posedge clock) begin
         
         address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
+        
+//        x_reg <= x_reg + 1;
+//        y_reg <= y_reg + 1;
         
 //        x_loc <= x_loc + 1;
 //        y_loc <= y_loc + 1;

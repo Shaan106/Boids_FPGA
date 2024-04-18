@@ -63,10 +63,6 @@ module VGAController(
 		.y(y)); 			   // Y Coordinate (from top)	   
 
 
-
-    assign LED[15] = 1'b0;
-    assign LED[14] = 1'b0;
-    assign LED[13:8] = 6'b0;
     
 	// Assign to output color from register if active
 	wire[BITS_PER_COLOR-1:0] currentPixel_colour_info;
@@ -74,8 +70,23 @@ module VGAController(
 
 	reg isBoidInPixel;
 	
-	assign background_colour = 12'd0;
-	assign boid_colour = 12'b111111111111;
+	assign background_colour = 12'b111111111111;
+	assign boid_colour =       12'b000000000000;
+	
+	reg showIsBoid;
+	
+	always @(posedge isBoidInPixel) begin
+	   showIsBoid = ~showIsBoid;
+	end 
+	
+	//assign LED[15] = showIsBoid;
+	
+//	assign LED[15:14] = currentPixel_colour_info[11:10];
+//    assign LED[13:12] = currentPixel_colour_info[7:6];
+//    assign LED[11] = isBoidInPixel;
+//    assign LED[8] = screenEnd_out;
+//    assign LED[9] = screenEnd;
+//    assign LED[10] = 1'b0;
 
 	assign currentPixel_colour_info = isBoidInPixel ? boid_colour : background_colour;
 
@@ -103,7 +114,8 @@ module VGAController(
 	
 
 	// Quickly assign the output colors to their channels using concatenation
-	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;
+//	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;
+	assign {VGA_R, VGA_G, VGA_B} = active ? currentPixel_colour_info : 12'b0;
 	
 //	always @(posedge screenEnd) begin
 

@@ -38,11 +38,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
     output[3:0] VGA_R;  // Red Signal Bits
     output[3:0] VGA_G;  // Green Signal Bits
     output[3:0] VGA_B;  // Blue Signal output with 
-
 	
-	assign LED[7:0] = instAddr[7:0];
-	
-	reg[10:0] counter;
+	reg[14:0] counter;
 	wire clock; // 50 mhz clock
 	wire reset;
 	
@@ -52,7 +49,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	   counter <= counter + 1;
 	end
 	
-	assign clock =  counter[0];
+	assign clock =  counter[0]; //downclock
 	
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -135,7 +132,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 			wire[9:0] x_loc;
 			wire[8:0] y_loc;
 			wire addr_enable;
-			wire[11:0] boid_address;
+			wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address;
 
 			assign addr_enable = 1'b1;
 			
@@ -163,7 +160,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	assign writing_to_boids_wire = writing_to_boids;
 
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire; // this is the input read loc for RAM.
-	// assign[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire = boid_read_address;
+	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire2; // this is the input read loc for RAM.
+	
+	assign boid_read_address_wire2 = 19'd6410;
+	
+	//assign[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire = boid_read_address;
 
 
 	wire boid_read_data;
@@ -180,9 +181,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.reset(switchRam),
 
 		.write_addr(boid_address_out),
-		.read_addr(boid_read_address_wire),
+		.read_addr(boid_read_address_wire2),
 
-		.write_data(writing_to_boids_wire), //if we is on, then write data = 1
+		.write_data(1'b1), //if we is on, then write data = 1
 		.read_data(boid_read_data) //read data is a reg - it's a 1 or 0.
 	);
 
@@ -203,8 +204,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	always @(posedge clock) begin
 	   
 	   if (screenEnd_out) begin
-	       writing_to_boids = 0;
-	       switchRam = 1;
+	       writing_to_boids = 1;
+	       switchRam = 1; // could change this to choose RAM out here.
 	   end
 	
 	   if (writing_to_boids) begin
@@ -216,7 +217,16 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 			end
 		end
 	end
+	
+//	assign LED[7:0] = instAddr[7:0];
+	
+//	assign LED[0] = writing_to_boids;
+//	assign LED[1] = switchRam;
+//	assign LED[4:2] = boid_counter[ 2 : 0];
+//	assign LED[7:5] = 3'b0;
 
+    assign LED [14:0]  =  boid_read_address_wire2[14:0];
+    assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
 
 	//---------------------data to VGA controller--------------------------
 

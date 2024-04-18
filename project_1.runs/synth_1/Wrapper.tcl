@@ -4,7 +4,7 @@
 
 set TIME_start [clock seconds] 
 namespace eval ::optrace {
-  variable script "C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.tcl"
+  variable script "C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.runs/synth_1/Wrapper.tcl"
   variable category "vivado_synth"
 }
 
@@ -70,61 +70,63 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
+set_param chipscope.maxJobs 3
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
 set_param project.singleFileAddWarning.threshold 0
 set_param project.compositeFile.enableAutoGeneration 0
 set_param synth.vivado.isSynthRun true
-set_property webtalk.parent_dir C:/Users/ay140/Desktop/Boids_FPGA/project_1.cache/wt [current_project]
-set_property parent.project_path C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr [current_project]
+set_property webtalk.parent_dir C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.cache/wt [current_project]
+set_property parent.project_path C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.xpr [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
-set_property ip_output_repo c:/Users/ay140/Desktop/Boids_FPGA/project_1.cache/ip [current_project]
+set_property ip_output_repo c:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
-  C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L1_block.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L2_block.v
-  C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
-  C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v
-  C:/Users/ay140/Desktop/Boids_FPGA/ROM.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/T_flip_flop.v
-  C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGAController.v
-  C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGATimingGenerator.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/adder.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/alu.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bit_flipper.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_and.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_or.v
-  C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v
-  C:/Users/ay140/Desktop/Boids_FPGA/controller.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/counter.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/decoder32.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/divider_called_bob.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/full_adder.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isLessThan.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isNotEqual.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isThereOverflow.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/multdiv.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2_64.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_4.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_8.v
-  C:/Users/ay140/Desktop/Boids_FPGA/processor.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/pulse_generator.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg_64.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sll.v
-  C:/Users/ay140/Desktop/Boids_FPGA/splitInstruction.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sra.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/wallaceTreeMultiplier.v
-  C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/BPU/BPU.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/CLA_L1_block.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/CLA_L2_block.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/RAM.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/RAM_resettable.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/ROM.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/T_flip_flop.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/VGA_files/VGAController.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/VGA_files/VGATimingGenerator.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/adder.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/alu.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/bit_flipper.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/bitwise_and.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/bitwise_or.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/bypass_controller.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/controller.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/counter.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/decoder32.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/dffe_ref.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/divider_called_bob.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/full_adder.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/isLessThan.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/isNotEqual.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/isThereOverflow.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/multdiv.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/mux_2.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/mux_2_64.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/mux_4.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/mux_8.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/processor.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/pulse_generator.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/regfile.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/single_reg.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/single_reg_64.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/sll.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/splitInstruction.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/sra.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/tristate.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/HelperModules/wallaceTreeMultiplier.v
+  C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/Wrapper.v
 }
 OPTRACE "Adding files" END { }
 # Mark all dcp files as not used in implementation to prevent them from being
@@ -135,8 +137,8 @@ OPTRACE "Adding files" END { }
 foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
   set_property used_in_implementation false $dcp
 }
-read_xdc C:/Users/ay140/Desktop/Boids_FPGA/master.xdc
-set_property used_in_implementation false [get_files C:/Users/ay140/Desktop/Boids_FPGA/master.xdc]
+read_xdc C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/master.xdc
+set_property used_in_implementation false [get_files C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]

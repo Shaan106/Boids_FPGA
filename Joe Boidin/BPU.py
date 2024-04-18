@@ -4,14 +4,13 @@ import pygame
 
 pixel_width = 512
 int_width = int(2**32)
-pixel_size = 2**32 // pixel_width
+pixel_size = int_width // pixel_width
 pixel_size_shift = int(math.log2(pixel_size))
 margin = 64 << pixel_size_shift
 width, height = pixel_width, pixel_width  # Window size (640, 480)
 
 # Boids parameters
-num_boids = 256
-visual_range = 75 << pixel_size_shift
+num_boids = 32
 initial_speed = 10_000#5 * pixel_size
 # Boids list
 boids = []
@@ -41,29 +40,23 @@ def keep_within_bounds(boid):
 
 
 def fly_towards_center(boid):
-    neighbors = []  # Nearst N Neighbors less than distance 64
-    for other_boid in nearest_n(boid, 16):
-        if distance(boid, other_boid) < visual_range:
-            neighbors.append(other_boid)
+    neighbors = nearest_n(boid, 16)  # Nearst N Neighbors less than distance 64
     center_x = sum([neighbor['x'] for neighbor in neighbors]) // len(neighbors) if len(neighbors) else 0  # Do avg with funky method
     center_y = sum([neighbor['y'] for neighbor in neighbors]) // len(neighbors) if len(neighbors) else 0
-    return (center_x - boid['x']) >> 8, (center_y - boid['y']) >> 8
+    return (center_x - boid['x']) >> 7, (center_y - boid['y']) >> 7
 
 
 def avoid_others(boid):
     min_distance = 20 << pixel_size_shift
-    move_x = sum([boid['x'] - other_boid['x'] for other_boid in nearest_n(boid, 16) if other_boid is not boid and distance(boid, other_boid) < min_distance])
-    move_y = sum([boid['y'] - other_boid['y'] for other_boid in nearest_n(boid, 16) if other_boid is not boid and distance(boid, other_boid) < min_distance])
+    move_x = sum([boid['x'] - other_boid['x'] for other_boid in nearest_n(boid, 16) if distance(boid, other_boid) < min_distance])
+    move_y = sum([boid['y'] - other_boid['y'] for other_boid in nearest_n(boid, 16) if distance(boid, other_boid) < min_distance])  # NOTE: Doesn't work without min_distance
     return move_x >> 4, move_y >> 4
 
 
 def match_velocity(boid):
-    neighbors = []  # Nearst N Neighbors less than distance 64
-    for other_boid in nearest_n(boid, 16):
-        if distance(boid, other_boid) < visual_range:
-            neighbors.append(other_boid)
-    avg_dx = sum([neighbor['dx'] for neighbor in neighbors]) // len(neighbors) if len(neighbors) else 0  # Do avg with funky method
-    avg_dy = sum([neighbor['dy'] for neighbor in neighbors]) // len(neighbors) if len(neighbors) else 0
+    neighbors = nearest_n(boid, 16)  # Nearst N Neighbors less than distance 64
+    avg_dx = sum([neighbor['dx'] for neighbor in neighbors]) // len(neighbors) # Do avg with funky method
+    avg_dy = sum([neighbor['dy'] for neighbor in neighbors]) // len(neighbors) 
     return (avg_dx) >> 2, (avg_dy) >> 2
 
 
@@ -81,11 +74,17 @@ def distance(boid1, boid2):
 
 def nearest_n(boid, n):  # TODO: figure out how to implement this efficiently
     distances = [distance(boid, other_boid) for other_boid in boids]
+    my_boids = boids.copy()
     for epoch in range(int(math.log2(num_boids) - math.log2(n))):
         next_size = num_boids // (epoch + 2)
         for i in range(0, next_size):
-            distances[i] = min(distances[2*i], distances[2*i + 1])
-    return distances[:n]
+            if distances[2*i] < distances[2*i + 1]:
+                distances[i] = distances[2*i]
+                my_boids[i] = my_boids[2*i]
+            else:
+                distances[i] = distances[2*i + 1]
+                my_boids[i] = my_boids[2*i + 1]
+    return list(sorted(boids, key=lambda b: distance(boid, b))[:n])#my_boids[:n] # sorted(boids, key=lambda b: distance(boid, b))[:n]
 
 
 def update_boids(boid_id):
@@ -97,13 +96,8 @@ def update_boids(boid_id):
     dx, dy = limit_speed(boid['dx'] + cx + ax + vx, boid['dy'] + cy + ay + vy)
     boid['dx'] = dx + bx
     boid['dy'] = dy + by
-
-
-def latch_updates():
-    for boid_id in range(num_boids):  # update all boids in parallel
-        boid = boids[boid_id]
-        boid['x'] += boid['dx']
-        boid['y'] += boid['dy']
+    boid['x'] += boid['dx']
+    boid['y'] += boid['dy']
 
 
 pygame.init()
@@ -123,7 +117,6 @@ init_boids()
 while True:
     for boid_id in range(num_boids):
         update_boids(boid_id)
-    latch_updates()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             quit()

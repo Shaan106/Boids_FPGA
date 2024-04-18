@@ -131,12 +131,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
 			wire[9:0] x_loc;
 			wire[8:0] y_loc;
-			wire addr_enable;
+			// wire screenEnd_out; //this is from VGA screen
 			wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address;
 
-			assign addr_enable = 1'b1;
 			
-			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .addr_enable(addr_enable), .address(boid_address));
+			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address));
 
 			tristate x_output_tristate(.in(x_loc), .en(chosen_boid_to_read_onehot[i]), .out(x_loc_out));
 			tristate y_output_tristate(.in(y_loc), .en(chosen_boid_to_read_onehot[i]), .out(y_loc_out));

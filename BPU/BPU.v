@@ -13,7 +13,7 @@
 `define BPU_SIZE `NUM_BOIDS * `BOID_SIZE;
 
 
-module BPU(clock, x_loc, y_loc, addr_enable, address);
+module BPU(clock, x_loc, y_loc, screenEnd_out, address);
 
     input clock;
     // 50 MHz clock
@@ -21,7 +21,7 @@ module BPU(clock, x_loc, y_loc, addr_enable, address);
     output[9:0] x_loc;  // output location to draw the pixel
     output[8:0] y_loc;
 
-    input addr_enable;
+    input screenEnd_out;
     output[`PIXEL_ADDRESS_WIDTH-1:0] address; // TODO: what is this
 
     reg[9:0] x_reg = 9'd10;
@@ -37,18 +37,23 @@ module BPU(clock, x_loc, y_loc, addr_enable, address);
 
     reg[`BOID_SIZE-1:0] boids;
 
+    always @(posedge screenEnd_out) begin
+        x_reg <= x_reg + 1;
+        y_reg <= y_reg + 1;
+    end
+
 
     always @(posedge clock) begin
         
         address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
 
-        x_reg <= x_reg + 1;
-        y_reg <= y_reg + 1;
+        // x_reg <= x_reg + 1;
+        // y_reg <= y_reg + 1;
 
 //        x_loc <= x_loc + 1;
 //        y_loc <= y_loc + 1;
             
-        address_reg = x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
+        // address_reg = x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
         // *Note* assuming that boids have been initialized to a random position and velocity
 
         // select active boid
@@ -75,7 +80,7 @@ module BPU(clock, x_loc, y_loc, addr_enable, address);
 
 endmodule
 
-module keep_within_bounds(input boid_x, input boid_y, output bx, output bx);
+module keep_within_bounds(input boid_x, input boid_y, output bx, output by);
     localparam
     TURN_FACTOR = 0.1
     LEFT_BO

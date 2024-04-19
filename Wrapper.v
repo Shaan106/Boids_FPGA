@@ -113,6 +113,12 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	wire[8:0] CPU_y_loc;
 	assign CPU_x_loc = CPU_x_loc_full[9:0];
 	assign CPU_y_loc = CPU_y_loc_full[8:0];
+	
+	assign LED[9:0] = CPU_x_loc;
+	
+	assign LED[10] = CPU_all_boids_we;
+	
+	assign LED[15:14] = which_boid_to_write_to[1:0];
 
 	//checking if global WE should be on
 	wire CPU_all_boids_we;
@@ -249,8 +255,10 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	
 
 //    assign LED [12:0]  =  boid_read_address_wire2[14:0];
-    assign LED[0] = ledA;
-    assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
+//    assign LED[0] = ledA;
+//    assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
+
+    
 
 	//---------------------data to VGA controller--------------------------
 

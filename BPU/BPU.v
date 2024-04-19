@@ -64,7 +64,7 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CP
         // if time to update x and y locations (signal form CPU) then update them
         if (CPU_curr_boid_we) begin
             x_reg <= CPU_x_loc;
-            y_reg <= CPU y_loc;
+            y_reg <= CPU_y_loc;
         end
         
 

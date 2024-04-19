@@ -102,14 +102,14 @@ module RAM_resettable #(
 
     assign ram2_we = (reset_RAM) | ((current_ram) & we); 
     
-    assign LED[8] = ram1_dataOut;
-    assign LED[9] = ram2_dataOut;
+//    assign LED[8] = ram1_dataOut;
+//    assign LED[9] = ram2_dataOut;
 
-    assign LED[10] = reset_RAM;
-    assign LED[11] = current_ram;
-    assign LED[12] = we;
-    assign LED[13] = ram1_we;
-    assign LED[14] = ram2_we;
+//    assign LED[10] = reset_RAM;
+//    assign LED[11] = current_ram;
+//    assign LED[12] = we;
+//    assign LED[13] = ram1_we;
+//    assign LED[14] = ram2_we;
 
 
 endmodule

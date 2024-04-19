@@ -8,7 +8,14 @@ localparam
     PALETTE_ADDRESS_WIDTH = $clog2(PALETTE_COLOR_COUNT) + 1; // Use built in log2 Command
 
 
-module BPU(clock, x_loc, y_loc, screenEnd_out, address);
+module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CPU_curr_boid_we);
+
+    input[9:0] CPU_x_loc;
+    input[8:0] CPU_y_loc;
+    input CPU_curr_boid_we;
+
+    // CPU_global_we is whether we want to write to any boids ie when $r27 = -1
+    // CPU_we is whether we want to write to current boid
 
     input clock;
     // 50 MHz clock
@@ -24,8 +31,8 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address);
 
     reg[PIXEL_ADDRESS_WIDTH-1:0] address_reg;
 
-     assign x_loc = x_reg;
-     assign y_loc = y_reg;
+    assign x_loc = x_reg;
+    assign y_loc = y_reg;
 
 //    assign x_loc = 9'd10;
 //    assign y_loc = 8'd10;
@@ -33,16 +40,32 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address);
 //    reg[`BOID_SIZE-1:0] boids;
 
 
-    reg[4:0] slowDownCounter;
+    reg[40:0] slowDownCounter;
+    
+    wire slowDownWire, slowDownWire1, slowDownWire2;
+    
+    
+    //slow down by 2^18 is the perfect amount for reg updates.
+    assign slowDownWire1 = slowDownCounter[18] & slowDownCounter[17] & slowDownCounter[16] & slowDownCounter[15] & slowDownCounter[14] & slowDownCounter[13] & slowDownCounter[12] & slowDownCounter[11] & slowDownCounter[10] & slowDownCounter[9] & slowDownCounter[8] & slowDownCounter[7] & slowDownCounter[6] & slowDownCounter[5] & slowDownCounter[4] & slowDownCounter[3] & slowDownCounter[2] & slowDownCounter[1] & slowDownCounter[0];
+
+//    assign slowDownWire2 = slowDownCounter[38] & slowDownCounter[37] & slowDownCounter[36] & slowDownCounter[35] & slowDownCounter[34] & slowDownCounter[33] & slowDownCounter[32] & slowDownCounter[31] & slowDownCounter[30] & slowDownCounter[29] & slowDownCounter[28] & slowDownCounter[27] & slowDownCounter[26] & slowDownCounter[25] & slowDownCounter[24] & slowDownCounter[23] & slowDownCounter[22] & slowDownCounter[21] & slowDownCounter[20];
+
+    assign slowDownWire = slowDownWire1;
 
     always @(posedge clock) begin
         
         address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an address
         
-        if (slowDownCounter[2] & slowDownCounter[1] & slowDownCounter[0]) begin
-            x_reg <= x_reg + 1;
-            y_reg <= y_reg + 1;
-	   end
+        // if (slowDownWire) begin
+        //     x_reg <= x_reg + 1;
+        //     y_reg <= y_reg + 1;
+	    // end
+
+        // if time to update x and y locations (signal form CPU) then update them
+        if (CPU_curr_boid_we) begin
+            x_reg <= CPU_x_loc;
+            y_reg <= CPU_y_loc;
+        end
         
 
         slowDownCounter = slowDownCounter + 5'b00001;

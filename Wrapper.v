@@ -59,7 +59,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "Test Files/Memory Files/sort";
+	localparam INSTR_FILE = "BPU/lazy";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -82,12 +82,15 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.addr(instAddr[11:0]), 
 		.dataOut(instData));
 	
+	wire[31:0] reg_27_data, reg_28_data, reg_29_data;
+
 	// Register File
 	regfile RegisterFile(.clock(clock), 
 		.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
-		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
+		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
+		.reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
 
 						
 	// Processor Memory (RAM)
@@ -96,6 +99,39 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.addr(memAddr[11:0]), 
 		.dataIn(memDataIn), 
 		.dataOut(memDataOut));
+
+
+	// ------------------------- x,y,we data from RAM --------------------------
+
+	//full x and y data from mem
+	wire[31:0] CPU_x_loc_full, CPU_y_loc_full;
+	assign CPU_x_loc_full = reg_28_data;
+	assign CPU_y_loc_full = reg_29_data;
+
+	//shortened x and y data (to VGA size) from mem
+	wire[9:0] CPU_x_loc;
+	wire[8:0] CPU_y_loc;
+	assign CPU_x_loc = CPU_x_loc_full[9:0];
+	assign CPU_y_loc = CPU_y_loc_full[8:0];
+	
+	assign LED[9:0] = CPU_x_loc;
+	
+	assign LED[10] = CPU_all_boids_we;
+	
+	assign LED[15:14] = which_boid_to_write_to[1:0];
+
+	//checking if global WE should be on
+	wire CPU_all_boids_we;
+	assign CPU_all_boids_we = !(reg_27_data[31] & reg_27_data[30] & reg_27_data[29] & reg_27_data[28] & reg_27_data[27] & reg_27_data[26] & reg_27_data[25] & reg_27_data[24] & reg_27_data[23] & reg_27_data[22] & reg_27_data[21] & reg_27_data[20] & reg_27_data[19] & reg_27_data[18] & reg_27_data[17] & reg_27_data[16] & reg_27_data[15] & reg_27_data[14] & reg_27_data[13] & reg_27_data[12] & reg_27_data[11] & reg_27_data[10] & reg_27_data[9] & reg_27_data[8] & reg_27_data[7] & reg_27_data[6] & reg_27_data[5] & reg_27_data[4] & reg_27_data[3] & reg_27_data[2] & reg_27_data[1] & reg_27_data[0]);
+
+	//decoder to see which boid to write to.
+	wire[BITS_FOR_BOIDS-1:0] which_boid_to_write_to;
+
+	assign which_boid_to_write_to = reg_27_data[BITS_FOR_BOIDS-1:0];
+
+	wire[MAX_BOIDS-1:0] which_boid_to_write_to_one_hot;
+
+	decoder32 boid_writing_decoder(.out(which_boid_to_write_to_one_hot), .select(which_boid_to_write_to), .enable(CPU_all_boids_we));
 
 
 	// -------------------------- local params ---------------------------------
@@ -107,7 +143,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 
-		MAX_BOIDS = 8,
+		MAX_BOIDS = 4,
 		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
 
 
@@ -135,7 +171,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 			wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address;
 
 			
-			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address));
+			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address),
+								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[i]));
 
 			tristate x_output_tristate(.in(x_loc), .en(chosen_boid_to_read_onehot[i]), .out(x_loc_out));
 			tristate y_output_tristate(.in(y_loc), .en(chosen_boid_to_read_onehot[i]), .out(y_loc_out));
@@ -154,9 +191,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 //	assign imgAddress = x + 640*y;				 // Address calculated coordinate
 //	wire pixelColorOut, pixelColorIn, pixelWriteEnable;
 
-	reg writing_to_boids;
-	wire writing_to_boids_wire; // this is input to resettable RAM
-	assign writing_to_boids_wire = writing_to_boids;
+	reg writing_to_boids_disp;
+	wire writing_to_boids_disp_wire; // this is input to resettable RAM
+	assign writing_to_boids_disp_wire = writing_to_boids_disp;
 
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire; // this is the input read loc for RAM.
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire2; // this is the input read loc for RAM.
@@ -176,7 +213,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.ADDR_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
 	) Boid_display_mem(
 		.clk(clock),
-		.we(writing_to_boids_wire),
+		.we(writing_to_boids_disp_wire),
 		.reset(switchRam),
 
 		.write_addr(boid_address_out),
@@ -195,12 +232,6 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	reg[BITS_FOR_BOIDS-1:0] boid_counter;
 	assign chosen_boid_to_read = boid_counter;
 
-	// at every screenEnd, enable writing to boids and set initial boid = 0
-//	always @(posedge screenEnd_out) begin
-//		writing_to_boids <= 1;
-//		switchRam <= 1;
-////		boid_counter <= 0;
-//	end
 
     reg ledA = 0; // for testing purposes.
 
@@ -208,30 +239,26 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	   
 	   if (screenEnd_out) begin
 	       ledA = ~ledA;
-	       writing_to_boids = 1;
+	       writing_to_boids_disp = 1;
 	       switchRam = 1; // could change this to choose RAM out here.
 	   end else begin
-	       if (writing_to_boids) begin
+	       if (writing_to_boids_disp) begin
                 switchRam = 0; //this is a one cycle pulse to switch to a clear RAM
                 boid_counter = boid_counter + 1;
                 if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
-                    writing_to_boids = 0;
+                    writing_to_boids_disp = 0;
                     boid_counter = 0;
                 end
             end
 		end
 	end
 	
-//	assign LED[7:0] = instAddr[7:0];
-	
-//	assign LED[0] = writing_to_boids;
-//	assign LED[1] = switchRam;
-//	assign LED[4:2] = boid_counter[ 2 : 0];
-//	assign LED[7:5] = 3'b0;
 
 //    assign LED [12:0]  =  boid_read_address_wire2[14:0];
-    assign LED[0] = ledA;
-    assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
+//    assign LED[0] = ledA;
+//    assign LED[15] = boid_read_data; //ok so it is not reading correctly from memory
+
+    
 
 	//---------------------data to VGA controller--------------------------
 

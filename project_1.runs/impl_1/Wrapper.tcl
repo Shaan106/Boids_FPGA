@@ -17,7 +17,7 @@ proc create_report { reportName command } {
   }
 }
 namespace eval ::optrace {
-  variable script "C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.runs/impl_1/Wrapper.tcl"
+  variable script "C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.tcl"
   variable category "vivado_impl"
 }
 
@@ -130,15 +130,15 @@ OPTRACE "create in-memory project" START { }
   set_param project.singleFileAddWarning.threshold 0
 OPTRACE "create in-memory project" END { }
 OPTRACE "set parameters" START { }
-  set_property webtalk.parent_dir C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.cache/wt [current_project]
-  set_property parent.project_path C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.xpr [current_project]
-  set_property ip_output_repo C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.cache/ip [current_project]
+  set_property webtalk.parent_dir C:/Users/ay140/Desktop/Boids_FPGA/project_1.cache/wt [current_project]
+  set_property parent.project_path C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr [current_project]
+  set_property ip_output_repo C:/Users/ay140/Desktop/Boids_FPGA/project_1.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "set parameters" END { }
 OPTRACE "add files" START { }
-  add_files -quiet C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/project_1.runs/synth_1/Wrapper.dcp
+  add_files -quiet C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.dcp
 OPTRACE "read constraints: implementation" START { }
-  read_xdc C:/Users/ay140/Desktop/New_Folder/Boids_FPGA/master.xdc
+  read_xdc C:/Users/ay140/Desktop/Boids_FPGA/master.xdc
 OPTRACE "read constraints: implementation" END { }
 OPTRACE "add files" END { }
 OPTRACE "link_design" START { }

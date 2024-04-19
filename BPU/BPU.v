@@ -1,16 +1,11 @@
-`define VIDEO_WIDTH 640,                                        // Standard VGA Width
-`define VIDEO_HEIGHT 480;                                       // Standard VGA Height
-`define PIXEL_COUNT `VIDEO_WIDTH*`VIDEO_HEIGHT,                 // Number of pixels on the screen
-`define PIXEL_ADDRESS_WIDTH $clog2(`PIXEL_COUNT) + 1,           // Use built in log2 command
-`define BITS_PER_COLOR 12, 	  								                  // Nexys A7 uses 12 bits/color
-`define PALETTE_COLOR_COUNT 256, 								                // Number of Colors available
-`define PALETTE_ADDRESS_WIDTH $clog2(`PALETTE_COLOR_COUNT) + 1; // Use built in log2 Command
-`define NUM_BOIDS 32;
-`define MARGIN 100 * `PIXEL_SIZE;
-
-`define INT_SIZE 32;
-`define BOID_SIZE 4 * INT_SIZE;
-`define BPU_SIZE `NUM_BOIDS * `BOID_SIZE;
+localparam 
+    VIDEO_WIDTH = 640,  // Standard VGA Width
+    VIDEO_HEIGHT = 480, // Standard VGA Height
+    PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
+    PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
+    BITS_PER_COLOR = 12, 	  								 // Nexys A7 uses 12 bits/color
+    PALETTE_COLOR_COUNT = 256, 								 // Number of Colors available
+    PALETTE_ADDRESS_WIDTH = $clog2(PALETTE_COLOR_COUNT) + 1; // Use built in log2 Command
 
 
 module BPU(clock, x_loc, y_loc, screenEnd_out, address);
@@ -22,12 +17,12 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address);
     output[8:0] y_loc;
 
     input screenEnd_out;
-    output[`PIXEL_ADDRESS_WIDTH-1:0] address; // TODO: what is this
+    output[PIXEL_ADDRESS_WIDTH-1:0] address; // TODO: what is this
 
     reg[9:0] x_reg = 9'd10;
     reg[8:0] y_reg = 8'd10;
 
-    reg[`PIXEL_ADDRESS_WIDTH-1:0] address_reg;
+    reg[PIXEL_ADDRESS_WIDTH-1:0] address_reg;
 
      assign x_loc = x_reg;
      assign y_loc = y_reg;
@@ -35,17 +30,22 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address);
 //    assign x_loc = 9'd10;
 //    assign y_loc = 8'd10;
 
-    reg[`BOID_SIZE-1:0] boids;
+//    reg[`BOID_SIZE-1:0] boids;
 
-    always @(posedge screenEnd_out) begin
-        x_reg <= x_reg + 1;
-        y_reg <= y_reg + 1;
-    end
 
+    reg[4:0] slowDownCounter;
 
     always @(posedge clock) begin
         
-        address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
+        address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an address
+        
+        if (slowDownCounter[2] & slowDownCounter[1] & slowDownCounter[0]) begin
+            x_reg <= x_reg + 1;
+            y_reg <= y_reg + 1;
+	   end
+        
+
+        slowDownCounter = slowDownCounter + 5'b00001;
 
         // x_reg <= x_reg + 1;
         // y_reg <= y_reg + 1;
@@ -80,67 +80,67 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address);
 
 endmodule
 
-module keep_within_bounds(input boid_x, input boid_y, output bx, output by);
-    localparam
-    TURN_FACTOR = 0.1
-    LEFT_BO
-    // if boid_x < margin, new_x = 0
+//module keep_within_bounds(input boid_x, input boid_y, output bx, output by);
+//    localparam
+//    TURN_FACTOR = 0.1
+//    LEFT_BO
+//    // if boid_x < margin, new_x = 0
 
-    // if boid_x > 640 - margin, new_x =
-    // if boid_y < 0, new_y = 0
-    // if boid_y > 480, new_y = 480
-endmodule
+//    // if boid_x > 640 - margin, new_x =
+//    // if boid_y < 0, new_y = 0
+//    // if boid_y > 480, new_y = 480
+//endmodule
 
-module limit_speed(input old_dx, input old_dy, output new_dx, output new_dy);
-    localparam
-    MAX_SPEED = 5
-    // if sqrt(old_dx^2 + old_dy^2) > MAX_SPEED, scale down
-    wire abs_dx, abs_dy, magnitude, log_magnitude, shift;
-    // TODO: all of this is copilot, integrate with the rest of the code
-    abs abs_dx(.in(old_dx), .out(abs_dx));
-    abs abs_dy(.in(old_dy), .out(abs_dy));
-    add add(.a(abs_dx), .b(abs_dy), .out(magnitude));
-    log2 log2(.in(magnitude), .out(log_magnitude));
-    assign shift = log_magnitude - MAX_SPEED;
-    shift_right shift_right(.in(old_dx), .shift(shift), .out(new_dx));
-    shift_right shift_right(.in(old_dy), .shift(shift), .out(new_dy));
-endmodule
+//module limit_speed(input old_dx, input old_dy, output new_dx, output new_dy);
+//    localparam
+//    MAX_SPEED = 5
+//    // if sqrt(old_dx^2 + old_dy^2) > MAX_SPEED, scale down
+//    wire abs_dx, abs_dy, magnitude, log_magnitude, shift;
+//    // TODO: all of this is copilot, integrate with the rest of the code
+//    abs abs_dx(.in(old_dx), .out(abs_dx));
+//    abs abs_dy(.in(old_dy), .out(abs_dy));
+//    add add(.a(abs_dx), .b(abs_dy), .out(magnitude));
+//    log2 log2(.in(magnitude), .out(log_magnitude));
+//    assign shift = log_magnitude - MAX_SPEED;
+//    shift_right shift_right(.in(old_dx), .shift(shift), .out(new_dx));
+//    shift_right shift_right(.in(old_dy), .shift(shift), .out(new_dy));
+//endmodule
 
-module fly_towards_center(input boid_x, input boid_y, input neighbors, output new_dx, output new_dy);
-    localparam
-    TURN_FACTOR = 7;
-    wire center_x, center_y; // TODO: implement (i don't think we need to use funky avg is there is always power of 2 neighbors)
+//module fly_towards_center(input boid_x, input boid_y, input neighbors, output new_dx, output new_dy);
+//    localparam
+//    TURN_FACTOR = 7;
+//    wire center_x, center_y; // TODO: implement (i don't think we need to use funky avg is there is always power of 2 neighbors)
 
-    // do bracket sum on x / y
+//    // do bracket sum on x / y
 
-    // shift right by log2 of number of neighbors
+//    // shift right by log2 of number of neighbors
 
-    assign new_dx = (center_x - boid_x) >> TURN_FACTOR;
-    assign new_dy = (center_y - boid_y) >> TURN_FACTOR;
-endmodule
+//    assign new_dx = (center_x - boid_x) >> TURN_FACTOR;
+//    assign new_dy = (center_y - boid_y) >> TURN_FACTOR;
+//endmodule
 
-module avoid_others(input boid_x, input boid_y, input neighbors, output new_dx, output new_dy)
-    localparam
-    TURN_FACTOR = 4;
-    wire avoid_x, avoid_y; // TODO: implement
+//module avoid_others(input boid_x, input boid_y, input neighbors, output new_dx, output new_dy)
+//    localparam
+//    TURN_FACTOR = 4;
+//    wire avoid_x, avoid_y; // TODO: implement
 
-    // calculate distance to each neighbor and put into new array (dis = 0, if too far)
+//    // calculate distance to each neighbor and put into new array (dis = 0, if too far)
 
-    // do bracket sum
+//    // do bracket sum
 
-    assign new_dx = (boid_x - avoid_x) >> TURN_FACTOR;
-    assign new_dy = (boid_y - avoid_y) >> TURN_FACTOR;
-endmodule
+//    assign new_dx = (boid_x - avoid_x) >> TURN_FACTOR;
+//    assign new_dy = (boid_y - avoid_y) >> TURN_FACTOR;
+//endmodule
 
-module match_velocity(input neighbors, output new_dx, output new_dy);
-    localparam
-    TURN_FACTOR = 2;
-    wire avg_dx, avg_dy; // TODO: implement
+//module match_velocity(input neighbors, output new_dx, output new_dy);
+//    localparam
+//    TURN_FACTOR = 2;
+//    wire avg_dx, avg_dy; // TODO: implement
 
-    // do bracket sum on vx & vy
+//    // do bracket sum on vx & vy
 
-    // shift right by log2 of number of neighbors
+//    // shift right by log2 of number of neighbors
 
-    assign new_dx = (avg_dx - boid_x) >> TURN_FACTOR;
-    assign new_dy = (avg_dy - boid_y) >> TURN_FACTOR;
-endmodule
+//    assign new_dx = (avg_dx - boid_x) >> TURN_FACTOR;
+//    assign new_dy = (avg_dy - boid_y) >> TURN_FACTOR;
+//endmodule

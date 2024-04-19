@@ -6,7 +6,7 @@
 #define WIDTH PIXEL_WIDTH
 #define HEIGHT PIXEL_WIDTH
 
-#define NUM_BOIDS 1024
+#define NUM_BOIDS 512
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT (int)log2(NUM_NEIGHBORS)
 #define INITIAL_SPEED 10 * PIXEL_SIZE
@@ -27,148 +27,174 @@
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
 
-typedef struct {
-    int x;
-    int y;
-    int dx;
-    int dy;
-} Boid;
-
-typedef struct {
-    int dx;
-    int dy;
-} Velocity;
-
-
 
 Boid boids[NUM_BOIDS];
 
+int abs(int x) {
+    return x < 0 ? -x : x;
+}
+
+int log_2(int x) {
+    int result = 0;
+    while (x >>= 1) {
+        result++;
+    }
+    return result;
+}
+
+int xPos[NUM_BOIDS];
+int yPos[NUM_BOIDS];
+int xVel[NUM_BOIDS];
+int yVel[NUM_BOIDS];
+int active_x = 0;
+int active_y = 0;
+
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
-        boids[i].x = rand() % SPAWN_WIDTH + MARGIN;
-        boids[i].y = rand() % SPAWN_HEIGHT + MARGIN;
-        boids[i].dx = rand() % SPAWN_VEL - INITIAL_SPEED;
-        boids[i].dy = rand() % SPAWN_VEL - INITIAL_SPEED;
+        xPos[i] = i % SPAWN_WIDTH + MARGIN;
+        yPos[i] = 1 % SPAWN_HEIGHT + MARGIN;
+        xVel[i] = INITIAL_SPEED;
+        yVel[i] = INITIAL_SPEED;
+        // xPos[i] = rand() % SPAWN_WIDTH + MARGIN;
+        // yPos[i] = rand() % SPAWN_HEIGHT + MARGIN;
+        // xVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
+        // yVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
     }
 }
 
-Velocity keepWithinBounds(Boid *boid) {
-    Velocity v = {0, 0};
-    if (boid->x < LEFT_BOUND) {
-        v.dx = EDGE_PUSH;
-    } else if (boid->x > RIGHT_BOUND) {
-        v.dx = -EDGE_PUSH;
+void keepWithinBounds(int boid_index) {
+    if (xPos[boid_index] < LEFT_BOUND) {
+        active_x += EDGE_PUSH;
+    } else if (xPos[boid_index] > RIGHT_BOUND) {
+        active_x += -EDGE_PUSH;
     }
-    if (boid->y < TOP_BOUND) {
-        v.dy = EDGE_PUSH;
-    } else if (boid->y > BOTTOM_BOUND) {
-        v.dy = -EDGE_PUSH;
+    if (yPos[boid_index] < TOP_BOUND) {
+        active_y += EDGE_PUSH;
+    } else if (yPos[boid_index] > BOTTOM_BOUND) {
+        active_y += -EDGE_PUSH;
     }
-    return v;
 }
 
-int distance(Boid *b1, Boid *b2) {
-    return abs(b1->x - b2->x) + abs(b1->y - b2->y);
+int distance(int b1, int b2) {
+    return abs(xPos[b1] - xPos[b2]) + abs(yPos[b1] - yPos[b2]);
 }
 
-Velocity fly_towards_center(Boid *boid, Boid *neighbors[]) {
+void fly_towards_center(int boid_index, int neighbors[]) {
     int centerX = 0, centerY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
-        centerX += neighbors[i]->x >> NEIGBHBOR_SHIFT;
-        centerY += neighbors[i]->y >> NEIGBHBOR_SHIFT;
+        int neighbor = neighbors[i];
+        centerX += xPos[neighbor] >> NEIGBHBOR_SHIFT;
+        centerY += yPos[neighbor] >> NEIGBHBOR_SHIFT;
     }
-    Velocity a;
-    a.dx = (centerX - boid->x) >> COHESION_FACTOR;
-    a.dy = (centerY - boid->y) >> COHESION_FACTOR;
-    
-    return a;
+    active_x += (centerX - xPos[boid_index]) >> COHESION_FACTOR;
+    active_y += (centerY - yPos[boid_index]) >> COHESION_FACTOR;
 }
 
-Velocity avoid_others(Boid *boid, Boid *neighbors[]) {
+void avoid_others(int boid_index, int neighbors[]) {
     int repelX = 0, repelY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
-        if (distance(boid, neighbors[i]) < PERCEPTION_RADIUS) {
-            repelX += (boid->x - neighbors[i]->x);
-            repelY += (boid->y - neighbors[i]->y);
+        int neighbor = neighbors[i];
+        if (distance(boid_index, neighbor) < PERCEPTION_RADIUS) {
+            printf("Force: %d\n", (xPos[boid_index] - xPos[neighbor]));
+            repelX += (xPos[boid_index] - xPos[neighbor]);
+            repelY += (yPos[boid_index] - yPos[neighbor]);
         }
     }
-    Velocity a;
-    a.dx = repelX >> SEPARATION_FACTOR;
-    a.dy = repelY >> SEPARATION_FACTOR;
-    return a;
+    active_x += repelX >> SEPARATION_FACTOR;
+    active_y += repelY >> SEPARATION_FACTOR;
 }
 
-Velocity match_velocity(Boid *boid, Boid *neighbors[]) {
+void match_velocity(int boid_index, int neighbors[]) {
     int avgDX = 0, avgDY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
-        avgDX += neighbors[i]->dx >> NEIGBHBOR_SHIFT;
-        avgDY += neighbors[i]->dy >> NEIGBHBOR_SHIFT;
+        int neighbor = neighbors[i];
+        avgDX += xVel[neighbor] >> NEIGBHBOR_SHIFT;
+        avgDY += yVel[neighbor] >> NEIGBHBOR_SHIFT;
     }
-    Velocity a;
-    a.dx = (avgDX) >> ALIGNMENT_FACTOR;
-    a.dy = (avgDY) >> ALIGNMENT_FACTOR;
-    return a;
+    active_x += (avgDX) >> ALIGNMENT_FACTOR;
+    active_y += (avgDY) >> ALIGNMENT_FACTOR;
 }
 
-Velocity limit_speed(Velocity unlimited_a) {
-    int speed = abs(unlimited_a.dx) + abs(unlimited_a.dy);
+void limit_speed() {
+    int speed = abs(active_x) + abs(active_y);
     int mag = (int)log2(speed);
     int shift = mag - MAX_SPEED;
     shift = (shift > 0) ? shift : 0;
 
-    Velocity a;
-    a.dx = unlimited_a.dx >> shift;
-    a.dy = unlimited_a.dy >> shift;
-    return a;
+    active_x >>= shift;
+    active_y >>= shift;
 }
 
 void updateBoids() {
-    for (int i = 0; i < NUM_BOIDS; i++) {
-        Boid *boid = &boids[i];
-        Boid *neighbors[NUM_NEIGHBORS] = {0};
-
-
+    for (int boid_index = 0; boid_index < NUM_BOIDS; boid_index++) {
+        int neighbors[NUM_NEIGHBORS] = {-1};
         // Find nearest neighbors
         for (int j = 0; j < NUM_BOIDS; j++) {
-            Boid* new_boid = &boids[j];
+            int new_boid = j;
             for (int k = 0; k < NUM_NEIGHBORS; k++) {
-                if (neighbors[k] == 0) {
+                if (neighbors[k] == -1) {
                     neighbors[k] = new_boid;
                     break;
                 }
-                if (distance(boid, new_boid) < distance(boid, neighbors[k])) {
-                    Boid* temp = neighbors[k];
+                if (distance(boid_index, new_boid) < distance(boid_index, neighbors[k])) {
+                    int temp = neighbors[k];
                     neighbors[k] = new_boid;
-                    // break;
+                    break;
                     new_boid = temp;
                 }
             }
 
         }
-        Velocity speed = {boid->dx, boid->dy};
-        Velocity cohesion = fly_towards_center(boid, neighbors);
-        Velocity separaction = avoid_others(boid, neighbors);
-        Velocity alignment = match_velocity(boid, neighbors);
-        speed.dx += cohesion.dx + separaction.dx + alignment.dx;
-        speed.dy += cohesion.dy + separaction.dy + alignment.dy;
-        speed = limit_speed(speed);
-        Velocity bounds = keepWithinBounds(boid);
-        boid->dx = speed.dx + bounds.dx;
-        boid->dy = speed.dy + bounds.dy;
+        active_x = xVel[boid_index];
+        active_y = yVel[boid_index];
+        fly_towards_center(boid_index, neighbors);
+        avoid_others(boid_index, neighbors);
+        match_velocity(boid_index, neighbors);
+        limit_speed();
+        keepWithinBounds(boid_index);
+        xVel[boid_index] = active_x;
+        yVel[boid_index] = active_y;
 
-        boid->x += boid->dx;
-        boid->y += boid->dy;
+        xPos[boid_index] += xVel[boid_index];
+        yPos[boid_index] += yVel[boid_index];
     }
 }
 
 int main(int argc, char *argv[]) {
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window *window = SDL_CreateWindow("Boids Simulation", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+
+    initBoids();
+
+    SDL_Event event;
     int running = 1;
     while (running) {
+        while (SDL_PollEvent(&event)) {
+            if (event.type == SDL_QUIT) {
+                running = 0;
+            }
+        }
+
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderClear(renderer);
+
         updateBoids();
 
-        for (int i = 0; i < NUM_BOIDS; i++) {
-            Boid *boid = &boids[i];
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+        for (int boid = 0; boid < NUM_BOIDS; boid++) {
+            // print boid x and y
+            // printf("Boid %d: x = %d (%d), y = %d (%d)\n", i, boid->x / PIXEL_SIZE, boid->x, boid->y / PIXEL_SIZE, boid->y);
+            int line_length = 4;
+            SDL_RenderDrawLine(renderer, xPos[boid] / PIXEL_SIZE, yPos[boid] / PIXEL_SIZE, (xPos[boid] / PIXEL_SIZE + (int)(line_length * cos(atan2(yVel[boid], xVel[boid])))), (yPos[boid] / PIXEL_SIZE + (int)(line_length * sin(atan2(yVel[boid], xVel[boid])))));
         }
+
+        SDL_RenderPresent(renderer);
+        SDL_Delay(10); // Approximately 30 FPS
     }
+
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
     return 0;
 }

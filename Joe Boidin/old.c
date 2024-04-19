@@ -7,28 +7,20 @@
 #define INT_WIDTH (1 << 30)
 #define PIXEL_SIZE (INT_WIDTH / PIXEL_WIDTH)
 #define PIXEL_SIZE_SHIFT (int)(log2(PIXEL_SIZE))
-#define MARGIN (100 << PIXEL_SIZE_SHIFT)
+#define MARGIN (64 << PIXEL_SIZE_SHIFT)
 #define WIDTH PIXEL_WIDTH
 #define HEIGHT PIXEL_WIDTH
 
-#define NUM_BOIDS 1024
-#define NUM_NEIGHBORS 4
-#define NEIGBHBOR_SHIFT (int)log2(NUM_NEIGHBORS)
+#define NUM_BOIDS 256
+#define NUM_NEIGHBORS 16
 #define INITIAL_SPEED 10 * PIXEL_SIZE
 #define FORCE_AMPLIFIER 0
-#define COHESION_FACTOR (6+FORCE_AMPLIFIER)
+#define COHESION_FACTOR (7+FORCE_AMPLIFIER)
 #define SEPARATION_FACTOR (4+FORCE_AMPLIFIER)
 #define ALIGNMENT_FACTOR (2+FORCE_AMPLIFIER)
-#define MAX_SPEED 23  // 2**26
-#define PERCEPTION_RADIUS (10 << PIXEL_SIZE_SHIFT)
+#define MAX_SPEED 20  // 2**26
+#define PERCEPTION_RADIUS (50 << PIXEL_SIZE_SHIFT)
 #define EDGE_PUSH (1 << (PIXEL_SIZE_SHIFT))
-#define LEFT_BOUND MARGIN
-#define RIGHT_BOUND (WIDTH << PIXEL_SIZE_SHIFT) - MARGIN
-#define TOP_BOUND MARGIN
-#define BOTTOM_BOUND (HEIGHT << PIXEL_SIZE_SHIFT) - MARGIN
-#define SPAWN_WIDTH (INT_WIDTH - 2 * MARGIN)
-#define SPAWN_HEIGHT (INT_WIDTH - 2 * MARGIN)
-#define SPAWN_VEL (2 * INITIAL_SPEED + 1)
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
 
@@ -44,29 +36,32 @@ typedef struct {
     int dy;
 } Velocity;
 
-
+typedef struct {
+    Boid* boid_ptr;
+    int distance;
+} BracketItem;
 
 Boid boids[NUM_BOIDS];
 
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
-        boids[i].x = rand() % SPAWN_WIDTH + MARGIN;
-        boids[i].y = rand() % SPAWN_HEIGHT + MARGIN;
-        boids[i].dx = rand() % SPAWN_VEL - INITIAL_SPEED;
-        boids[i].dy = rand() % SPAWN_VEL - INITIAL_SPEED;
+        boids[i].x = rand() % (INT_WIDTH - 2 * MARGIN) + MARGIN;
+        boids[i].y = rand() % (INT_WIDTH - 2 * MARGIN) + MARGIN;
+        boids[i].dx = rand() % (2 * INITIAL_SPEED + 1) - INITIAL_SPEED;
+        boids[i].dy = rand() % (2 * INITIAL_SPEED + 1) - INITIAL_SPEED;
     }
 }
 
 Velocity keepWithinBounds(Boid *boid) {
     Velocity v = {0, 0};
-    if (boid->x < LEFT_BOUND) {
+    if (boid->x < MARGIN) {
         v.dx = EDGE_PUSH;
-    } else if (boid->x > RIGHT_BOUND) {
+    } else if (boid->x > (WIDTH << PIXEL_SIZE_SHIFT) - MARGIN) {
         v.dx = -EDGE_PUSH;
     }
-    if (boid->y < TOP_BOUND) {
+    if (boid->y < MARGIN) {
         v.dy = EDGE_PUSH;
-    } else if (boid->y > BOTTOM_BOUND) {
+    } else if (boid->y > (HEIGHT << PIXEL_SIZE_SHIFT) - MARGIN) {
         v.dy = -EDGE_PUSH;
     }
     return v;
@@ -76,11 +71,11 @@ int distance(Boid *b1, Boid *b2) {
     return abs(b1->x - b2->x) + abs(b1->y - b2->y);
 }
 
-Velocity fly_towards_center(Boid *boid, Boid *neighbors[]) {
+Velocity fly_towards_center(Boid *boid, Boid **neighbors) {
     int centerX = 0, centerY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
-        centerX += neighbors[i]->x >> NEIGBHBOR_SHIFT;
-        centerY += neighbors[i]->y >> NEIGBHBOR_SHIFT;
+        centerX += neighbors[i]->x / NUM_NEIGHBORS;
+        centerY += neighbors[i]->y / NUM_NEIGHBORS;
     }
     Velocity a;
     a.dx = (centerX - boid->x) >> COHESION_FACTOR;
@@ -89,7 +84,7 @@ Velocity fly_towards_center(Boid *boid, Boid *neighbors[]) {
     return a;
 }
 
-Velocity avoid_others(Boid *boid, Boid *neighbors[]) {
+Velocity avoid_others(Boid *boid, Boid **neighbors) {
     int repelX = 0, repelY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
         if (distance(boid, neighbors[i]) < PERCEPTION_RADIUS) {
@@ -103,11 +98,11 @@ Velocity avoid_others(Boid *boid, Boid *neighbors[]) {
     return a;
 }
 
-Velocity match_velocity(Boid *boid, Boid *neighbors[]) {
+Velocity match_velocity(Boid *boid, Boid **neighbors) {
     int avgDX = 0, avgDY = 0;
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
-        avgDX += neighbors[i]->dx >> NEIGBHBOR_SHIFT;
-        avgDY += neighbors[i]->dy >> NEIGBHBOR_SHIFT;
+        avgDX += neighbors[i]->dx / NUM_NEIGHBORS;
+        avgDY += neighbors[i]->dy / NUM_NEIGHBORS;
     }
     Velocity a;
     a.dx = (avgDX) >> ALIGNMENT_FACTOR;
@@ -127,30 +122,66 @@ Velocity limit_speed(Velocity unlimited_a) {
     return a;
 }
 
+
+Boid** nearest_neighbors(Boid *boid) {
+    Boid **neighbors = malloc(NUM_NEIGHBORS * sizeof(Boid*));
+    int num_neighbors = 0;
+    for (int i = 0; i < NUM_NEIGHBORS; i++) {
+        if (distance(boid, &boids[i]) < PERCEPTION_RADIUS) {
+            neighbors[num_neighbors++] = &boids[i];
+        } 
+        if (num_neighbors == NUM_NEIGHBORS) {
+            break;
+        }
+    }
+    for (int i = num_neighbors; i < NUM_NEIGHBORS; i++) {
+        neighbors[i] = boid;
+    }
+    return neighbors;
+    BracketItem* bracket[NUM_BOIDS];
+    for (int i = 0; i < NUM_BOIDS; i++) {
+        int dis = distance(boid, &boids[i]);
+        BracketItem item = (dis > PERCEPTION_RADIUS) ? (BracketItem){boid, dis} : (BracketItem){&boids[i], dis};
+        // BracketItem item = (BracketItem){&boids[i], dis};
+        bracket[i] = &item;
+    }
+    // int count = NUM_BOIDS;
+    // while (count > NUM_NEIGHBORS) {
+    //     count /= 2;
+    //     for (int i = 0; i < count; i++) {
+    //         if (bracket[i * 2]->distance < bracket[i * 2 + 1]->distance) {
+    //             bracket[i] = bracket[i * 2];
+    //         } else {
+    //             bracket[i] = bracket[i * 2 + 1];
+    //         }
+    //     }
+    // }
+    // bubble sort
+    // for (int i = 0; i < NUM_BOIDS; i++) {
+    //     for (int j = 0; j < NUM_BOIDS - i - 1; j++) {
+    //         if (bracket[j]->distance > bracket[j + 1]->distance) {
+    //             BracketItem *temp = bracket[j];
+    //             bracket[j] = bracket[j + 1];
+    //             bracket[j + 1] = temp;
+    //         }
+    //     }
+    // }
+
+    // Boid** neighbors = malloc(NUM_NEIGHBORS * sizeof(Boid*));
+    // for (int i = 0; i < NUM_NEIGHBORS; i++) {
+    //     neighbors[i] = bracket[i]->boid_ptr;
+    // }
+    // return neighbors;
+}
+
+
 void updateBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
         Boid *boid = &boids[i];
-        Boid *neighbors[NUM_NEIGHBORS] = {NULL};
+        Boid **neighbors = nearest_neighbors(boid);
 
-
-        // Find nearest neighbors
-        for (int j = 0; j < NUM_BOIDS; j++) {
-            Boid* new_boid = &boids[j];
-            for (int k = 0; k < NUM_NEIGHBORS; k++) {
-                if (neighbors[k] == NULL) {
-                    neighbors[k] = new_boid;
-                    break;
-                }
-                if (distance(boid, new_boid) < distance(boid, neighbors[k])) {
-                    Boid* temp = neighbors[k];
-                    neighbors[k] = new_boid;
-                    // break;
-                    new_boid = temp;
-                }
-            }
-
-        }
         Velocity speed = {boid->dx, boid->dy};
+
         Velocity cohesion = fly_towards_center(boid, neighbors);
         Velocity separaction = avoid_others(boid, neighbors);
         Velocity alignment = match_velocity(boid, neighbors);
@@ -163,6 +194,7 @@ void updateBoids() {
 
         boid->x += boid->dx;
         boid->y += boid->dy;
+        free(neighbors);
     }
 }
 
@@ -197,7 +229,7 @@ int main(int argc, char *argv[]) {
         }
 
         SDL_RenderPresent(renderer);
-        SDL_Delay(10); // Approximately 30 FPS
+        SDL_Delay(5); // Approximately 30 FPS
     }
 
     SDL_DestroyRenderer(renderer);

@@ -10,7 +10,7 @@ margin = 64 << pixel_size_shift
 width, height = pixel_width, pixel_width  # Window size (640, 480)
 
 # Boids parameters
-num_boids = 32
+num_boids = 128
 initial_speed = 10_000#5 * pixel_size
 # Boids list
 boids = []

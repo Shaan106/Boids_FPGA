@@ -82,12 +82,15 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.addr(instAddr[11:0]), 
 		.dataOut(instData));
 	
+	wire[31:0] reg_27_data, reg_28_data, reg_29_data;
+
 	// Register File
 	regfile RegisterFile(.clock(clock), 
 		.ctrl_writeEnable(rwe), .ctrl_reset(reset), 
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
-		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB));
+		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
+		.reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
 
 						
 	// Processor Memory (RAM)
@@ -154,9 +157,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 //	assign imgAddress = x + 640*y;				 // Address calculated coordinate
 //	wire pixelColorOut, pixelColorIn, pixelWriteEnable;
 
-	reg writing_to_boids;
-	wire writing_to_boids_wire; // this is input to resettable RAM
-	assign writing_to_boids_wire = writing_to_boids;
+	reg writing_to_boids_disp;
+	wire writing_to_boids_disp_wire; // this is input to resettable RAM
+	assign writing_to_boids_disp_wire = writing_to_boids_disp;
 
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire; // this is the input read loc for RAM.
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_wire2; // this is the input read loc for RAM.
@@ -176,7 +179,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.ADDR_WIDTH(PIXEL_ADDRESS_WIDTH) //address_width = how many bits needed to access that many pixels
 	) Boid_display_mem(
 		.clk(clock),
-		.we(writing_to_boids_wire),
+		.we(writing_to_boids_disp_wire),
 		.reset(switchRam),
 
 		.write_addr(boid_address_out),
@@ -195,12 +198,6 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	reg[BITS_FOR_BOIDS-1:0] boid_counter;
 	assign chosen_boid_to_read = boid_counter;
 
-	// at every screenEnd, enable writing to boids and set initial boid = 0
-//	always @(posedge screenEnd_out) begin
-//		writing_to_boids <= 1;
-//		switchRam <= 1;
-////		boid_counter <= 0;
-//	end
 
     reg ledA = 0; // for testing purposes.
 
@@ -208,26 +205,20 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	   
 	   if (screenEnd_out) begin
 	       ledA = ~ledA;
-	       writing_to_boids = 1;
+	       writing_to_boids_disp = 1;
 	       switchRam = 1; // could change this to choose RAM out here.
 	   end else begin
-	       if (writing_to_boids) begin
+	       if (writing_to_boids_disp) begin
                 switchRam = 0; //this is a one cycle pulse to switch to a clear RAM
                 boid_counter = boid_counter + 1;
                 if (boid_counter == (MAX_BOIDS-1)) begin //change this value when num_boids changed.
-                    writing_to_boids = 0;
+                    writing_to_boids_disp = 0;
                     boid_counter = 0;
                 end
             end
 		end
 	end
 	
-//	assign LED[7:0] = instAddr[7:0];
-	
-//	assign LED[0] = writing_to_boids;
-//	assign LED[1] = switchRam;
-//	assign LED[4:2] = boid_counter[ 2 : 0];
-//	assign LED[7:5] = 3'b0;
 
 //    assign LED [12:0]  =  boid_read_address_wire2[14:0];
     assign LED[0] = ledA;

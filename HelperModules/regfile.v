@@ -2,7 +2,9 @@ module regfile (
 	clock,
 	ctrl_writeEnable, ctrl_reset, ctrl_writeReg,
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
-	data_readRegA, data_readRegB
+	data_readRegA, data_readRegB,
+
+	reg_out27, reg_out28, reg_out29
 );
 
 	//LOOK AT LOGISIM
@@ -32,13 +34,13 @@ module regfile (
 	tristate zero_tri1(.in(zero_out), .en(decoded_readRegA[0]), .out(data_readRegA));
 	tristate zero_tri2(.in(zero_out), .en(decoded_readRegB[0]), .out(data_readRegB));
 
-	// reg 1 - 31
-   genvar i;
-   generate
+	// reg 1 - 26
+   	genvar i;
+   	generate
         for (i = 1; i <= 31; i = i + 1) begin: loop1
 
             wire[31:0] reg_out;
-			//enables and shit
+			//enables
 
 			wire enableShakespeareMode;
 
@@ -52,6 +54,57 @@ module regfile (
 
         end
 
-   endgenerate
+   	endgenerate
+
+	//reg 27 - 29
+
+	wire[31:0] reg_out27;
+	wire enableShakespeareMode27;
+	and andgate(enableShakespeareMode27, decoded_writeReg[27], ctrl_writeEnable);
+	single_reg one_whole_register(.q(reg_out27), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode27), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number1(.in(reg_out27), .en(decoded_readRegA[27]), .out(data_readRegA));
+	tristate one_whole_register_output_number2(.in(reg_out27), .en(decoded_readRegB[27]), .out(data_readRegB));
+
+
+	wire[31:0] reg_out28;
+	wire enableShakespeareMode28;
+	and andgate(enableShakespeareMode28, decoded_writeReg[28], ctrl_writeEnable);
+	single_reg one_whole_register(.q(reg_out28), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode28), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number1(.in(reg_out28), .en(decoded_readRegA[28]), .out(data_readRegA));
+	tristate one_whole_register_output_number2(.in(reg_out28), .en(decoded_readRegB[28]), .out(data_readRegB));
+
+
+	wire[31:0] reg_out29;
+	wire enableShakespeareMode29;
+	and andgate(enableShakespeareMode29, decoded_writeReg[29], ctrl_writeEnable);
+	single_reg one_whole_register(.q(reg_out29), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode29), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number1(.in(reg_out29), .en(decoded_readRegA[29]), .out(data_readRegA));
+	tristate one_whole_register_output_number2(.in(reg_out29), .en(decoded_readRegB[29]), .out(data_readRegB));
+
+
+
+	//reg 30 -31
+	genvar j;
+   	generate
+        for (j = 30; j <= 31; j = j + 1) begin: loop2
+
+            wire[31:0] reg_out;
+
+			wire enableShakespeareMode;
+
+			and andgate(enableShakespeareMode, decoded_writeReg[j], ctrl_writeEnable);
+
+			single_reg one_whole_register(.q(reg_out), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode), .clr(ctrl_reset));
+
+			//tristate of outputs
+			tristate one_whole_register_output_number1(.in(reg_out), .en(decoded_readRegA[j]), .out(data_readRegA));
+			tristate one_whole_register_output_number2(.in(reg_out), .en(decoded_readRegB[j]), .out(data_readRegB));
+
+        end
+
+   	endgenerate
 
 endmodule

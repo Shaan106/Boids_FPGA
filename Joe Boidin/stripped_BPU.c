@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <SDL2/SDL.h>
-
 #define PIXEL_WIDTH 512
 #define INT_WIDTH (1 << 30)
 #define PIXEL_SIZE (INT_WIDTH / PIXEL_WIDTH)
@@ -130,14 +125,14 @@ Velocity limit_speed(Velocity unlimited_a) {
 void updateBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
         Boid *boid = &boids[i];
-        Boid *neighbors[NUM_NEIGHBORS] = {NULL};
+        Boid *neighbors[NUM_NEIGHBORS] = {0};
 
 
         // Find nearest neighbors
         for (int j = 0; j < NUM_BOIDS; j++) {
             Boid* new_boid = &boids[j];
             for (int k = 0; k < NUM_NEIGHBORS; k++) {
-                if (neighbors[k] == NULL) {
+                if (neighbors[k] == 0) {
                     neighbors[k] = new_boid;
                     break;
                 }
@@ -167,41 +162,13 @@ void updateBoids() {
 }
 
 int main(int argc, char *argv[]) {
-    SDL_Init(SDL_INIT_VIDEO);
-    SDL_Window *window = SDL_CreateWindow("Boids Simulation", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
-
-    initBoids();
-
-    SDL_Event event;
     int running = 1;
     while (running) {
-        while (SDL_PollEvent(&event)) {
-            if (event.type == SDL_QUIT) {
-                running = 0;
-            }
-        }
-
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        SDL_RenderClear(renderer);
-
         updateBoids();
 
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         for (int i = 0; i < NUM_BOIDS; i++) {
             Boid *boid = &boids[i];
-            // print boid x and y
-            // printf("Boid %d: x = %d (%d), y = %d (%d)\n", i, boid->x / PIXEL_SIZE, boid->x, boid->y / PIXEL_SIZE, boid->y);
-            int line_length = 4;
-            SDL_RenderDrawLine(renderer, boid->x / PIXEL_SIZE, boid->y / PIXEL_SIZE, (boid->x / PIXEL_SIZE + (int)(line_length * cos(atan2(boid->dy, boid->dx)))), (boid->y / PIXEL_SIZE + (int)(line_length * sin(atan2(boid->dy, boid->dx)))));
         }
-
-        SDL_RenderPresent(renderer);
-        SDL_Delay(10); // Approximately 30 FPS
     }
-
-    SDL_DestroyRenderer(renderer);
-    SDL_DestroyWindow(window);
-    SDL_Quit();
     return 0;
 }

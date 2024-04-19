@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -----------------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Fri Apr 19 11:30:47 2024
+| Date         : Fri Apr 19 12:25:53 2024
 | Host         : P2-06 running 64-bit major release  (build 9200)
 | Command      : report_methodology -file Wrapper_methodology_drc_routed.rpt -pb Wrapper_methodology_drc_routed.pb -rpx Wrapper_methodology_drc_routed.rpx
 | Design       : Wrapper
@@ -637,7 +637,7 @@ Related violations: <none>
 
 TIMING-17#121 Critical Warning
 Non-clocked sequential cell  
-The clock pin writing_to_boids_reg/C is not reached by a timing clock
+The clock pin writing_to_boids_disp_reg/C is not reached by a timing clock
 Related violations: <none>
 
 DPIR-1#1 Warning

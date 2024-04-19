@@ -2,8 +2,8 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Fri Apr 19 11:29:13 2024
-# Process ID: 15852
+# Start of session at: Fri Apr 19 12:24:21 2024
+# Process ID: 9476
 # Current directory: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
 # Command line: vivado.exe -log Wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Wrapper.tcl
 # Log file: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.vds
@@ -17,7 +17,7 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 8584
+INFO: [Synth 8-7075] Helper process launched with PID 10568
 WARNING: [Synth 8-2644] root scope declaration is not allowed in verilog 95/2K mode [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:8]
 WARNING: [Synth 8-6901] identifier 'reset_RAM' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:85]
 WARNING: [Synth 8-6901] identifier 'reset_RAM' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:90]
@@ -55,53 +55,53 @@ WARNING: [Synth 8-6901] identifier 'DX_controls' is used before its declaration 
 WARNING: [Synth 8-6901] identifier 'DX_controls' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/processor.v:89]
 WARNING: [Synth 8-6901] identifier 'isNE' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/processor.v:89]
 WARNING: [Synth 8-6901] identifier 'DX_controls' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/processor.v:89]
-WARNING: [Synth 8-6901] identifier 'screenEnd_out' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:209]
+WARNING: [Synth 8-6901] identifier 'screenEnd_out' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:206]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.160 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.445 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Wrapper' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:27]
 INFO: [Synth 8-6157] synthesizing module 'BPU' [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:11]
 INFO: [Synth 8-6155] done synthesizing module 'BPU' (1#1) [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:11]
 INFO: [Synth 8-6157] synthesizing module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'tristate' (2#1) [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v:1]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
-WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:138]
-WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:140]
-WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
-WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
+WARNING: [Synth 8-605] same-named implicit nets 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+INFO: [Synth 8-556] previous implicit net 'screenEnd_out' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:141]
+WARNING: [Synth 8-689] width (10) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:143]
+WARNING: [Synth 8-689] width (9) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:144]
+WARNING: [Synth 8-689] width (20) of port connection 'out' does not match port width (32) of module 'tristate' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:147]
 INFO: [Synth 8-6157] synthesizing module 'processor' [C:/Users/ay140/Desktop/Boids_FPGA/processor.v:20]
 INFO: [Synth 8-6157] synthesizing module 'bypass_controller' [C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v:1]
 WARNING: [Synth 8-589] replacing case/wildcard equality operator === with logical equality operator == [C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v:70]
@@ -204,7 +204,7 @@ INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/Users/ay140/Desktop/Boids
 INFO: [Synth 8-6155] done synthesizing module 'regfile' (36#1) [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v:1]
 INFO: [Synth 8-6157] synthesizing module 'RAM' [C:/Users/ay140/Desktop/Boids_FPGA/RAM.v:2]
 INFO: [Synth 8-6155] done synthesizing module 'RAM' (37#1) [C:/Users/ay140/Desktop/Boids_FPGA/RAM.v:2]
-WARNING: [Synth 8-689] width (8) of port connection 'out' does not match port width (32) of module 'decoder32' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:125]
+WARNING: [Synth 8-689] width (8) of port connection 'out' does not match port width (32) of module 'decoder32' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:128]
 INFO: [Synth 8-6157] synthesizing module 'RAM_resettable' [C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:1]
 	Parameter DEPTH bound to: 307200 - type: integer 
 	Parameter ADDR_WIDTH bound to: 20 - type: integer 
@@ -230,18 +230,18 @@ INFO: [Synth 8-6155] done synthesizing module 'VGATimingGenerator' (39#1) [C:/Us
 INFO: [Synth 8-6155] done synthesizing module 'VGAController' (40#1) [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGAController.v:2]
 INFO: [Synth 8-6155] done synthesizing module 'Wrapper' (41#1) [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:27]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1329.500 ; gain = 0.340
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1331.309 ; gain = 1.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1329.500 ; gain = 0.340
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1331.309 ; gain = 1.863
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1329.500 ; gain = 0.340
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1331.309 ; gain = 1.863
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.176 . Memory (MB): peak = 1329.500 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.182 . Memory (MB): peak = 1331.309 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -252,29 +252,29 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1420.906 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1423.262 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1420.906 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.043 . Memory (MB): peak = 1423.262 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[1].BoidProcessorUnit'
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[2].BoidProcessorUnit'
@@ -283,6 +283,11 @@ INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'lo
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[5].BoidProcessorUnit'
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[6].BoidProcessorUnit'
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[7].BoidProcessorUnit'
+INFO: [Synth 8-223] decloning instance 'RegisterFile/loop1[27].one_whole_register' (single_reg) to 'RegisterFile/one_whole_register27'
+INFO: [Synth 8-223] decloning instance 'RegisterFile/loop1[28].one_whole_register' (single_reg) to 'RegisterFile/one_whole_register28'
+INFO: [Synth 8-223] decloning instance 'RegisterFile/loop1[29].one_whole_register' (single_reg) to 'RegisterFile/one_whole_register29'
+INFO: [Synth 8-223] decloning instance 'RegisterFile/loop1[30].one_whole_register' (single_reg) to 'RegisterFile/loop2[30].one_whole_register'
+INFO: [Synth 8-223] decloning instance 'RegisterFile/loop1[31].one_whole_register' (single_reg) to 'RegisterFile/loop2[31].one_whole_register'
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -342,7 +347,7 @@ DSP Report: operator VGAControlModule/currentPixelAddress is absorbed into DSP V
 DSP Report: operator VGAControlModule/currentPixelAddress0 is absorbed into DSP VGAControlModule/boid_read_address_reg_reg.
 DSP Report: operator VGAControlModule/currentPixelAddress is absorbed into DSP VGAControlModule/boid_read_address_reg_reg.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:21 ; elapsed = 00:00:22 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -382,13 +387,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1420.906 ; gain = 91.746
+Finished Timing Optimization : Time (s): cpu = 00:00:28 ; elapsed = 00:00:28 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -419,7 +424,7 @@ INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArr
 INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1421.652 ; gain = 92.492
+Finished Technology Mapping : Time (s): cpu = 00:00:28 ; elapsed = 00:00:29 . Memory (MB): peak = 1423.262 ; gain = 93.816
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -437,37 +442,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished IO Insertion : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.539 ; gain = 96.094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.539 ; gain = 96.094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.539 ; gain = 96.094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.539 ; gain = 96.094
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.570 ; gain = 96.125
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.570 ; gain = 96.125
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -501,26 +506,26 @@ Report Cell Usage:
 |17    |OBUFT    |     7|
 +------+---------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.570 ; gain = 96.125
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 0 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:00:19 ; elapsed = 00:00:28 . Memory (MB): peak = 1428.363 ; gain = 7.797
-Synthesis Optimization Complete : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1428.363 ; gain = 99.203
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:18 ; elapsed = 00:00:28 . Memory (MB): peak = 1425.570 ; gain = 4.172
+Synthesis Optimization Complete : Time (s): cpu = 00:00:30 ; elapsed = 00:00:31 . Memory (MB): peak = 1425.570 ; gain = 96.125
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.007 . Memory (MB): peak = 1440.445 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.006 . Memory (MB): peak = 1437.613 ; gain = 0.000
 INFO: [Netlist 29-17] Analyzing 34 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Netlist 29-28] Unisim Transformation completed in 1 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1444.137 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1441.324 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Synth Design complete, checksum: 7f721c30
+Synth Design complete, checksum: 25496a14
 INFO: [Common 17-83] Releasing license: Synthesis
-132 Infos, 95 Warnings, 0 Critical Warnings and 0 Errors encountered.
+137 Infos, 95 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1444.137 ; gain = 114.977
+synth_design: Time (s): cpu = 00:00:33 ; elapsed = 00:00:35 . Memory (MB): peak = 1441.324 ; gain = 111.879
 INFO: [Common 17-1381] The checkpoint 'C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file Wrapper_utilization_synth.rpt -pb Wrapper_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 11:29:53 2024...
+INFO: [Common 17-206] Exiting Vivado at Fri Apr 19 12:25:00 2024...

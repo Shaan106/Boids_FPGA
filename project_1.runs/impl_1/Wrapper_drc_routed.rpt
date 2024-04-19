@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date         : Fri Apr 19 14:03:21 2024
+| Date         : Fri Apr 19 14:55:01 2024
 | Host         : P2-06 running 64-bit major release  (build 9200)
 | Command      : report_drc -file Wrapper_drc_routed.rpt -pb Wrapper_drc_routed.pb -rpx Wrapper_drc_routed.rpx
 | Design       : Wrapper
@@ -24,7 +24,7 @@ Table of Contents
       Design limits: <entire design considered>
            Ruledeck: default
              Max violations: <unlimited>
-             Violations found: 49
+             Violations found: 37
 +-----------+----------+-----------------------------------------------------+------------+
 | Rule      | Severity | Description                                         | Violations |
 +-----------+----------+-----------------------------------------------------+------------+
@@ -33,7 +33,6 @@ Table of Contents
 | DPIP-1    | Warning  | Input pipelining                                    | 10         |
 | DPOP-2    | Warning  | MREG Output pipelining                              | 5          |
 | REQP-1839 | Warning  | RAMB36 async control check                          | 20         |
-| REQP-1840 | Warning  | RAMB18 async control check                          | 12         |
 +-----------+----------+-----------------------------------------------------+------------+
 
 2. REPORT DETAILS
@@ -229,66 +228,6 @@ Related violations: <none>
 REQP-1839#20 Warning
 RAMB36 async control check  
 The RAMB36E1 InstMem/dataOut_reg_1 has an input control pin InstMem/dataOut_reg_1/ADDRARDADDR[9] (net: InstMem/sel[6]) which is driven by a register (CPU/PC_reg/loop1[6].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#1 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[10] (net: InstMem/sel[8]) which is driven by a register (CPU/PC_reg/loop1[8].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#2 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[11] (net: InstMem/sel[9]) which is driven by a register (CPU/PC_reg/loop1[9].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#3 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[12] (net: InstMem/sel[10]) which is driven by a register (CPU/PC_reg/loop1[10].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#4 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[13] (net: InstMem/sel[11]) which is driven by a register (CPU/PC_reg/loop1[11].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#5 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[2] (net: InstMem/sel[0]) which is driven by a register (CPU/PC_reg/loop1[0].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#6 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[3] (net: InstMem/sel[1]) which is driven by a register (CPU/PC_reg/loop1[1].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#7 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[4] (net: InstMem/sel[2]) which is driven by a register (CPU/PC_reg/loop1[2].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#8 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[5] (net: InstMem/sel[3]) which is driven by a register (CPU/PC_reg/loop1[3].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#9 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[6] (net: InstMem/sel[4]) which is driven by a register (CPU/PC_reg/loop1[4].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#10 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[7] (net: InstMem/sel[5]) which is driven by a register (CPU/PC_reg/loop1[5].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#11 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[8] (net: InstMem/sel[6]) which is driven by a register (CPU/PC_reg/loop1[6].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
-Related violations: <none>
-
-REQP-1840#12 Warning
-RAMB18 async control check  
-The RAMB18E1 InstMem/dataOut_reg_2 has an input control pin InstMem/dataOut_reg_2/ADDRARDADDR[9] (net: InstMem/sel[7]) which is driven by a register (CPU/PC_reg/loop1[7].d_flip_flop/q_reg) that has an active asychronous set or reset. This may cause corruption of the memory contents and/or read values when the set/reset is asserted and is not analyzed by the default static timing analysis. It is suggested to eliminate the use of a set/reset to registers driving this RAMB pin or else use a synchronous reset in which the assertion of the reset is timed by default.
 Related violations: <none>
 
 

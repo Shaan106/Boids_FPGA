@@ -1,0 +1,877 @@
+/*
+
+Xilinx Vivado v2021.1 (64-bit) [Major: 2021, Minor: 1]
+SW Build: 3247384 on Thu Jun 10 19:36:33 MDT 2021
+IP Build: 3246043 on Fri Jun 11 00:30:35 MDT 2021
+
+Process ID (PID): 10624
+License: Customer
+Mode: GUI Mode
+
+Current time: 	Fri Apr 19 14:20:50 EDT 2024
+Time zone: 	Eastern Standard Time (America/New_York)
+
+OS: Windows 10
+OS Version: 10.0
+OS Architecture: amd64
+Available processors (cores): 12
+
+Screen size: 1920x1080
+Screen resolution (DPI): 100
+Available screens: 1
+Default font: family=Dialog,name=Dialog,style=plain,size=12
+Scale size: 12
+
+Java version: 	11.0.2 64-bit
+Java home: 	C:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2
+Java executable: 	C:/Xilinx/Vivado/2021.1/tps/win64/jre11.0.2/bin/java.exe
+Java initial memory (-Xms): 	256 MB
+Java maximum memory (-Xmx):	 3 GB
+
+
+User name: 	ay140
+User home directory: C:/Users/ay140
+User working directory: C:/Users/ay140/Desktop/Boids_FPGA
+User country: 	US
+User language: 	en
+User locale: 	en_US
+
+RDI_BASEROOT: C:/Xilinx/Vivado
+HDI_APPROOT: C:/Xilinx/Vivado/2021.1
+RDI_DATADIR: C:/Xilinx/Vivado/2021.1/data
+RDI_BINDIR: C:/Xilinx/Vivado/2021.1/bin
+
+Vivado preferences file: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/vivado.xml
+Vivado preferences directory: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/
+Vivado layouts directory: C:/Users/ay140/AppData/Roaming/Xilinx/Vivado/2021.1/data/layouts
+PlanAhead jar file: 	C:/Xilinx/Vivado/2021.1/lib/classes/planAhead.jar
+Vivado log file: 	C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
+Vivado journal file: 	C:/Users/ay140/Desktop/Boids_FPGA/vivado.jou
+Engine tmp dir: 	C:/Users/ay140/Desktop/Boids_FPGA/.Xil/Vivado-10624-P2-06
+
+Xilinx Environment Variables
+----------------------------
+XILINX: C:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_DSP: C:/Xilinx/Vivado/2021.1/ids_lite/ISE
+XILINX_HLS: C:/Xilinx/Vitis_HLS/2021.1
+XILINX_PLANAHEAD: C:/Xilinx/Vivado/2021.1
+XILINX_VIVADO: C:/Xilinx/Vivado/2021.1
+XILINX_VIVADO_HLS: C:/Xilinx/Vivado/2021.1
+
+
+GUI allocated memory:	256 MB
+GUI max memory:		3,072 MB
+Engine allocated memory: 1,329 MB
+
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+
+*/
+
+// TclEventType: START_GUI
+// Tcl Message: start_gui 
+// TclEventType: PROJECT_OPEN_DIALOG
+// [GUI Memory]: 95 MB (+96617kb) [00:00:04]
+// [Engine Memory]: 1,329 MB (+1241729kb) [00:00:04]
+// bz (cs):  Open Project : addNotify
+// Opening Vivado Project: C:\Users\ay140\Desktop\Boids_FPGA\project_1.xpr. Version: Vivado v2021.1 
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: FLOW_ADDED
+// Tcl Message: open_project C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr 
+// TclEventType: MSGMGR_MOVEMSG
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: FILE_SET_NEW
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_CURRENT
+// TclEventType: PROJECT_DASHBOARD_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_DASHBOARD_GADGET_NEW
+// TclEventType: PROJECT_DASHBOARD_GADGET_CHANGE
+// TclEventType: PROJECT_NEW
+// [GUI Memory]: 104 MB (+4680kb) [00:00:08]
+// [GUI Memory]: 112 MB (+2996kb) [00:00:08]
+// [GUI Memory]: 125 MB (+7673kb) [00:00:08]
+// WARNING: HEventQueue.dispatchEvent() is taking  3055 ms.
+// Tcl Message: open_project C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr 
+// Tcl Message: Scanning sources... Finished scanning sources 
+// Tcl Message: INFO: [IP_Flow 19-234] Refreshing IP repositories INFO: [IP_Flow 19-1704] No user IP repositories specified INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'. 
+// HMemoryUtils.trashcanNow. Engine heap size: 1,329 MB. GUI used memory: 70 MB. Current time: 4/19/24, 2:20:51 PM EDT
+// Project name: project_1; location: C:/Users/ay140/Desktop/Boids_FPGA; part: xc7a100tcsg324-1
+dismissDialog("Open Project"); // bz
+// Tcl Command: 'rdi::info_commands {device::*}'
+// Tcl Command: 'rdi::info_commands {debug::*}'
+// Tcl Command: 'rdi::info_commands {*}'
+// a (cs): Critical Messages: addNotify
+// Tcl Message: update_compile_order -fileset sources_1 
+// Elapsed time: 10 seconds
+selectButton(PAResourceAtoD.CmdMsgDialog_OK, "OK"); // f
+dismissDialog("Critical Messages"); // a
+// [GUI Memory]: 133 MB (+2422kb) [00:00:22]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// cD (cs): Launch Runs: addNotify
+selectButton("OptionPane.button", "OK"); // JButton
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+// 'cA' command handler elapsed time: 4 seconds
+dismissDialog("Launch Runs"); // cD
+// [GUI Memory]: 156 MB (+16379kb) [00:00:28]
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true, false, false, false, false, true); // o - Double Click - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true, false, false, false, false, true); // o - Double Click - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v)]", 2, true); // D - Node
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), InstMem : ROM (ROM.v)]", 4, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1227 ms.
+// Elapsed time: 33 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// cD (cs): Launch Runs: addNotify
+selectButton("OptionPane.button", "OK"); // JButton
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'cA' command handler elapsed time: 3 seconds
+// TclEventType: RUN_MODIFY
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// bz (cs):  Generate Bitstream : addNotify
+// Tcl Message: reset_run impl_1 -prev_step  
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:21:51 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+dismissDialog("Generate Bitstream"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// [GUI Memory]: 164 MB (+269kb) [00:01:54]
+// Elapsed time: 63 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, "Open Hardware Manager"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+// Tcl Command: 'load_features labtools'
+// TclEventType: LOAD_FEATURE
+// bz (cs):  Open Hardware Manager : addNotify
+// TclEventType: HW_SESSION_OPEN
+// Tcl Message: open_hw_manager 
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+dismissDialog("Open Hardware Manager"); // bz
+selectButton(PAResourceOtoP.ProgramDebugTab_OPEN_TARGET, "Open target"); // h
+selectMenuItem(PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET, "Auto Connect"); // an
+// Run Command: PAResourceCommand.PACommandNames_AUTO_CONNECT_TARGET
+// bz (cs):  Auto Connect : addNotify
+// Tcl Message: connect_hw_server -allow_non_jtag 
+// Tcl Message: INFO: [Labtools 27-2285] Connecting to hw_server url TCP:localhost:3121 
+// Tcl Message: INFO: [Labtools 27-2222] Launching hw_server... INFO: [Labtools 27-2221] Launch Output:  ****** Xilinx hw_server v2021.1   **** Build date : Jun 10 2021 at 20:17:23     ** Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.   
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-3415] Connecting to cs_server url TCP:localhost:3042 
+// Tcl Message: INFO: [Labtools 27-3417] Launching cs_server... 
+// TclEventType: HW_SERVER_UPDATE
+// Tcl Message: INFO: [Labtools 27-2221] Launch Output:   ******** Xilinx cs_server v2021.1   ****** Build date   : May 26 2021-13:32:33     **** Build number : 2021.1.1622050353       ** Copyright 2017-2024 Xilinx, Inc. All Rights Reserved.    
+// Tcl Message: connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:08 . Memory (MB): peak = 1329.953 ; gain = 0.000 
+// TclEventType: HW_TARGET_CHANGE
+// TclEventType: HW_TARGET_CLOSE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_ADD
+// TclEventType: HW_TARGET_UPDATE
+// WARNING: HEventQueue.dispatchEvent() is taking  3901 ms.
+// Tcl Message: open_hw_target 
+// Tcl Message: INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210292AE3A6BA 
+// HMemoryUtils.trashcanNow. Engine heap size: 2,850 MB. GUI used memory: 105 MB. Current time: 4/19/24, 2:23:11 PM EDT
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: current_hw_device [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// [Engine Memory]: 2,850 MB (+1525332kb) [00:02:29]
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// Elapsed time: 12 seconds
+dismissDialog("Auto Connect"); // bz
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+dismissDialog("Program Device"); // bC
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 3 seconds
+dismissDialog("Program Device"); // bz
+// Elapsed time: 52 seconds
+selectCodeEditor("Wrapper.v", 132, 208); // bP
+selectCodeEditor("Wrapper.v", 132, 208, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 173, 144); // bP
+selectCodeEditor("Wrapper.v", 173, 144, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 177, 148); // bP
+selectCodeEditor("Wrapper.v", 177, 148, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 193, 187); // bP
+selectCodeEditor("Wrapper.v", 193, 187, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 426, 317); // bP
+selectCodeEditor("Wrapper.v", 112, 164); // bP
+selectCodeEditor("Wrapper.v", 114, 164, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 121, 160); // bP
+selectCodeEditor("Wrapper.v", 121, 160, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 320, 220); // bP
+// Elapsed time: 32 seconds
+selectCodeEditor("Wrapper.v", 134, 246); // bP
+selectCodeEditor("Wrapper.v", 246, 250); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectCodeEditor("Wrapper.v", 271, 241); // bP
+selectCodeEditor("Wrapper.v", 322, 268); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:25:27 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:25:27 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// bz (cs):  Generate Bitstream : addNotify
+dismissDialog("Generate Bitstream"); // bz
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// HMemoryUtils.trashcanNow. Engine heap size: 2,911 MB. GUI used memory: 152 MB. Current time: 4/19/24, 2:28:04 PM EDT
+// ag (cs): Bitstream Generation Completed: addNotify
+// Elapsed time: 167 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Bitstream Generation Completed"); // ag
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+// TclEventType: HW_DEVICE_CHANGE
+dismissDialog("Program Device"); // bC
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 5 seconds
+dismissDialog("Program Device"); // bz
+// Elapsed time: 17 seconds
+selectCodeEditor("Wrapper.v", 272, 198); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// [GUI Memory]: 172 MB (+100kb) [00:08:50]
+// Elapsed time: 51 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:29:39 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:29:39 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 33 seconds
+selectCodeEditor("Wrapper.v", 213, 197); // bP
+selectCodeEditor("Wrapper.v", 213, 197, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 216, 296); // bP
+selectCodeEditor("Wrapper.v", 216, 296, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 872, 117); // bP
+selectCodeEditor("Wrapper.v", 249, 248); // bP
+selectCodeEditor("Wrapper.v", 249, 248, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 238, 100); // bP
+selectCodeEditor("Wrapper.v", 238, 100, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 109, 94); // bP
+selectCodeEditor("Wrapper.v", 109, 94, false, false, false, false, true); // bP - Double Click
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// Elapsed time: 106 seconds
+selectRadioButton(PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER, "Open Hardware Manager"); // a
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+dismissDialog("Bitstream Generation Completed"); // ag
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+dismissDialog("Program Device"); // bC
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 4 seconds
+dismissDialog("Program Device"); // bz
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 227, 97); // bP
+selectCodeEditor("Wrapper.v", 227, 97, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 125, 89); // bP
+selectCodeEditor("Wrapper.v", 125, 89, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 214, 247); // bP
+selectCodeEditor("Wrapper.v", 214, 247, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 110, 301); // bP
+selectCodeEditor("Wrapper.v", 110, 301, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 206, 448); // bP
+selectCodeEditor("Wrapper.v", 206, 448, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 334, 419); // bP
+// Elapsed time: 16 seconds
+selectCodeEditor("Wrapper.v", 280, 455); // bP
+selectCodeEditor("Wrapper.v", 280, 455, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 246, 450); // bP
+selectCodeEditor("Wrapper.v", 246, 450, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 246, 450); // bP
+selectCodeEditor("Wrapper.v", 251, 451); // bP
+selectCodeEditor("Wrapper.v", 251, 451, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 251, 451); // bP
+selectCodeEditor("Wrapper.v", 251, 451); // bP
+selectCodeEditor("Wrapper.v", 251, 451); // bP
+selectCodeEditor("Wrapper.v", 298, 440); // bP
+selectCodeEditor("Wrapper.v", 251, 454); // bP
+selectCodeEditor("Wrapper.v", 251, 454, false, false, false, false, true); // bP - Double Click
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'cA' command handler elapsed time: 4 seconds
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:33:47 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:33:47 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 106 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Project Manager]", 0, true); // o - Node
+// Run Command: PAResourceCommand.PACommandNames_GOTO_PROJECT_MANAGER
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 11, false); // D
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 11, false, false, false, false, false, true); // D - Double Click
+// WARNING: HEventQueue.dispatchEvent() is taking  1130 ms.
+selectTree(PAResourceEtoH.FileSetPanel_FILE_SET_PANEL_TREE, "[root, Design Sources, Wrapper (Wrapper.v), loop1[0].BoidProcessorUnit : BPU (BPU.v)]", 11, false); // D
+// TclEventType: RUN_STEP_COMPLETED
+// HMemoryUtils.trashcanNow. Engine heap size: 2,932 MB. GUI used memory: 111 MB. Current time: 4/19/24, 2:35:45 PM EDT
+selectCodeEditor("BPU.v", 419, 180); // bP
+selectCodeEditor("BPU.v", 419, 180, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("BPU.v", 483, 187); // bP
+selectCodeEditor("BPU.v", 507, 169); // bP
+selectCodeEditor("BPU.v", 509, 180); // bP
+selectCodeEditor("BPU.v", 509, 180, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("BPU.v", 152, 330); // bP
+selectCodeEditor("BPU.v", 152, 330, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 1); // m
+// TclEventType: RUN_STEP_COMPLETED
+selectCodeEditor("Wrapper.v", 725, 299); // bP
+selectCodeEditor("Wrapper.v", 725, 299, false, false, false, false, true); // bP - Double Click
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// Elapsed time: 11 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_OPEN_HARDWARE_MANAGER
+// Tcl Command: 'rdi::info_commands get_hw_probes'
+closeView(PAResourceOtoP.PAViews_PROJECT_SUMMARY, "Project Summary"); // v
+dismissDialog("Bitstream Generation Completed"); // ag
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+// TclEventType: HW_DEVICE_CHANGE
+dismissDialog("Program Device"); // bC
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 3 seconds
+dismissDialog("Program Device"); // bz
+// Elapsed time: 14 seconds
+selectCodeEditor("Wrapper.v", 197, 354); // bP
+selectCodeEditor("Wrapper.v", 194, 354, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 19 seconds
+selectCodeEditor("Wrapper.v", 125, 294); // bP
+selectCodeEditor("Wrapper.v", 125, 294, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 297, 299); // bP
+selectCodeEditor("Wrapper.v", 297, 299, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 275, 296); // bP
+selectCodeEditor("Wrapper.v", 275, 296, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 107, 299); // bP
+selectCodeEditor("Wrapper.v", 107, 299, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 102, 300); // bP
+selectCodeEditor("Wrapper.v", 103, 300, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 228, 345); // bP
+selectCodeEditor("Wrapper.v", 228, 345, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 109, 353); // bP
+selectCodeEditor("Wrapper.v", 241, 350); // bP
+selectCodeEditor("Wrapper.v", 241, 350, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 109, 350); // bP
+selectCodeEditor("Wrapper.v", 109, 350, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 268, 345); // bP
+selectCodeEditor("Wrapper.v", 268, 345, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 311, 351); // bP
+selectCodeEditor("Wrapper.v", 304, 351); // bP
+// Elapsed time: 12 seconds
+selectCodeEditor("Wrapper.v", 222, 199); // bP
+selectCodeEditor("Wrapper.v", 222, 199, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 241, 355); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+typeControlKey(null, null, 'z');
+selectCodeEditor("Wrapper.v", 235, 368); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 13 seconds
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// TclEventType: RUN_STATUS_CHANGE
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:38:17 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:38:17 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// [GUI Memory]: 182 MB (+1699kb) [00:20:12]
+// Elapsed time: 167 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Bitstream Generation Completed"); // ag
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+dismissDialog("Program Device"); // bC
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 3 seconds
+dismissDialog("Program Device"); // bz
+// Elapsed time: 14 seconds
+selectCodeEditor("Wrapper.v", 169, 346); // bP
+selectCodeEditor("Wrapper.v", 169, 346, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 202, 368); // bP
+selectCodeEditor("Wrapper.v", 202, 368, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 196, 351); // bP
+selectCodeEditor("Wrapper.v", 196, 351, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 10 seconds
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "BPU.v", 1); // m
+selectCodeEditor("BPU.v", 138, 210); // bP
+selectCodeEditor("BPU.v", 138, 210, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("BPU.v", 95, 247); // bP
+selectCodeEditor("BPU.v", 95, 247, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("BPU.v", 155, 438); // bP
+selectCodeEditor("BPU.v", 155, 438, false, false, false, false, true); // bP - Double Click
+selectTab("PlanAheadTabBaseWorkspace_JideTabbedPane", (HResource) null, "Wrapper.v", 0); // m
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 295, 63); // bP
+selectCodeEditor("Wrapper.v", 214, 66); // bP
+selectCodeEditor("Wrapper.v", 214, 66, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 328, 333); // bP
+selectCodeEditor("Wrapper.v", 328, 333, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 289, 263); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 162, 266); // bP
+selectCodeEditor("Wrapper.v", 151, 249); // bP
+selectCodeEditor("Wrapper.v", 134, 267); // bP
+selectCodeEditor("Wrapper.v", 134, 267, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 135, 265); // bP
+selectCodeEditor("Wrapper.v", 135, 265, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 112, 244); // bP
+selectCodeEditor("Wrapper.v", 324, 264); // bP
+selectCodeEditor("Wrapper.v", 324, 264, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 208, 243); // bP
+selectCodeEditor("Wrapper.v", 208, 243, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 375, 241); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// Elapsed time: 25 seconds
+selectCodeEditor("Wrapper.v", 452, 280); // bP
+selectCodeEditor("Wrapper.v", 459, 247); // bP
+selectCodeEditor("Wrapper.v", 458, 260); // bP
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Program Device"); // bC
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+// Elapsed time: 87 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'cA' command handler elapsed time: 88 seconds
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:44:48 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:44:48 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_FAILED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Synthesis Failed: addNotify
+// Elapsed time: 97 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// Run Command: PAResourceCommand.PACommandNames_MESSAGE_WINDOW
+dismissDialog("Synthesis Failed"); // ag
+selectTree(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "[, Synthesis, [Synth 8-524] part-select [7:0] out of range of prefix 'which_boid_to_write_to_one_hot' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:117]. ]", 4, false); // ah
+messagesViewCrossProbe(PAResourceItoN.MsgTreePanel_MESSAGE_VIEW_TREE, "src;-;C:\Users\ay140\Desktop\Boids_FPGA\Wrapper.v;-;;-;16;-;line;-;117;-;;-;16;-;"); // ah
+selectCodeEditor("Wrapper.v", 292, 241); // bP
+selectCodeEditor("Wrapper.v", 295, 247); // bP
+selectCodeEditor("Wrapper.v", 295, 247, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 138, 352); // bP
+selectCodeEditor("Wrapper.v", 371, 345); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): No Implementation Results Available: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("No Implementation Results Available"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:47:00 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:47:00 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 1048, 385); // bP
+selectCodeEditor("Wrapper.v", 813, 365); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// Elapsed time: 103 seconds
+selectCodeEditor("Wrapper.v", 338, 348); // bP
+selectCodeEditor("Wrapper.v", 269, 348, false, false, false, true, false); // bP - Popup Trigger
+selectMenuItem(RDIResourceCommand.RDICommands_CUT, "Cut"); // an
+selectCodeEditor("Wrapper.v", 308, 362); // bP
+selectCodeEditor("Wrapper.v", 842, 347); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// Elapsed time: 65 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Bitstream Generation Completed"); // ag
+// Elapsed time: 13 seconds
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+dismissDialog("Program Device"); // bC
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 4 seconds
+dismissDialog("Program Device"); // bz
+selectCodeEditor("Wrapper.v", 434, 383); // bP
+selectCodeEditor("Wrapper.v", 434, 383, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 43 seconds
+selectCodeEditor("Wrapper.v", 458, 58); // bP
+selectCodeEditor("Wrapper.v", 234, 56); // bP
+selectCodeEditor("Wrapper.v", 234, 56, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 289, 278); // bP
+selectCodeEditor("Wrapper.v", 289, 278, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 323, 60); // bP
+selectCodeEditor("Wrapper.v", 323, 60, false, false, false, false, true); // bP - Double Click
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 331, 58); // bP
+// Elapsed time: 11 seconds
+selectCodeEditor("Wrapper.v", 55, 281); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'c'); // bP
+selectCodeEditor("Wrapper.v", 357, 55); // bP
+typeControlKey((HResource) null, "Wrapper.v", 'v'); // bP
+selectCodeEditor("Wrapper.v", 112, 60); // bP
+selectCodeEditor("Wrapper.v", 112, 60, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 16 seconds
+selectCodeEditor("Wrapper.v", 106, 56); // bP
+// TclEventType: DG_GRAPH_STALE
+// TclEventType: FILE_SET_CHANGE
+selectTree(PAResourceEtoH.FlowNavigatorTreePanel_FLOW_NAVIGATOR_TREE, "[, Program and Debug, Generate Bitstream]", 20, false); // o
+// Run Command: PAResourceCommand.PACommandNames_RUN_BITGEN
+// A (cs): Synthesis is Out-of-date: addNotify
+selectButton(RDIResource.BaseDialog_YES, "Yes"); // a
+// bz (cs):  Resetting Runs : addNotify
+// TclEventType: RUN_MODIFY
+dismissDialog("Synthesis is Out-of-date"); // A
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_RESET
+// TclEventType: RUN_MODIFY
+// Tcl Message: reset_run synth_1 
+// cD (cs): Launch Runs: addNotify
+// Elapsed time: 21 seconds
+selectButton(RDIResource.BaseDialog_OK, "OK"); // a
+// 'cA' command handler elapsed time: 22 seconds
+dismissDialog("Launch Runs"); // cD
+// TclEventType: RUN_LAUNCH
+// TclEventType: RUN_MODIFY
+// Tcl Message: launch_runs impl_1 -to_step write_bitstream -jobs 6 
+// Tcl Message: [Fri Apr 19 14:52:40 2024] Launched synth_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log [Fri Apr 19 14:52:40 2024] Launched impl_1... Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log 
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// TclEventType: RUN_STEP_COMPLETED
+// TclEventType: RUN_COMPLETED
+// TclEventType: RUN_STATUS_CHANGE
+// ag (cs): Bitstream Generation Completed: addNotify
+// Elapsed time: 204 seconds
+selectButton(RDIResource.BaseDialog_CANCEL, "Cancel"); // a
+dismissDialog("Bitstream Generation Completed"); // ag
+selectButton(PAResourceOtoP.ProgramDebugTab_PROGRAM_DEVICE, "Program device"); // h
+// Run Command: PAResourceCommand.PACommandNames_PROGRAM_FPGA
+// bC (cs): Program Device: addNotify
+selectButton(PAResourceOtoP.ProgramFpgaDialog_PROGRAM, "Program"); // a
+// bz (cs):  Program Device : addNotify
+// TclEventType: HW_DEVICE_CHANGE
+dismissDialog("Program Device"); // bC
+// Tcl Message: set_property PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// Tcl Message: set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0] 
+// Tcl Message: program_hw_devices [get_hw_devices xc7a100t_0] 
+// TclEventType: HW_DEVICE_CHANGE
+// Tcl Message: INFO: [Labtools 27-3164] End of startup status: HIGH 
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_SYSMON_CHANGE
+// TclEventType: HW_DEVICE_UPDATE
+// TclEventType: HW_DEVICE_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// TclEventType: DEBUG_PROBE_SET_CHANGE
+// TclEventType: HW_DEVICE_PROBES_CHANGE
+// Tcl Message: refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0] 
+// Tcl Message: INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it. 
+// 'I' command handler elapsed time: 3 seconds
+dismissDialog("Program Device"); // bz
+selectCodeEditor("Wrapper.v", 267, 65); // bP
+selectCodeEditor("Wrapper.v", 267, 65, false, false, false, false, true); // bP - Double Click
+// Elapsed time: 10 seconds
+selectCodeEditor("Wrapper.v", 197, 197); // bP
+selectCodeEditor("Wrapper.v", 197, 197, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 806, 364); // bP
+selectCodeEditor("Wrapper.v", 806, 364, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 904, 370); // bP
+selectCodeEditor("Wrapper.v", 904, 370, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 566, 367); // bP
+selectCodeEditor("Wrapper.v", 630, 365); // bP
+selectCodeEditor("Wrapper.v", 630, 365, false, false, false, false, true); // bP - Double Click
+selectCodeEditor("Wrapper.v", 731, 367); // bP
+selectCodeEditor("Wrapper.v", 731, 367, false, false, false, false, true); // bP - Double Click

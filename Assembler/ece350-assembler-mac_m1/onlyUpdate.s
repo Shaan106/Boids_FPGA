@@ -6,10 +6,6 @@ nop
 nop
 nop
 
-# $r28, $gp = CPU_x_loc
-# $r26, $k0 = CPU_y_loc
-# $r27, $k1 = which boid/write enable.
-
 addi    $r27, $r0, -1 # we = off
 loop:
     addi    $r1, $r1, 1 # x = x + 1 

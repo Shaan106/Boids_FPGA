@@ -111,8 +111,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	//shortened x and y data (to VGA size) from mem
 	wire[9:0] CPU_x_loc;
 	wire[8:0] CPU_y_loc;
-	assign CPU_x_loc = CPU_x_loc_full[9:0];
-	assign CPU_y_loc = CPU_y_loc_full[8:0];
+	assign CPU_x_loc = CPU_x_loc_full[23:15];
+	assign CPU_y_loc = CPU_y_loc_full[23:16];
 	
 //	assign LED[7:0] = which_boid_to_write_to_one_hot[7:0];
 //	assign LED[15:14] = which_boid_to_write_to[BITS_FOR_BOIDS-1:0];
@@ -126,7 +126,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
     	
 //	assign LED[9:0] = CPU_x_loc;
 	
-	assign LED[15:0] = reg_28_data[15:0];
+	assign LED[9:0] = CPU_x_loc[9:0];
+
+	assign LED[10] = CPU_all_boids_we;
+
+    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
 	
 //	assign LED[10] = CPU_all_boids_we;
 	

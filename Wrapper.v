@@ -115,8 +115,13 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	assign CPU_y_loc = CPU_y_loc_full[31:24];
 	
 	assign LED[7:0] = which_boid_to_write_to_one_hot[7:0];
-	assign LED[15:14] = which_boid_to_write_to[BITS_FOR_BOIDS-1:0];
-	
+//	assign LED[15:14] = which_boid_to_write_to[BITS_FOR_BOIDS-1:0];
+    
+    assign LED[15] = which_boid_to_write_to[1] & which_boid_to_write_to[0];
+    assign LED[14] = which_boid_to_write_to[1] & ~which_boid_to_write_to[0];
+    assign LED[13] = ~which_boid_to_write_to[1] & which_boid_to_write_to[0];
+    assign LED[12] = ~which_boid_to_write_to[1] & ~which_boid_to_write_to[0];
+    	
 //	assign LED[9:0] = CPU_x_loc;
 	
 //	assign LED[10] = CPU_all_boids_we;

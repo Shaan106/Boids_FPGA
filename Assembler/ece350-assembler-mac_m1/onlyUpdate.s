@@ -6,19 +6,19 @@ nop
 nop
 nop
 
-addi    $r27, $r0, -1 # we = off
+addi    $r27, $0, -1 # we = off
 loop:
-    addi    $r1, $r1, 1 # x = x + 1 
-    addi    $r2, $r2, 1 # y = y + 1
+    addi    $t0, $t0, 1 # x = x + 1 
+    addi    $t1, $t1, 1 # y = y + 1
 
-    add     $r28, $r1, $r0 # copy x for read to BPU
-    add     $r26, $r2, $r0 # copy y for read to BPU
+    add     $r28, $t0, $0 # copy x for read to BPU
+    add     $r26, $t1, $0 # copy y for read to BPU
 
-    addi    $r27, $r0, 1 # we = boid 1
+    addi    $r27, $0, 1 # we = boid 1
 
     nop # time to read
     nop
 
-    addi    $r27, $r0, -1 # we = off
+    addi    $r27, $0, -1 # we = off
 
     j   loop

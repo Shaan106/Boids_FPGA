@@ -82,7 +82,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.addr(instAddr[11:0]), 
 		.dataOut(instData));
 	
-	wire[31:0] reg_27_data, reg_28_data, reg_29_data;
+	wire[31:0] reg_26_data, reg_27_data, reg_28_data, reg_29_data;
 
 	// Register File
 	regfile RegisterFile(.clock(clock), 
@@ -90,7 +90,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
-		.reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
+		.reg_out26(reg_26_data), .reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
 
 						
 	// Processor Memory (RAM)
@@ -106,7 +106,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	//full x and y data from mem
 	wire[31:0] CPU_x_loc_full, CPU_y_loc_full;
 	assign CPU_x_loc_full = reg_28_data;
-	assign CPU_y_loc_full = reg_29_data;
+	assign CPU_y_loc_full = reg_26_data;
 
 	//shortened x and y data (to VGA size) from mem
 	wire[9:0] CPU_x_loc;

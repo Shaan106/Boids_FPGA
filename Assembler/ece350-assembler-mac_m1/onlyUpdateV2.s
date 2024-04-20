@@ -10,8 +10,8 @@ addi    $r27, $0, -1 # we = off
 
 # addi    $sp, $0, 4096 # sp to max mem location
 
-addi    $t4, $0, 64
-addi    $t5, $0, 64
+# addi    $t4, $0, 64
+# addi    $t5, $0, 64
 
 loop:
 

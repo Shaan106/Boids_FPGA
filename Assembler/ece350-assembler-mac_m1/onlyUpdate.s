@@ -20,3 +20,5 @@ loop:
     nop
 
     addi    $r27, $r0, -1 # we = off
+
+    j   loop

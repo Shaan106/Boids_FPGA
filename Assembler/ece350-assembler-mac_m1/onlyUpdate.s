@@ -10,7 +10,7 @@ addi    $r27, $0, -1 # we = off
 
 # addi    $sp, $0, 4096 # sp to max mem location
 
-addi    $t2, $0, 33554432 # x2 = x2 + 1 because of where x loc is taken from
+addi    $t2, $0, 1048576 # x2 = x2 + 1 because of where x loc is taken from
 addi    $t3, $t3, 1 # y2 = y2 + 1
 
 loop:

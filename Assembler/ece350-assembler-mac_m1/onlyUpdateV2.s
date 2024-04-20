@@ -15,8 +15,8 @@ addi    $t5, $0, 64
 
 loop:
 
-    addi    $t4, $t4, 1 # x2 = x2 + 1 
-    addi    $t5, $t5, 1 # y2 = y2 + 1
+    addi    $t4, $t4, 2 # x3 = x3 + 1 
+    addi    $t5, $t5, 2 # y3 = y3 + 1
 
     add     $r28, $t4, $0 # copy x3 for read to BPU
     add     $r26, $t5, $0 # copy y3 for read to BPU

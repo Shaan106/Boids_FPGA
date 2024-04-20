@@ -34,6 +34,7 @@ increment_loop:
     nop                     # let boid location be read
     nop
     nop
+    addi    $r13, $r13, 1   #test fix.
     nop
     nop
     nop

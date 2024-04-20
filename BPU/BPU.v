@@ -26,8 +26,13 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CP
     input screenEnd_out;
     output[PIXEL_ADDRESS_WIDTH-1:0] address; // TODO: what is this
 
-    reg[9:0] x_reg = 9'd10;
-    reg[8:0] y_reg = 8'd10;
+    reg[9:0] x_reg;
+    reg[8:0] y_reg;
+    
+    initial begin
+        x_reg = 10'b0000001000;
+        y_reg = 9'b000000100;
+    end
 
     reg[PIXEL_ADDRESS_WIDTH-1:0] address_reg;
 
@@ -53,9 +58,6 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CP
     assign slowDownWire = slowDownWire1;
 
     always @(posedge clock) begin
-        
-        address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an address
-        
         // if (slowDownWire) begin
         //     x_reg <= x_reg + 1;
         //     y_reg <= y_reg + 1;
@@ -63,10 +65,14 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CP
 
         // if time to update x and y locations (signal form CPU) then update them
         if (CPU_curr_boid_we) begin
-            x_reg <= CPU_x_loc;
-            y_reg <= CPU_y_loc;
+            x_reg = CPU_x_loc;
+            y_reg = CPU_y_loc;
+        end else begin
+            x_reg = x_reg;
+            y_reg = y_reg; 
         end
         
+        address_reg <= x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an address
 
         slowDownCounter = slowDownCounter + 5'b00001;
 

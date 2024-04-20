@@ -24,7 +24,7 @@
  *
  **/
 
-module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync, VGA_R, VGA_G, VGA_B);
+module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vSync, VGA_R, VGA_G, VGA_B);
 
     input CLK100MHZ, CPU_RESETN; 
     input BTNU;
@@ -33,6 +33,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
     input BTNR;
     
     output[15:0] LED;
+    input[15:0] SW;
+    
     output hSync; 		// H Sync Signal
     output vSync; 		// Veritcal Sync Signal
     output[3:0] VGA_R;  // Red Signal Bits
@@ -111,30 +113,16 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	//shortened x and y data (to VGA size) from mem
 	wire[9:0] CPU_x_loc;
 	wire[8:0] CPU_y_loc;
-	assign CPU_x_loc = CPU_x_loc_full[23:15];
-	assign CPU_y_loc = CPU_y_loc_full[23:16];
-	
-//	assign LED[7:0] = which_boid_to_write_to_one_hot[7:0];
-//	assign LED[15:14] = which_boid_to_write_to[BITS_FOR_BOIDS-1:0];
+	assign CPU_x_loc = CPU_x_loc_full[25:16];
+	assign CPU_y_loc = CPU_y_loc_full[25:17];
 
-    // assign LED[7:0] = reg_27_data[7:0];
+
     
-//    assign LED[10] = CPU_all_boids_we;
+    assign LED[10:0] = boid_address_out_testing[10:0];
     
-
-//    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
-    	
-//	assign LED[9:0] = CPU_x_loc;
-	
-	assign LED[9:0] = CPU_x_loc[9:0];
-
-	assign LED[10] = CPU_all_boids_we;
-
     assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
-	
-//	assign LED[10] = CPU_all_boids_we;
-	
-//	assign LED[15:14] = which_boid_to_write_to[1:0];
+    
+
 
 	//checking if global WE should be on
 	wire CPU_all_boids_we;
@@ -175,6 +163,13 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
 	wire[MAX_BOIDS-1:0] chosen_boid_to_read_onehot;
 	decoder32 ch(.out(chosen_boid_to_read_onehot), .select(chosen_boid_to_read), .enable(1'b1));
+	
+	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address_out_testing;
+	wire[3:0] testLocChoice;
+	assign testLocChoice[0] = SW[0];
+	assign testLocChoice[1] = SW[1];
+	assign testLocChoice[2] = SW[2];
+	assign testLocChoice[3] = SW[3];
 
 	genvar i;
 	generate 
@@ -191,7 +186,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 //								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[i]));
 
             BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address),
-								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[1]));
+								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[i]));
 
 
 			tristate x_output_tristate(.in(x_loc), .en(chosen_boid_to_read_onehot[i]), .out(x_loc_out));
@@ -199,6 +194,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 			// calc address with x_loc_out and y_loc_out
 
 			tristate boid_address_output_tristate(.in(boid_address), .en(chosen_boid_to_read_onehot[i]), .out(boid_address_out));
+			
+			tristate boid_address_output_tristate_testing(.in(boid_address), .en(testLocChoice[i]), .out(boid_address_out_testing));
 
         end
    endgenerate

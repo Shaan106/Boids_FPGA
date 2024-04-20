@@ -59,7 +59,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "BPU/lazy";
+	localparam INSTR_FILE = "BPU/onlyUpdate";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -114,15 +114,17 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 	assign CPU_x_loc = CPU_x_loc_full[23:15];
 	assign CPU_y_loc = CPU_y_loc_full[31:24];
 	
-	assign LED[7:0] = which_boid_to_write_to_one_hot[7:0];
+//	assign LED[7:0] = which_boid_to_write_to_one_hot[7:0];
 //	assign LED[15:14] = which_boid_to_write_to[BITS_FOR_BOIDS-1:0];
+
+    // assign LED[7:0] = reg_27_data[7:0];
     
-    assign LED[15] = which_boid_to_write_to[1] & which_boid_to_write_to[0];
-    assign LED[14] = which_boid_to_write_to[1] & ~which_boid_to_write_to[0];
-    assign LED[13] = ~which_boid_to_write_to[1] & which_boid_to_write_to[0];
-    assign LED[12] = ~which_boid_to_write_to[1] & ~which_boid_to_write_to[0];
+    assign LED[10] = CPU_all_boids_we;
+    
+
+    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
     	
-//	assign LED[9:0] = CPU_x_loc;
+	assign LED[9:0] = CPU_x_loc;
 	
 //	assign LED[10] = CPU_all_boids_we;
 	
@@ -139,7 +141,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 
     // THIS NEEDS TO BE CHANGED WHEN WRITING MORE THAN 32 BOIDS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     wire[31:0] which_boid_to_write_to_one_hot;
-	decoder32 boid_writing_decoder(.out(which_boid_to_write_to_one_hot), .select(which_boid_to_write_to), .enable(CPU_all_boids_we));
+	decoder32 boid_writing_decoder(.out(which_boid_to_write_to_one_hot), .select(reg_27_data[4:0]), .enable(CPU_all_boids_we));
 
 
 	// -------------------------- local params ---------------------------------
@@ -179,8 +181,12 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, BTNU, BTNL, BTND,BTNR, hSync, vSync,
 			wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address;
 
 			
-			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address),
-								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[i]));
+//			BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address),
+//								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[i]));
+
+            BPU BoidProcessorUnit(.clock(clock), .x_loc(x_loc), .y_loc(y_loc), .screenEnd_out(screenEnd_out), .address(boid_address),
+								  .CPU_x_loc(CPU_x_loc), .CPU_y_loc(CPU_y_loc), .CPU_curr_boid_we(which_boid_to_write_to_one_hot[1]));
+
 
 			tristate x_output_tristate(.in(x_loc), .en(chosen_boid_to_read_onehot[i]), .out(x_loc_out));
 			tristate y_output_tristate(.in(y_loc), .en(chosen_boid_to_read_onehot[i]), .out(y_loc_out));

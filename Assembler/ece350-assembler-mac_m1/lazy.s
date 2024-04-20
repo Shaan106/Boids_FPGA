@@ -18,6 +18,7 @@ initialize_loop:
     addi    $r2, $r2, -1  # Decrement the loop counter
     bne     $r2, $r0, initialize_loop  # If the loop counter is not zero, loop again
 start_loop:
+    addi    $r27, $r2, -1
     addi    $r2, $r0, 4 # resetting, so starting at 4 boids
     addi    $r5, $r0, 4 # r5 = 4
     add     $r1, $r10, $r0 # restting our struct pointer
@@ -37,8 +38,7 @@ increment_loop:
     addi    $r13, $r13, 1   #test fix.
     nop
     nop
-    nop
-    addi    $r27, $r0, -1   # by setting r27 to -1 I am setting we off (hardware implementation)
+    nop     # addi    $r27, $r0, -1   # by setting r27 to -1 I am setting we off (hardware implementation)
     addi    $r1, $r1, 8  # Move to the next struct
     addi    $r2, $r2, -1  # Decrement the loop counter boid index = boid index - 1
     bne     $r2, $r0, increment_loop  # if boid index != 0, run through increment_loop again

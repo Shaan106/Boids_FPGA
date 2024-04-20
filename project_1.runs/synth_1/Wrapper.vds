@@ -2,8 +2,8 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Sat Apr 20 15:05:42 2024
-# Process ID: 8820
+# Start of session at: Sat Apr 20 15:26:16 2024
+# Process ID: 8832
 # Current directory: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
 # Command line: vivado.exe -log Wrapper.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Wrapper.tcl
 # Log file: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.vds
@@ -17,7 +17,7 @@ INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7a100
 INFO: [Device 21-403] Loading part xc7a100tcsg324-1
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 6088
+INFO: [Synth 8-7075] Helper process launched with PID 20128
 WARNING: [Synth 8-2644] root scope declaration is not allowed in verilog 95/2K mode [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:8]
 WARNING: [Synth 8-6901] identifier 'reset_RAM' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:85]
 WARNING: [Synth 8-6901] identifier 'reset_RAM' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v:90]
@@ -59,7 +59,7 @@ WARNING: [Synth 8-6901] identifier 'BITS_FOR_BOIDS' is used before its declarati
 WARNING: [Synth 8-6901] identifier 'BITS_FOR_BOIDS' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:142]
 WARNING: [Synth 8-6901] identifier 'screenEnd_out' is used before its declaration [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:256]
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.246 ; gain = 0.000
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1329.285 ; gain = 0.000
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-6157] synthesizing module 'Wrapper' [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:27]
 INFO: [Synth 8-6157] synthesizing module 'BPU' [C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v:11]
@@ -179,8 +179,8 @@ INFO: [Synth 8-6155] done synthesizing module 'divider_called_bob' (32#1) [C:/Us
 INFO: [Synth 8-6155] done synthesizing module 'multdiv' (33#1) [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/multdiv.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'processor' (34#1) [C:/Users/ay140/Desktop/Boids_FPGA/processor.v:20]
 INFO: [Synth 8-6157] synthesizing module 'ROM' [C:/Users/ay140/Desktop/Boids_FPGA/ROM.v:2]
-	Parameter MEMFILE bound to: 152'b01000010010100000101010100101111011011110110111001101100011110010101010101110000011001000110000101110100011001010011001000101110011011010110010101101101 
-INFO: [Synth 8-3876] $readmem data file 'BPU/onlyUpdate2.mem' is read successfully [C:/Users/ay140/Desktop/Boids_FPGA/ROM.v:11]
+	Parameter MEMFILE bound to: 144'b010000100101000001010101001011110110111101101110011011000111100101010101011100000110010001100001011101000110010100101110011011010110010101101101 
+INFO: [Synth 8-3876] $readmem data file 'BPU/onlyUpdate.mem' is read successfully [C:/Users/ay140/Desktop/Boids_FPGA/ROM.v:11]
 INFO: [Synth 8-6155] done synthesizing module 'ROM' (35#1) [C:/Users/ay140/Desktop/Boids_FPGA/ROM.v:2]
 INFO: [Synth 8-6157] synthesizing module 'regfile' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v:1]
 INFO: [Synth 8-6155] done synthesizing module 'regfile' (36#1) [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v:1]
@@ -205,18 +205,18 @@ INFO: [Synth 8-6155] done synthesizing module 'VGATimingGenerator' (39#1) [C:/Us
 INFO: [Synth 8-6155] done synthesizing module 'VGAController' (40#1) [C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGAController.v:2]
 INFO: [Synth 8-6155] done synthesizing module 'Wrapper' (41#1) [C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v:27]
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1362.391 ; gain = 33.145
+Finished RTL Elaboration : Time (s): cpu = 00:00:08 ; elapsed = 00:00:08 . Memory (MB): peak = 1363.418 ; gain = 34.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1362.391 ; gain = 33.145
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1363.418 ; gain = 34.133
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1362.391 ; gain = 33.145
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1363.418 ; gain = 34.133
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.165 . Memory (MB): peak = 1362.391 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.165 . Memory (MB): peak = 1363.418 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -227,29 +227,29 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/Wrapper_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.011 . Memory (MB): peak = 1452.848 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.012 . Memory (MB): peak = 1481.484 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:01 ; elapsed = 00:00:00.039 . Memory (MB): peak = 1452.848 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.040 . Memory (MB): peak = 1481.484 ; gain = 0.000
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1452.848 ; gain = 123.602
+Finished Constraint Validation : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1481.484 ; gain = 152.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7a100tcsg324-1
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1452.848 ; gain = 123.602
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1481.484 ; gain = 152.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:15 ; elapsed = 00:00:15 . Memory (MB): peak = 1452.848 ; gain = 123.602
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1481.484 ; gain = 152.199
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:17 ; elapsed = 00:00:17 . Memory (MB): peak = 1452.848 ; gain = 123.602
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1481.484 ; gain = 152.199
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[1].BoidProcessorUnit'
 INFO: [Synth 8-223] decloning instance 'loop1[0].BoidProcessorUnit' (BPU) to 'loop1[2].BoidProcessorUnit'
@@ -266,7 +266,7 @@ Detailed RTL Component Info :
 	   2 Input      1 Bit         XORs := 2     
 +---Registers : 
 	               32 Bit    Registers := 1     
-	               23 Bit    Registers := 1     
+	               11 Bit    Registers := 1     
 	               10 Bit    Registers := 3     
 	                9 Bit    Registers := 1     
 	                2 Bit    Registers := 2     
@@ -309,3 +309,198 @@ DSP Report: Generating DSP loop1[0].BoidProcessorUnit/address_reg_reg, operation
 DSP Report: register loop1[0].BoidProcessorUnit/address_reg_reg is absorbed into DSP loop1[0].BoidProcessorUnit/address_reg_reg.
 DSP Report: operator loop1[0].BoidProcessorUnit/address_reg0 is absorbed into DSP loop1[0].BoidProcessorUnit/address_reg_reg.
 DSP Report: operator loop1[0].BoidProcessorUnit/address_reg1 is absorbed into DSP loop1[0].BoidProcessorUnit/address_reg_reg.
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'CPU/DX_latch_controls/loop1[29].d_flip_flop/q_reg/Q' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'CPU/DX_latch_controls/loop1[30].d_flip_flop/q_reg/Q' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 1st driver pin 'CPU/DX_latch_controls/loop1[31].d_flip_flop/q_reg/Q' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6859] multi-driven net on pin Q with 2nd driver pin 'GND' [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+CRITICAL WARNING: [Synth 8-6858] multi-driven net Q is connected to at least one constant driver which has been preserved, other driver is ignored [C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v:25]
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:24 ; elapsed = 00:00:24 . Memory (MB): peak = 1481.484 ; gain = 152.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+ROM: Preliminary Mapping Report
++------------+---------------------+---------------+----------------+
+|Module Name | RTL Object          | Depth x Width | Implemented As | 
++------------+---------------------+---------------+----------------+
+|Wrapper     | InstMem/dataOut_reg | 4096x11       | Block RAM      | 
++------------+---------------------+---------------+----------------+
+
+
+Block RAM: Preliminary Mapping Report (see note below)
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object                            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Wrapper     | Boid_display_mem/ram1/MemoryArray_reg | 300 K x 1(NO_CHANGE)   | W | R |                        |   |   | Port A           | 0      | 10     | 
+|Wrapper     | Boid_display_mem/ram2/MemoryArray_reg | 300 K x 1(NO_CHANGE)   | W | R |                        |   |   | Port A           | 0      | 10     | 
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
+
+DSP: Preliminary Mapping Report (see note below)
++--------------+----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name   | DSP Mapping          | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++--------------+----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|VGAController | (C or 0)+(A:0x280)*B | 9      | 10     | 10     | -      | 19     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
+|BPU           | (C+(A:0x280)*B)'     | 9      | 10     | 10     | -      | 19     | 0    | 0    | 0    | -    | -     | 0    | 1    | 
++--------------+----------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+
+Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1481.484 ; gain = 152.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:31 ; elapsed = 00:00:31 . Memory (MB): peak = 1481.484 ; gain = 152.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+
+Block RAM: Final Mapping Report
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object                            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Wrapper     | Boid_display_mem/ram1/MemoryArray_reg | 300 K x 1(NO_CHANGE)   | W | R |                        |   |   | Port A           | 0      | 10     | 
+|Wrapper     | Boid_display_mem/ram2/MemoryArray_reg | 300 K x 1(NO_CHANGE)   | W | R |                        |   |   | Port A           | 0      | 10     | 
++------------+---------------------------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+
+---------------------------------------------------------------------------------
+Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram1/MemoryArray_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram1/MemoryArray_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram1/MemoryArray_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram1/MemoryArray_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram1/MemoryArray_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_3 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_5 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_7 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance Boid_display_mem/ram2/MemoryArray_reg_9 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance InstMem/dataOut_reg_0 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance InstMem/dataOut_reg_1 (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:31 ; elapsed = 00:00:32 . Memory (MB): peak = 1481.484 ; gain = 152.199
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:33 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++-+--------------+----------+
+| |BlackBox name |Instances |
++-+--------------+----------+
++-+--------------+----------+
+
+Report Cell Usage: 
++------+---------+------+
+|      |Cell     |Count |
++------+---------+------+
+|1     |BUFG     |     2|
+|2     |CARRY4   |     5|
+|3     |DSP48E1  |     2|
+|4     |LUT1     |     7|
+|5     |LUT2     |   162|
+|6     |LUT3     |   105|
+|7     |LUT4     |   121|
+|8     |LUT5     |   140|
+|9     |LUT6     |   295|
+|10    |MUXF7    |     1|
+|11    |RAMB18E1 |     1|
+|12    |RAMB36E1 |    21|
+|15    |FDCE     |   385|
+|16    |FDRE     |    53|
+|17    |IBUF     |     2|
+|18    |OBUF     |    30|
++------+---------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 9 critical warnings and 0 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:22 ; elapsed = 00:00:31 . Memory (MB): peak = 1483.559 ; gain = 36.207
+Synthesis Optimization Complete : Time (s): cpu = 00:00:34 ; elapsed = 00:00:34 . Memory (MB): peak = 1483.559 ; gain = 154.273
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.021 . Memory (MB): peak = 1495.586 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 30 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1499.270 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: c11af049
+INFO: [Common 17-83] Releasing license: Synthesis
+126 Infos, 74 Warnings, 9 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:37 ; elapsed = 00:00:38 . Memory (MB): peak = 1499.270 ; gain = 169.984
+INFO: [runtcl-6] Synthesis results are not added to the cache due to CRITICAL_WARNING
+INFO: [Common 17-1381] The checkpoint 'C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/Wrapper.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Wrapper_utilization_synth.rpt -pb Wrapper_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Sat Apr 20 15:26:59 2024...

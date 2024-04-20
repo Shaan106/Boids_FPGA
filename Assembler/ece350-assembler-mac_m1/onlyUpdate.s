@@ -20,6 +20,20 @@ loop:
     addi    $t2, $t2, 1 # x2 = x2 + 1 
     addi    $t3, $t3, 1 # y2 = y2 + 1
 
+    add     $r28, $t2, $0 # copy x2 for read to BPU
+    add     $r26, $t3, $0 # copy y2 for read to BPU
+
+    addi    $r27, $0, 2 # we = boid 2
+
+    nop # time to read
+    nop
+
+    addi    $r27, $0, -1 # we = off
+
+    nop
+    nop
+    nop
+
     add     $r28, $t0, $0 # copy x1 for read to BPU
     add     $r26, $t1, $0 # copy y1 for read to BPU
 
@@ -32,15 +46,4 @@ loop:
 
     nop
     nop
-
-    add     $r28, $t2, $0 # copy x2 for read to BPU
-    add     $r26, $t3, $0 # copy y2 for read to BPU
-
-    addi    $r27, $0, 2 # we = boid 2
-
-    nop # time to read
-    nop
-
-    addi    $r27, $0, -1 # we = off
-
     j   loop

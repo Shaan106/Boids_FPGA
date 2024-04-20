@@ -173,5 +173,5 @@ loop:
     # decrement number of boids
     addi    $s0, $s0, -1 # do something with this later
     
-    j   loop
+    j       loop
 

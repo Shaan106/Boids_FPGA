@@ -12,6 +12,8 @@ nop
 
 addi    $r27, $r0, -1 # we = off
 
+addi    $r28, $zero, 0 # x_loc = 0
+
 addi    $sp, $sp, 4096 # initialise $sp to the end of memory
 
 # initialising 4 boids
@@ -56,6 +58,8 @@ loop:
     # set stack pointer to the end of memory again
     addi    $sp, $sp, 32
 
+    addi    $r28, $r28, 1 # x_loc = x_loc + 1
+
     # =============== boid 0 ===============
 
     addi   $sp, $sp, -8 # going to memory of boid 0
@@ -71,13 +75,14 @@ loop:
     sw      $t2, 4($sp) # storing in memory y_loc of boid 0
 
     # copy for BPU
-    add     $r28, $t1, $r0 # copy x_loc for read to BPU
+    # add     $r28, $t1, $r0 # copy x_loc for read to BPU
     add     $r26, $t2, $r0 # copy y_loc for read to BPU
 
     # write enable
     addi    $r27, $r0, 0 # we = boid 0
 
     nop # time to read
+    nop
 
     # write disable
     addi    $r27, $r0, -1 # we = off
@@ -97,13 +102,14 @@ loop:
     sw      $t2, 4($sp) # storing in memory y_loc of boid 1
 
     # copy for BPU
-    add     $r28, $t1, $r0 # copy x_loc for read to BPU
+    # add     $r28, $t1, $r0 # copy x_loc for read to BPU
     add     $r26, $t2, $r0 # copy y_loc for read to BPU
 
     # write enable
     addi    $r27, $r0, 0 # we = boid 1
     
     nop # time to read
+    nop
 
     # write disable
     addi    $r27, $r0, -1 # we = off
@@ -123,13 +129,14 @@ loop:
     sw      $t2, 4($sp) # storing in memory y_loc of boid 2
 
     # copy for BPU
-    add     $r28, $t1, $r0 # copy x_loc for read to BPU
+    # add     $r28, $t1, $r0 # copy x_loc for read to BPU
     add     $r26, $t2, $r0 # copy y_loc for read to BPU
 
     # write enable
     addi    $r27, $r0, 0 # we = boid 2
 
     nop # time to read
+    nop
 
     # write disable
     addi    $r27, $r0, -1 # we = off
@@ -149,13 +156,14 @@ loop:
     sw      $t2, 4($sp) # storing in memory y_loc of boid 3
 
     # copy for BPU
-    add     $r28, $t1, $r0 # copy x_loc for read to BPU
-    add     $r26, $t2, $r0 # copy y_loc for read to BPU
+    # add     $r28, $t1, $zero # copy x_loc for read to BPU
+    add     $r26, $t2, $zero # copy y_loc for read to BPU
 
     # write enable
     addi    $r27, $r0, 0 # we = boid 3
 
     nop # time to read
+    nop
 
     # write disable
     addi    $r27, $r0, -1 # we = off

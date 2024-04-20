@@ -61,7 +61,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "BPU/onlyUpdate";
+	localparam INSTR_FILE = "BPU/onlyUpdateV2";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -113,8 +113,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	//shortened x and y data (to VGA size) from mem
 	wire[9:0] CPU_x_loc;
 	wire[8:0] CPU_y_loc;
-	assign CPU_x_loc = CPU_x_loc_full[25:16];
-	assign CPU_y_loc = CPU_y_loc_full[25:17];
+	assign CPU_x_loc = CPU_x_loc_full[27:18];
+	assign CPU_y_loc = CPU_y_loc_full[27:19];
 
 
     

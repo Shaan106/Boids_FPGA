@@ -1,7 +1,7 @@
 Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
-| Date             : Sat Apr 20 17:48:18 2024
+| Date             : Sat Apr 20 18:25:46 2024
 | Host             : P1-07 running 64-bit major release  (build 9200)
 | Command          : report_power -file Wrapper_power_routed.rpt -pb Wrapper_power_summary_routed.pb -rpx Wrapper_power_routed.rpx
 | Design           : Wrapper
@@ -30,10 +30,10 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.147        |
+| Total On-Chip Power (W)  | 0.146        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
-| Dynamic (W)              | 0.049        |
+| Dynamic (W)              | 0.047        |
 | Device Static (W)        | 0.098        |
 | Effective TJA (C/W)      | 4.6          |
 | Max Ambient (C)          | 84.3         |
@@ -53,19 +53,19 @@ Table of Contents
 | On-Chip        | Power (W) | Used     | Available | Utilization (%) |
 +----------------+-----------+----------+-----------+-----------------+
 | Clocks         |    <0.001 |        3 |       --- |             --- |
-| Slice Logic    |     0.011 |     3740 |       --- |             --- |
-|   LUT as Logic |     0.011 |     1948 |     63400 |            3.07 |
-|   Register     |    <0.001 |     1334 |    126800 |            1.05 |
+| Slice Logic    |     0.011 |     3443 |       --- |             --- |
+|   LUT as Logic |     0.011 |     1789 |     63400 |            2.82 |
+|   Register     |    <0.001 |     1193 |    126800 |            0.94 |
 |   CARRY4       |    <0.001 |        5 |     15850 |            0.03 |
 |   BUFG         |    <0.001 |        1 |        32 |            3.13 |
 |   F7/F8 Muxes  |    <0.001 |        1 |     63400 |           <0.01 |
-|   Others       |     0.000 |      234 |       --- |             --- |
-| Signals        |     0.015 |     3458 |       --- |             --- |
+|   Others       |     0.000 |      217 |       --- |             --- |
+| Signals        |     0.014 |     3193 |       --- |             --- |
 | Block RAM      |    <0.001 |       22 |       135 |           16.30 |
-| DSPs           |     0.001 |        5 |       240 |            2.08 |
-| I/O            |     0.019 |       36 |       210 |           17.14 |
+| DSPs           |    <0.001 |        5 |       240 |            2.08 |
+| I/O            |     0.020 |       36 |       210 |           17.14 |
 | Static Power   |     0.098 |          |           |                 |
-| Total          |     0.147 |          |           |                 |
+| Total          |     0.146 |          |           |                 |
 +----------------+-----------+----------+-----------+-----------------+
 
 
@@ -75,9 +75,9 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.045 |       0.029 |      0.016 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.043 |       0.028 |      0.016 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.019 |       0.001 |      0.018 |       NA    | Unspecified | NA         |
-| Vcco33    |       3.300 |     0.009 |       0.005 |      0.004 |       NA    | Unspecified | NA         |
+| Vcco33    |       3.300 |     0.010 |       0.006 |      0.004 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco18    |       1.800 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco15    |       1.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -141,26 +141,25 @@ Table of Contents
 3.1 By Hierarchy
 ----------------
 
-+-------------------------------+-----------+
-| Name                          | Power (W) |
-+-------------------------------+-----------+
-| Wrapper                       |     0.049 |
-|   Boid_display_mem            |     0.004 |
-|     ram1                      |     0.002 |
-|     ram2                      |     0.002 |
-|   CPU                         |     0.014 |
-|     DX_latch_controls         |     0.001 |
-|     DX_latch_controls_ext3343 |     0.001 |
-|       loop1[13].d_flip_flop   |     0.001 |
-|     FD_latch_Instruction      |     0.005 |
-|       loop1[20].d_flip_flop   |     0.001 |
-|       loop1[26].d_flip_flop   |     0.002 |
-|     MW_latch_DataFromALU      |     0.003 |
-|   RegisterFile                |     0.007 |
-|     joimsie                   |     0.002 |
-|     jyimsie                   |     0.001 |
-|     one_whole_register29      |     0.002 |
-|   VGAControlModule            |     0.001 |
-+-------------------------------+-----------+
++-----------------------------+-----------+
+| Name                        | Power (W) |
++-----------------------------+-----------+
+| Wrapper                     |     0.047 |
+|   Boid_display_mem          |     0.004 |
+|     ram1                    |     0.002 |
+|     ram2                    |     0.002 |
+|   CPU                       |     0.014 |
+|     DX_latch_controls_ext   |     0.003 |
+|       loop1[13].d_flip_flop |     0.003 |
+|     FD_latch_Instruction    |     0.004 |
+|       loop1[20].d_flip_flop |     0.001 |
+|       loop1[26].d_flip_flop |     0.002 |
+|     MW_latch_DataFromALU    |     0.003 |
+|   RegisterFile              |     0.006 |
+|     joimsie                 |     0.001 |
+|     jyimsie                 |     0.001 |
+|     one_whole_register29    |     0.002 |
+|   VGAControlModule          |     0.001 |
++-----------------------------+-----------+
 
 

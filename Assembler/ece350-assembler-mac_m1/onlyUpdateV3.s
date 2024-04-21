@@ -67,8 +67,8 @@ loop_over_all_boids:
     lw $t0, 0($sp) # loading x_loc
     lw $t1, 4($sp) # loading y_loc
 
-    addi $t0, $t0, 1 # updating x_loc
-    addi $t1, $t1, 1 # updating y_loc
+    addi $t0, $t0, -1 # updating x_loc
+    addi $t1, $t1, -1 # updating y_loc
 
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU

@@ -48,6 +48,10 @@ loop_over_all_boids:
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
 
+    sra $r28, $t0, 20
+    sra $r26, $t1, 20
+
+
     addi $r27, $0, 0 # we for boid 0 <----- important to change
 
     nop # time to read in vals
@@ -70,6 +74,10 @@ loop_over_all_boids:
 
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
+
+    sra $r28, $t0, 20
+    sra $r26, $t1, 20
+
 
     addi $r27, $0, 1 # we for boid 1 <----- important to change
 
@@ -94,6 +102,9 @@ loop_over_all_boids:
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
 
+    sra $r28, $t0, 20
+    sra $r26, $t1, 20
+
     addi $r27, $0, 2 # we for boid 1 <----- important to change
 
     nop # time to read in vals
@@ -117,6 +128,10 @@ loop_over_all_boids:
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
 
+    sra $r28, $t0, 20
+    sra $r26, $t1, 20
+
+
     addi $r27, $0, 3 # we for boid 1 <----- important to change
 
     nop # time to read in vals
@@ -127,15 +142,19 @@ loop_over_all_boids:
     sw $t0, 0($sp) # storing x_loc
     sw $t1, 4($sp) # storing y_loc
 
-    delay_loop_init:
-        addi $t0, $0, 0 # set counter = 0
-        addi $t1, $0, 50000000 # set threshold = 50 million, therefore update every 1 sec
+
+    addi $t0, $0, 0 # set counter = 0
+    addi $t1, $0, 50000000 # set threshold = 50 million, therefore update every 1 sec
+
+    add $r28, $0, $t1 # testing by purring into seeable r28
 
     delay_loop:
-        nop # nop
+        nop # no operation
         addi $t0, $t0, 1  # Increment the counter by 1
+        # div $t6, $t0, 3
         bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 
     j   loop_over_all_boids
+
 
 

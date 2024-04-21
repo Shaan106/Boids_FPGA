@@ -134,7 +134,7 @@ loop_over_all_boids:
     add $r28, $0, $t1 # testing by purring into seeable r28
 
     delay_loop:
-        nop # nop
+        nop # no operation
         addi $t0, $t0, 1  # Increment the counter by 1
         bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 

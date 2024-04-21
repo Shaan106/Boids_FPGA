@@ -94,6 +94,9 @@ loop_over_all_boids:
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
 
+    sra $r28, $t0, 20
+    sra $r26, $t1, 20
+
     addi $r27, $0, 2 # we for boid 1 <----- important to change
 
     nop # time to read in vals
@@ -136,6 +139,7 @@ loop_over_all_boids:
     delay_loop:
         nop # no operation
         addi $t0, $t0, 1  # Increment the counter by 1
+        div $t6, $t0, 3
         bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 
     j   loop_over_all_boids

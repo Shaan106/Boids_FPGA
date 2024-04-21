@@ -55,8 +55,8 @@ loop_over_all_boids:
     add  $r28, $t0, $0 # copy x for read to BPU
     add  $r26, $t1, $0 # copy y for read to BPU
 
-    sra $r28, $t0, 20
-    sra $r26, $t1, 20
+    sra $r28, $t0, 18
+    sra $r26, $t1, 18
 
 
     addi $r27, $0, 0 # we for boid 0 <----- important to change
@@ -156,14 +156,14 @@ loop_over_all_boids:
     sw $t1, 4($sp) # storing y_loc
 
 
-    addi $t0, $0, 0 # set counter = 0
-    addi $t1, $0, 3000000 # set threshold = 50 million, therefore update every 1 sec
+    # addi $t0, $0, 0 # set counter = 0
+    # addi $t1, $0, 3000000 # set threshold = 50 million, therefore update every 1 sec
 
-    add $r28, $0, $t1 # testing by purring into seeable r28
+    # add $r28, $0, $t1 # testing by purring into seeable r28
 
-    delay_loop:
-        nop # no operation
-        addi $t0, $t0, 1  # Increment the counter by 1
-        bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
+    # delay_loop:
+    #     nop # no operation
+    #     addi $t0, $t0, 1  # Increment the counter by 1
+    #     bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 
     j   loop_over_all_boids

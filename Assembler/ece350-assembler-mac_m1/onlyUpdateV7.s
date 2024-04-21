@@ -72,11 +72,10 @@ loop_over_all_boids:
 
     delay_loop_init:
         addi $t0, $0, 0 # set counter = 0
-        addi $t1, $0, 500 # set threshold = 500
+        addi $t1, $0, 2000 # set threshold = 2000
 
     delay_loop:
         nop # nop
-
         addi $t0, $t0, 1  # Increment the counter by 1
         bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 

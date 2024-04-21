@@ -136,6 +136,7 @@ loop_over_all_boids:
     delay_loop:
         nop # no operation
         addi $t0, $t0, 1  # Increment the counter by 1
+        div $t6, $t0, 3
         bne $t0, $t1, delay_loop # Continue looping until the counter reaches 500
 
     j   loop_over_all_boids

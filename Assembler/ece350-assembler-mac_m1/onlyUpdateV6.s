@@ -61,7 +61,7 @@ loop_over_all_boids:
         nop # time to read in vals
         nop
 
-        addi    $r27, $0, -1 # we = off
+        addi $r27, $0, -1 # we = off
 
         sw $t0, 0($sp) # storing x_loc
         sw $t1, 4($sp) # storing y_loc

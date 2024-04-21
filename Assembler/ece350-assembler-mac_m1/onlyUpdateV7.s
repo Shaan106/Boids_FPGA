@@ -47,7 +47,6 @@ loop_over_all_boids:
 
         lw $t0, 0($sp) # loading x_loc
         lw $t1, 4($sp) # loading y_loc
-        
         lw $t2, 8($sp) # loading dx
         lw $t3, 12($sp) # loading dy
 
@@ -72,7 +71,7 @@ loop_over_all_boids:
 
     delay_loop_init:
         addi $t0, $0, 0 # set counter = 0
-        addi $t1, $0, 2000 # set threshold = 2000
+        addi $t1, $0, 20000 # set threshold = 2000
 
     delay_loop:
         nop # nop

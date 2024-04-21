@@ -48,7 +48,7 @@ loop_over_all_boids:
         lw $t0, 0($sp) # loading x_loc
         lw $t1, 4($sp) # loading y_loc
         lw $t2, 8($sp) # loading dx
-        lw $t3, 16($sp) # loading dy
+        lw $t3, 12($sp) # loading dy
 
         add $t0, $t0, $t2 # updating x_loc = x_loc + dx
         add $t1, $t1, $t3 # updating y_loc

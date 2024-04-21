@@ -20,10 +20,15 @@ initialise_mem:
         addi $t0, $0, 0 # x_loc
         addi $t1, $0, 0 # y_loc
 
-        addi $sp, $sp, -8 # space for 2 32 bit ints in memory
+        addi $t2, $0, 1 # dx
+        addi $t3, $0, 1 # dy
+ 
+        addi $sp, $sp, -16 # space for 2 32 bit ints in memory
 
         sw   $t0, 0($sp) # store x_loc in mem
         sw   $t1, 4($sp) # store y_loc in mem
+
+        sw   $t2, 8($sp) # storing dx
 
         addi $s0, $s0, 1 # n = n + 1
 
@@ -37,7 +42,7 @@ loop_over_all_boids:
 
     # ================ boid 0 ================
 
-    addi $sp, $sp, -8 # going to mem location for boid 0
+    addi $sp, $sp, -16 # going to mem location for boid 0
 
     lw $t0, 0($sp) # loading x_loc
     lw $t1, 4($sp) # loading y_loc
@@ -60,7 +65,7 @@ loop_over_all_boids:
 
     # ================ boid 1 ================
 
-    addi $sp, $sp, -8 # going to mem location for boid 0
+    addi $sp, $sp, -16 # going to mem location for boid 0
 
     lw $t0, 0($sp) # loading x_loc
     lw $t1, 4($sp) # loading y_loc
@@ -83,7 +88,7 @@ loop_over_all_boids:
 
     # ================ boid 2 ================
 
-    addi $sp, $sp, -8 # going to mem location for boid 0
+    addi $sp, $sp, -16 # going to mem location for boid 0
 
     lw $t0, 0($sp) # loading x_loc
     lw $t1, 4($sp) # loading y_loc
@@ -106,7 +111,7 @@ loop_over_all_boids:
 
     # ================ boid 3 ================
 
-    addi $sp, $sp, -8 # going to mem location for boid 0
+    addi $sp, $sp, -16 # going to mem location for boid 0
 
     lw $t0, 0($sp) # loading x_loc
     lw $t1, 4($sp) # loading y_loc
@@ -129,7 +134,7 @@ loop_over_all_boids:
 
     delay_loop_init:
         addi $t0, $0, 0 # set counter = 0
-        addi $t1, $0, 2147483647 # set threshold = 50 million, therefore update every 1 sec
+        addi $t1, $0, 50000000 # set threshold = 50 million, therefore update every 1 sec
 
     delay_loop:
         nop # nop

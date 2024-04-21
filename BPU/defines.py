@@ -1,12 +1,12 @@
 import math
 
-pixel_width_power = 9  # 2**9 = 512
+pixel_width_power = 8  # 2**9 = 512
 int_width_power = 30
 pixel_size_power = int_width_power - pixel_width_power
 margin_power = 6  # 64
 force_amplifier = 0
 
-num_boids = 512
+num_boids = 4
 num_neighbors = 4
 
 s = f"""#define PIXEL_WIDTH (1 << {pixel_width_power})

@@ -61,7 +61,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "BPU/onlyUpdateV5d";
+	localparam INSTR_FILE = "BPU/onlyUpdateV8a"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -124,11 +124,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	assign CPU_y_loc = CPU_y_loc_full[8:0];
 
     
-//    assign LED[10:0] = boid_address_out_testing[10:0];
+    assign LED[10:0] = boid_address_out_testing[10:0];
     
-//    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
+    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
     
-    assign LED[15:0] = reg_28_data[15:0];
+//    assign LED[15:0] = reg_28_data[15:0];
  
 
 	//checking if global WE should be on

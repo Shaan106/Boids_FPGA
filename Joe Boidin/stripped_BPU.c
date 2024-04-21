@@ -121,7 +121,7 @@ void keepWithinBounds(int boid_index) {
     int mag = log_2(speed);
     int shift = mag - MAX_SPEED;
     if (shift < 0) {
-        return 0;
+        return;
     }
     for (int i = 0; i < shift; i+=1) {
         active_x >>= 1;

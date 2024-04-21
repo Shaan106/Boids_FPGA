@@ -26,7 +26,7 @@
 
 module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vSync, VGA_R, VGA_G, VGA_B);
 
-    input CLK100MHZ, CPU_RESETN; 
+    input CLK100MHZ, CPU_RESETN;
     input BTNU;
     input BTNL;
     input BTND;
@@ -34,7 +34,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     
     output[15:0] LED;
     input[15:0] SW;
-    
+     
     output hSync; 		// H Sync Signal
     output vSync; 		// Veritcal Sync Signal
     output[3:0] VGA_R;  // Red Signal Bits
@@ -46,22 +46,22 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	wire reset;
 	
     assign reset = ~CPU_RESETN; 
-	
+	 
 	always @(posedge CLK100MHZ) begin
 	   counter <= counter + 1;
 	end
 	
 	assign clock =  counter[0]; //downclock
-	
+	 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
 	wire[31:0] instAddr, instData, 
 		rData, regA, regB,
 		memAddr, memDataIn, memDataOut;
-
+ 
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "BPU/onlyUpdateV2";
+	localparam INSTR_FILE = "BPU/onlyUpdateV5d";
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -113,16 +113,23 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	//shortened x and y data (to VGA size) from mem
 	wire[9:0] CPU_x_loc;
 	wire[8:0] CPU_y_loc;
-	assign CPU_x_loc = CPU_x_loc_full[27:18];
-	assign CPU_y_loc = CPU_y_loc_full[27:19];
-
+	
+	// x,y for onlyUpdate v6 and earlier
+//	assign CPU_x_loc = CPU_x_loc_full[27:18];
+//	assign CPU_y_loc = CPU_y_loc_full[27:19];
+ 
+    // x,y for onlyUpdate v7 and beyond
+    
+    assign CPU_x_loc = CPU_x_loc_full[9:0];
+	assign CPU_y_loc = CPU_y_loc_full[8:0];
 
     
-    assign LED[10:0] = boid_address_out_testing[10:0];
+//    assign LED[10:0] = boid_address_out_testing[10:0];
     
-    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
+//    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
     
-
+    assign LED[15:0] = reg_28_data[15:0];
+ 
 
 	//checking if global WE should be on
 	wire CPU_all_boids_we;

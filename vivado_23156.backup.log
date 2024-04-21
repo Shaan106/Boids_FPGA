@@ -2,32 +2,31 @@
 # Vivado v2021.1 (64-bit)
 # SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
 # IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
-# Start of session at: Sat Apr 20 14:31:15 2024
-# Process ID: 13324
+# Start of session at: Sat Apr 20 22:52:04 2024
+# Process ID: 23156
 # Current directory: C:/Users/ay140/Desktop/Boids_FPGA
-# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14596 C:\Users\ay140\Desktop\Boids_FPGA\project_1.xpr
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent11424 C:\Users\ay140\Desktop\Boids_FPGA\project_1.xpr
 # Log file: C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
 # Journal file: C:/Users/ay140/Desktop/Boids_FPGA\vivado.jou
 #-----------------------------------------------------------
 start_gui
 open_project C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr
 WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/project_1.gen/sources_1'.
-CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/RAM.v'.
 Scanning sources...
 Finished scanning sources
 INFO: [IP_Flow 19-234] Refreshing IP repositories
 INFO: [IP_Flow 19-1704] No user IP repositories specified
 INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'.
-open_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:05 . Memory (MB): peak = 1329.352 ; gain = 0.000
+open_project: Time (s): cpu = 00:00:13 ; elapsed = 00:00:05 . Memory (MB): peak = 1329.492 ; gain = 0.000
 update_compile_order -fileset sources_1
 reset_run synth_1
 WARNING: [Vivado 12-1017] Problems encountered:
 1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
 
 launch_runs impl_1 -to_step write_bitstream -jobs 6
-[Sat Apr 20 14:32:37 2024] Launched synth_1...
+[Sat Apr 20 22:53:51 2024] Launched synth_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
-[Sat Apr 20 14:32:37 2024] Launched impl_1...
+[Sat Apr 20 22:53:51 2024] Launched impl_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
 open_hw_manager
 connect_hw_server -allow_non_jtag
@@ -52,7 +51,7 @@ INFO: [Labtools 27-2221] Launch Output:
 
 
 
-connect_hw_server: Time (s): cpu = 00:00:00 ; elapsed = 00:00:08 . Memory (MB): peak = 1329.352 ; gain = 0.000
+connect_hw_server: Time (s): cpu = 00:00:01 ; elapsed = 00:00:07 . Memory (MB): peak = 1329.492 ; gain = 0.000
 open_hw_target
 INFO: [Labtoolstcl 44-466] Opening hw_target localhost:3121/xilinx_tcf/Digilent/210292AE3A6BA
 set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0]
@@ -66,6 +65,15 @@ program_hw_devices [get_hw_devices xc7a100t_0]
 INFO: [Labtools 27-3164] End of startup status: HIGH
 refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
 INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+[Sat Apr 20 22:59:31 2024] Launched synth_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
+[Sat Apr 20 22:59:31 2024] Launched impl_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
 set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0]
@@ -78,27 +86,10 @@ WARNING: [Vivado 12-1017] Problems encountered:
 1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
 
 launch_runs impl_1 -to_step write_bitstream -jobs 6
-[Sat Apr 20 14:38:24 2024] Launched synth_1...
+[Sat Apr 20 23:06:14 2024] Launched synth_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
-[Sat Apr 20 14:38:24 2024] Launched impl_1...
+[Sat Apr 20 23:06:14 2024] Launched impl_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
-reset_run synth_1
-WARNING: [Vivado 12-1017] Problems encountered:
-1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
-
-launch_runs impl_1 -to_step write_bitstream -jobs 6
-[Sat Apr 20 14:39:04 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
-[Sat Apr 20 14:39:04 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
-open_run impl_1
-INFO: [Device 21-403] Loading part xc7a100tcsg324-1
-INFO: [Common 17-41] Interrupt caught. Command should exit soon.
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.099 . Memory (MB): peak = 3379.723 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 40 Unisim elements for replacement
-INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
-INFO: [Project 1-479] Netlist was created with Vivado 2021.1
-INFO: [Common 17-344] 'open_run' was cancelled
 set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0]
@@ -110,14 +101,26 @@ reset_run synth_1
 WARNING: [Vivado 12-1017] Problems encountered:
 1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
 
-launch_runs synth_1 -jobs 6
-[Sat Apr 20 14:47:21 2024] Launched synth_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
-launch_runs impl_1 -jobs 6
-[Sat Apr 20 14:49:18 2024] Launched impl_1...
-Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
 launch_runs impl_1 -to_step write_bitstream -jobs 6
-[Sat Apr 20 14:50:45 2024] Launched impl_1...
+[Sat Apr 20 23:11:22 2024] Launched synth_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
+[Sat Apr 20 23:11:22 2024] Launched impl_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/Wrapper.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+INFO: [Labtools 27-3164] End of startup status: HIGH
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
+reset_run synth_1
+WARNING: [Vivado 12-1017] Problems encountered:
+1. Failed to delete one or more files in run directory C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1
+
+launch_runs impl_1 -to_step write_bitstream -jobs 6
+[Sat Apr 20 23:17:06 2024] Launched synth_1...
+Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/synth_1/runme.log
+[Sat Apr 20 23:17:06 2024] Launched impl_1...
 Run output will be captured here: C:/Users/ay140/Desktop/Boids_FPGA/project_1.runs/impl_1/runme.log
 set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
 set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
@@ -127,4 +130,4 @@ INFO: [Labtools 27-3164] End of startup status: HIGH
 refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
 INFO: [Labtools 27-1434] Device xc7a100t (JTAG device index = 0) is programmed with a design that has no supported debug core(s) in it.
 exit
-INFO: [Common 17-206] Exiting Vivado at Sat Apr 20 14:57:49 2024...
+INFO: [Common 17-206] Exiting Vivado at Sat Apr 20 23:24:10 2024...

@@ -85,16 +85,16 @@ def main(): # simulate MIPS
             log(f"Jumping to {tokens[1]}")
         elif tokens[0] == 'jr':
             pc = registers[int(alphanumeric(tokens[1]))]
-            log(f"Jumping to {tokens[1]} which is {pc}")
+            print(f"Jumping to {tokens[1]} which is {pc}")
         elif tokens[0] == 'jal':
             registers[31] = pc
             pc = functions[tokens[1]]
-            log(f"Jumping to {tokens[1]} and saving return address {pc+1}")
+            print(f"Jumping to {tokens[1]} and saving return address {pc+1}")
         elif tokens[0] == 'nop':
             boid_index = registers[27]
             boid_x = registers[28]
             boid_y = registers[26]
-            print(f"Boid {boid_index} at ({boid_x}, {boid_y})")
+            print(f"Boid {boid_index} at ({boid_x}, {boid_y})", pc)
         else:
             print("Invalid Instruction")
             print("Instruction:", line)

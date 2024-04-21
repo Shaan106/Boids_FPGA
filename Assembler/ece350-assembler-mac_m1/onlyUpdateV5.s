@@ -27,7 +27,7 @@ initialise_mem:
 
         addi $s0, $s0, 1 # n = n + 1
 
-        blt $s0, $s3, initialise_mem_loop # if n < 3 then add another boid to mem
+        blt $s0, $s1, initialise_mem_loop # if n < 3 then add another boid to mem
 
 loop_over_all_boids: 
 

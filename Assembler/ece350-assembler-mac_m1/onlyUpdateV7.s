@@ -66,7 +66,18 @@ loop_over_all_boids:
         sw $t0, 0($sp) # storing x_loc
         sw $t1, 4($sp) # storing y_loc
 
-        blt $s0, $s1, loop_single_boid # if n < 3 then update next boid
+        blt $s0, $s1, initialise_mem_loop # if n < 3 then update next boid
+
+    delay_loop_init:
+        addi $t0, $0, 0 # set counter = 0
+
+    delay_loop:
+        nop # nop
+
+        addi $t0, $t0, 1  # Increment the counter by 1
+        bne $t0, 500, loop # Continue looping until the counter reaches 500
+
+    # After completing 500 nops, proceed with the rest of the program or exit
 
     j   loop_over_all_boids # from start again
 

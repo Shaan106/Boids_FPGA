@@ -47,8 +47,9 @@ loop_over_all_boids:
 
         lw $t0, 0($sp) # loading x_loc
         lw $t1, 4($sp) # loading y_loc
+        
         lw $t2, 8($sp) # loading dx
-        lw $t3, 16($sp) # loading dy
+        lw $t3, 12($sp) # loading dy
 
         add $t0, $t0, $t2 # updating x_loc = x_loc + dx
         add $t1, $t1, $t3 # updating y_loc
@@ -56,17 +57,18 @@ loop_over_all_boids:
         add  $r28, $t0, $0 # copy x for read to BPU
         add  $r26, $t1, $0 # copy y for read to BPU
 
-        add $r27, $0, $s0 # we for boid n
+        add $r27, $0, $s0 # set $r27 = 0
 
         nop # time to read in vals
         nop
 
-        addi    $r27, $0, -1 # we = off
+        addi $r27, $0, -1 # we = off
 
         sw $t0, 0($sp) # storing x_loc
         sw $t1, 4($sp) # storing y_loc
 
         blt $s0, $s1, loop_single_boid # if n < 3 then update next boid
+
 
     delay_loop_init:
         addi $t0, $0, 0 # set counter = 0

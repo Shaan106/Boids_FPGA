@@ -95,7 +95,16 @@ lw $10, 0($4)
 addi $9, $0, 14336
 sll $9, $9, 16
 addi $9, $9, 0
-sgt $9, $10, $9
+# sgt $9, $10, $9, replace with blt, bne
+blt $10, $9, set_zero_sgt_1
+bne $10, $9, set_one_sgt_1
+set_zero_sgt_1:
+addi $9, $0, 0
+j end_sgt_1
+set_one_sgt_1:
+addi $9, $0, 1
+j end_sgt_1
+end_sgt_1:
 bne $9, $0, "23"
 j "22"
 "23":
@@ -123,7 +132,16 @@ lw $13, 0($4)
 addi $12, $0, 14336
 sll $12, $12, 16
 addi $12, $12, 0
-sgt $12, $13, $12
+# sgt $12, $13, $12
+blt $12, $13, set_zero_sgt_2
+bne $12, $13, set_one_sgt_2
+set_zero_sgt_2:
+addi $12, $0, 0
+j end_sgt_2
+set_one_sgt_2:
+addi $12, $0, 1
+j end_sgt_2
+end_sgt_2:
 bne $12, $0, "26"
 j "19"
 "26":

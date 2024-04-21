@@ -77,17 +77,21 @@ module RAM_resettable #(
     // writing corect data to correct RAM
     assign ram1_dataIn = (current_ram) ? 1'b0 : write_data; // if current ram is 0 then write new boid to ram1
     assign ram2_dataIn = (current_ram) ? write_data : 1'b0; // if current ram is 1 then write new boid to ram2
+    
+//    assign ram1_dataIn = write_data;
+//    assign ram2_dataIn = write_data;
+    
     // write reset data val if not current ram.
 
     // read/write address
     wire[ADDR_WIDTH-1:0] ram1_read_addr, ram1_write_addr;
     assign ram1_read_addr = read_addr;
-    assign ram1_write_addr = (~reset_RAM) ? reset_addr : write_addr; //if reset RAM = 0 then write reset_addr.
+    assign ram1_write_addr = (current_ram) ? reset_addr : write_addr; //if reset RAM = 0 then write reset_addr.
     assign ram1_addr = (ram1_we) ? ram1_write_addr : ram1_read_addr;
 
     wire[ADDR_WIDTH-1:0] ram2_read_addr, ram2_write_addr;
     assign ram2_read_addr = read_addr;
-    assign ram2_write_addr = (reset_RAM) ? reset_addr : write_addr; //if reset RAM = 1 then write addr = reset_addr, ow write_addr
+    assign ram2_write_addr = (current_ram) ? write_addr:reset_addr; //if reset RAM = 1 then write addr = reset_addr, ow write_addr
     assign ram2_addr = (ram2_we) ? ram2_write_addr : ram2_read_addr;
 
 

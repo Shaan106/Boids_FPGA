@@ -17,7 +17,8 @@ def debug(pc):
         else:
             debug_flag = None
 
-
+# int_ = int
+# int = lambda x: int_(x) if
 
 def log(*args):
     return
@@ -43,14 +44,14 @@ def main(): # simulate MIPS
             boid_index = registers[27]
             boid_x = registers[28]
             boid_y = registers[26]
-            print(f"Boid {boid_index} at ({boid_x}, {boid_y})", pc)
+            print(f"Boid {boid_index} at ({boid_x}, {boid_y})", executed)
         debug(pc)
-        executed += 1
         line = lines[pc].strip().split('#', 1)[0].strip()
-        if line.endswith(':'):
+        if line.endswith(':') or "nop" in line:
             functions[line[:-1]] = pc
             pc += 1
             continue
+        executed += 1
         tokens = line.split()
         if not tokens:
             pc += 1

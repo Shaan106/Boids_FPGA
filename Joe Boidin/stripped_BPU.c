@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #define PIXEL_WIDTH 256
 #define INT_WIDTH 1073741824
 #define PIXEL_SIZE 4194304
@@ -53,8 +51,8 @@ int active_y = 0;
 
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i+=1) {
-        xPos[i] = i + MARGIN;
-        yPos[i] = 1 + MARGIN;
+        xPos[i] = 0;
+        yPos[i] = 0;
         xVel[i] = INITIAL_SPEED;
         yVel[i] = INITIAL_SPEED;
     }
@@ -153,6 +151,10 @@ void keepWithinBounds(int boid_index) {
             }
 
         }
+        for (int i = 0; i < NUM_NEIGHBORS; i+=1) {
+            int neighbor = neighbors[i];
+            int n_x = xPos[neighbor];
+        }
         active_x = xVel[boid_index];
         active_y = yVel[boid_index];
         fly_towards_center(boid_index, neighbors);
@@ -165,7 +167,6 @@ void keepWithinBounds(int boid_index) {
 
         xPos[boid_index] += xVel[boid_index];
         yPos[boid_index] += yVel[boid_index];
-        printf("xPos: %d, yPos: %d, boid_index: %d\n", xPos[boid_index], yPos[boid_index], boid_index);
         int res1 = xPos[boid_index] >> PIXEL_SIZE_SHIFT;
         int res2 = yPos[boid_index] >> PIXEL_SIZE_SHIFT;
         int res3 = boid_index;
@@ -174,18 +175,19 @@ void keepWithinBounds(int boid_index) {
 
  int main() {
     initBoids();
-    int running = 2;
+    int running = 1;
     while (running) {
         updateBoids();
-        running -= 1;
     }
     return 0;
  }
 
+// disable read at start
+// make main jump back to itself just in case
 // right before $L40
-//        lw      $26,48($30)   # BPU interface
-//        lw      $28,52($30)   # BPU interface
-//        lw      $27,56($30)   # BPU interface
+//        lw      $26,52($23)   # BPU interface
+//        lw      $28,56($23)   # BPU interface
+//        lw      $27,60($23)   # BPU interface
 //        # print
 //        add $0, $0,$0
 //        add $0, $0,$0

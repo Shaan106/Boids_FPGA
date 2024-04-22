@@ -1,0 +1,57 @@
+#-----------------------------------------------------------
+# Vivado v2021.1 (64-bit)
+# SW Build 3247384 on Thu Jun 10 19:36:33 MDT 2021
+# IP Build 3246043 on Fri Jun 11 00:30:35 MDT 2021
+# Start of session at: Mon Apr 22 01:26:23 2024
+# Process ID: 9672
+# Current directory: C:/Users/ay140/Desktop/Boids_FPGA
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent14040 C:\Users\ay140\Desktop\Boids_FPGA\project_1.xpr
+# Log file: C:/Users/ay140/Desktop/Boids_FPGA/vivado.log
+# Journal file: C:/Users/ay140/Desktop/Boids_FPGA\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/ay140/Desktop/Boids_FPGA/project_1.xpr
+WARNING: [filemgmt 56-3] Default IP Output Path : Could not find the directory 'C:/Users/ay140/Desktop/Boids_FPGA/project_1.gen/sources_1'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L1_block.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L2_block.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/T_flip_flop.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/adder.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/alu.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bit_flipper.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_and.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_or.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/controller.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/counter.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/decoder32.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/divider_called_bob.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/full_adder.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isLessThan.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isNotEqual.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isThereOverflow.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/multdiv.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2_64.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_4.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_8.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/processor.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/pulse_generator.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg_64.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sll.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/splitInstruction.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sra.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v'.
+CRITICAL WARNING: [Project 1-19] Could not find the file 'C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/wallaceTreeMultiplier.v'.
+Scanning sources...
+Finished scanning sources
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2021.1/data/ip'.
+update_compile_order -fileset sources_1
+move_files -fileset sim_1 [get_files  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L1_block.v]
+move_files -fileset sim_1 [get_files  {C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L2_block.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/T_flip_flop.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/adder.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/alu.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bit_flipper.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_and.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_or.v C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v C:/Users/ay140/Desktop/Boids_FPGA/controller.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/counter.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/decoder32.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/divider_called_bob.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/full_adder.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isLessThan.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isNotEqual.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isThereOverflow.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/multdiv.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2_64.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_4.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_8.v C:/Users/ay140/Desktop/Boids_FPGA/processor.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/pulse_generator.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg_64.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sll.v C:/Users/ay140/Desktop/Boids_FPGA/splitInstruction.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sra.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/wallaceTreeMultiplier.v}]
+exit
+INFO: [Common 17-206] Exiting Vivado at Mon Apr 22 01:28:55 2024...

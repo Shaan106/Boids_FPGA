@@ -71,7 +71,6 @@ proc create_report { reportName command } {
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
 set_param chipscope.maxJobs 3
-set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7a100tcsg324-1
 
@@ -87,45 +86,51 @@ set_property ip_cache_permissions {read write} [current_project]
 OPTRACE "Creating in-memory project" END { }
 OPTRACE "Adding files" START { }
 read_verilog -library xil_defaultlib {
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/1bit_adder.v
   C:/Users/ay140/Desktop/Boids_FPGA/BPU/BPU.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L1_block.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/CLA_L2_block.v
   C:/Users/ay140/Desktop/Boids_FPGA/RAM.v
   C:/Users/ay140/Desktop/Boids_FPGA/RAM_resettable.v
   C:/Users/ay140/Desktop/Boids_FPGA/ROM.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/T_flip_flop.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/T_flip_flop.v
   C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGAController.v
   C:/Users/ay140/Desktop/Boids_FPGA/VGA_files/VGATimingGenerator.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/adder.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/alu.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bit_flipper.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_and.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/bitwise_or.v
-  C:/Users/ay140/Desktop/Boids_FPGA/bypass_controller.v
-  C:/Users/ay140/Desktop/Boids_FPGA/controller.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/counter.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/decoder32.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/dffe_ref.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/divider_called_bob.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/full_adder.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isLessThan.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isNotEqual.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/isThereOverflow.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/multdiv.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_2_64.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_4.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/mux_8.v
-  C:/Users/ay140/Desktop/Boids_FPGA/processor.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/pulse_generator.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/regfile.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/single_reg_64.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sll.v
-  C:/Users/ay140/Desktop/Boids_FPGA/splitInstruction.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/sra.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/tristate.v
-  C:/Users/ay140/Desktop/Boids_FPGA/HelperModules/wallaceTreeMultiplier.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/abs.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/alu.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/logic/bitwise_and_32.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/logic/bitwise_and_8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/logic/bitwise_or_32.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/logic/bitwise_or_8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/carry_look_ahead_adder.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/cla_8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/cnot.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/multdiv/counter64.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/mux/decoder32.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/dffe_ref.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/multdiv/divider.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/multdiv/multdiv.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/mux/mux2.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/mux/mux4.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/mux/mux8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/logic/or_32.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/processor/processor.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/regfile.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/register.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/register64.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_ari_right_1.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_ari_right_16.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_ari_right_2.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_ari_right_4.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_ari_right_8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_arithmetic_right.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_log_left_1.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_log_left_16.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_log_left_2.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_log_left_4.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_log_left_8.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/shift/shift_logical_left.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/registers/tristate.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/alu/adder/twos_complement.v
+  C:/Users/ay140/Desktop/Boids_FPGA/T-proc/multdiv/wallaceTreee.v
   C:/Users/ay140/Desktop/Boids_FPGA/Wrapper.v
 }
 OPTRACE "Adding files" END { }

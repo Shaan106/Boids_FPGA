@@ -62,7 +62,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "../../BPU/main"; 
+	localparam INSTR_FILE = "../../BPU/mvp_v1"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 

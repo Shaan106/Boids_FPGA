@@ -1,6 +1,5 @@
-start:
 addi    $29, $29, 2047
-j       main
+jal     main
 main:
         addi    $29, $29, -32
         sw      $23, 28($29)
@@ -12,15 +11,22 @@ main:
 $L3:
         lw      $2, 8($23)
         add $0,  $0, $0
-        sra     $2, $2, 24
+        sll     $2, $2, 5
         sw      $2, 12($23)
         lw      $2, 8($23)
         add $0,  $0, $0
-        sra     $2, $2, 24
+        sll     $2, $2, 5
         sw      $2, 16($23)
         lw      $2, 8($23)
         add $0,  $0, $0
         sw      $2, 20($23)
+        lw      $26, 12($23)   # BPU interface
+        lw      $28, 16($23)   # BPU interface
+        lw      $27, 20($23)   # BPU interface
+        # print
+        add $0, $0, $0
+        add $0, $0, $0
+        addi    $27, $0, -1
         lw      $2, 8($23)
         add $0,  $0, $0
         addi    $2, $2, 1
@@ -43,5 +49,5 @@ $L2:
         add     $29,  $23, $0
         lw      $23, 28($29)
         addi    $29, $29, 32
-        j       start
+        jr      $31
         add $0,  $0, $0

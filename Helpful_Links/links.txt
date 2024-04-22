@@ -2,3 +2,6 @@
 https://stackoverflow.com/questions/1020188/fast-average-without-division
 - really fast tree avg unit
 
+2.
+https://godbolt.org
+

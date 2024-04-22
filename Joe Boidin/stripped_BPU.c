@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <stdlib.h>
 #define PIXEL_WIDTH 256
 #define INT_WIDTH 1073741824
 #define PIXEL_SIZE 4194304
@@ -6,7 +8,7 @@
 #define WIDTH 256
 #define HEIGHT 256
 #define NUM_BOIDS 4
-#define NUM_NEIGHBORS 2
+#define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
 #define INITIAL_SPEED 41943040
 #define COHESION_FACTOR 6
@@ -24,6 +26,7 @@
 #define SPAWN_VEL 83886081
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
+
 
 
 int abs(int x) {
@@ -54,10 +57,6 @@ void initBoids() {
         yPos[i] = 1 + MARGIN;
         xVel[i] = INITIAL_SPEED;
         yVel[i] = INITIAL_SPEED;
-        // xPos[i] = rand() % SPAWN_WIDTH + MARGIN;
-        // yPos[i] = rand() % SPAWN_HEIGHT + MARGIN;
-        // xVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
-        // yVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
     }
 }
 
@@ -132,7 +131,10 @@ void keepWithinBounds(int boid_index) {
  void updateBoids() {
     int num_neighbors = 0;
     for (int boid_index = 0; boid_index < NUM_BOIDS; boid_index+=1) {
-        int neighbors[NUM_NEIGHBORS] = {-1};
+        int neighbors[NUM_NEIGHBORS];
+        for (int i = 0; i < NUM_NEIGHBORS; i+=1) {
+            neighbors[i] = -1;
+        }
         // Find nearest neighbors
         for (int j = 0; j < NUM_BOIDS; j+=1) {
             int new_boid = j;
@@ -145,14 +147,14 @@ void keepWithinBounds(int boid_index) {
                 if (distance(boid_index, new_boid) < distance(boid_index, neighbors[k])) {
                     int temp = neighbors[k];
                     neighbors[k] = new_boid;
-                    break;
+                    // break;
                     new_boid = temp;
                 }
             }
 
         }
-       active_x = xVel[boid_index];
-       active_y = yVel[boid_index];
+        active_x = xVel[boid_index];
+        active_y = yVel[boid_index];
         fly_towards_center(boid_index, neighbors);
         avoid_others(boid_index, neighbors);
         match_velocity(boid_index, neighbors);
@@ -163,35 +165,28 @@ void keepWithinBounds(int boid_index) {
 
         xPos[boid_index] += xVel[boid_index];
         yPos[boid_index] += yVel[boid_index];
-        int test = xPos[boid_index] / yPos[boid_index];
-        int other = boid_index;
+        printf("xPos: %d, yPos: %d, boid_index: %d\n", xPos[boid_index], yPos[boid_index], boid_index);
+        int res1 = xPos[boid_index] >> PIXEL_SIZE_SHIFT;
+        int res2 = yPos[boid_index] >> PIXEL_SIZE_SHIFT;
+        int res3 = boid_index;
     }
  }
 
  int main() {
     initBoids();
-    int running = 1;
+    int running = 2;
     while (running) {
         updateBoids();
+        running -= 1;
     }
     return 0;
  }
 
- //# div $23, $22, $23
-// # add $23, $23, $8
-// sra $26, $22, 21
-// sra $28, $23, 21
-// addi $27, $8, 0
-// nop
-// addi $27, $0, -1
-
-// # sgt $12, $13, $12
-// blt $12, $13, set_zero_sgt_2
-// bne $12, $13, set_one_sgt_2
-// set_zero_sgt_2:
-// addi $12, $0, 0
-// j end_sgt_2
-// set_one_sgt_2:
-// addi $12, $0, 1
-// j end_sgt_2
-// end_sgt_2:
+// right before $L40
+//        lw      $26,48($30)   # BPU interface
+//        lw      $28,52($30)   # BPU interface
+//        lw      $27,56($30)   # BPU interface
+//        # print
+//        add $0, $0,$0
+//        add $0, $0,$0
+//        addi    $27, $0,-1

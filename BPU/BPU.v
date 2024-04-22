@@ -85,21 +85,29 @@ module BPU(clock, x_loc, y_loc, screenEnd_out, address, CPU_x_loc, CPU_y_loc, CP
         // address_reg = x_loc + 640 * y_loc; // 640 is the width of the screen, can do this w 2 bit shifts and an add
         // *Note* assuming that boids have been initialized to a random position and velocity
 
-        // select active boid
+        // select active boid (decoder)
 
-        // get neighbors (bracket) - calculate distance to each boid, compare pairs, pass through min dis + idx, repeat until 16, then retrieve boids
+        // get neighbors from boid neighbor ptrs (more decoders)
 
-        // fly_center
+        // fly_center (avg to find center (bracket), add towards arrow to velcoity)
 
-        // avoid_others
+        // avoid_others (calc away vecs, add together)
 
-        // match_velocity
+        // match_velocity (add avg neighbors velocities)
 
-        // keep_within_bounds
+        // limit_speed (threshold combined voltage)
 
-        // limit_speed
+        // keep_within_bounds (add bounds to threshold)
 
-        // update velocity & position
+        // update velocity & position (set bound/set speed, add to pos)
+
+        // resave boid (refile style)
+
+        // update neighbors (shifting sorted list implementation)
+
+        // update screen (idk)
+
+        // increment active boid (look at clcok)
     end
 
     assign address = address_reg;

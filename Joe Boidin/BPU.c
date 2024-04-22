@@ -4,31 +4,29 @@
 #include <SDL2/SDL.h>
 
 #define PIXEL_WIDTH 512
-#define INT_WIDTH (1 << 30)
-#define PIXEL_SIZE (INT_WIDTH / PIXEL_WIDTH)
-#define PIXEL_SIZE_SHIFT (int)(log2(PIXEL_SIZE))
-#define MARGIN (100 << PIXEL_SIZE_SHIFT)
-#define WIDTH PIXEL_WIDTH
-#define HEIGHT PIXEL_WIDTH
-
+#define INT_WIDTH 1073741824
+#define PIXEL_SIZE 2097152
+#define PIXEL_SIZE_SHIFT 21
+#define MARGIN 134217728
+#define WIDTH 512
+#define HEIGHT 512
 #define NUM_BOIDS 512
 #define NUM_NEIGHBORS 4
-#define NEIGBHBOR_SHIFT (int)log2(NUM_NEIGHBORS)
-#define INITIAL_SPEED 10 * PIXEL_SIZE
-#define FORCE_AMPLIFIER 0
-#define COHESION_FACTOR (6+FORCE_AMPLIFIER)
-#define SEPARATION_FACTOR (4+FORCE_AMPLIFIER)
-#define ALIGNMENT_FACTOR (2+FORCE_AMPLIFIER)
-#define MAX_SPEED 23  // 2**26
-#define PERCEPTION_RADIUS (10 << PIXEL_SIZE_SHIFT)
-#define EDGE_PUSH (1 << (PIXEL_SIZE_SHIFT))
-#define LEFT_BOUND MARGIN
-#define RIGHT_BOUND (WIDTH << PIXEL_SIZE_SHIFT) - MARGIN
-#define TOP_BOUND MARGIN
-#define BOTTOM_BOUND (HEIGHT << PIXEL_SIZE_SHIFT) - MARGIN
-#define SPAWN_WIDTH (INT_WIDTH - 2 * MARGIN)
-#define SPAWN_HEIGHT (INT_WIDTH - 2 * MARGIN)
-#define SPAWN_VEL (2 * INITIAL_SPEED + 1)
+#define NEIGBHBOR_SHIFT 2
+#define INITIAL_SPEED 20971520
+#define COHESION_FACTOR 6
+#define SEPARATION_FACTOR 4
+#define ALIGNMENT_FACTOR 2
+#define MAX_SPEED 23
+#define PERCEPTION_RADIUS 20971520
+#define EDGE_PUSH 2097152
+#define LEFT_BOUND 134217728
+#define RIGHT_BOUND 939524096
+#define TOP_BOUND 134217728
+#define BOTTOM_BOUND 939524096
+#define SPAWN_WIDTH 805306368
+#define SPAWN_HEIGHT 805306368
+#define SPAWN_VEL 41943041
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
 
@@ -151,7 +149,7 @@ void updateBoids() {
     }
 }
 
-int main(int argc, char *argv[]) {
+int main() {
     SDL_Init(SDL_INIT_VIDEO);
     SDL_Window *window = SDL_CreateWindow("Boids Simulation", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH, HEIGHT, 0);
     SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);

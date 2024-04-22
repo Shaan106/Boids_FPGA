@@ -1,4 +1,4 @@
-addi    $29, $29, 2047  # allocate stack space
+addi    $29, $29, 4096          # allocate stack space
 addi    $27, 0, -1
 jal     main  # go to start of program
 main:

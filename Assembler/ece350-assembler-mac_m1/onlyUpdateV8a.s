@@ -58,7 +58,6 @@ loop_over_all_boids:
     sra $r28, $t0, 18
     sra $r26, $t1, 18
 
-
     addi $r27, $0, 0 # we for boid 0 <----- important to change
 
     nop # time to read in vals

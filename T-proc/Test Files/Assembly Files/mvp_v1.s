@@ -1395,7 +1395,7 @@ $L54:
 
         
         addi $6, $0, 0 # set counter = 0
-        addi $7, $0, 1000000 # set threshold = 50 million, therefore update every 1 sec
+        addi $7, $0, 32767 # set threshold = 50 million, therefore update every 1 sec
 
         delay_loop:
                 nop # no operation

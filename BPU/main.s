@@ -1238,6 +1238,13 @@ $L50:
         lw      $2,28($30)
         add $0, $0,$0
         sw      $2,60($30)
+        lw      $26,52($30)   # BPU interface
+        lw      $28,56($30)   # BPU interface
+        lw      $27,60($30)   # BPU interface
+        # print
+        add $0, $0,$0
+        add $0, $0,$0
+        addi    $27, $0,-1
         lw      $2,28($30)
         add $0, $0,$0
         addi    $2,$2,1

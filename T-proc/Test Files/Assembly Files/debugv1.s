@@ -15,7 +15,7 @@ addi    $29, $29, -16
 addi    $29, $29, -4
 addi    $29, $29, -4
 
-addi    $27, $0, 393
+addi    $27, $0, -1
 
 jal     main
 updateBoids:

@@ -9,7 +9,7 @@ Cycle  14: Wrote 4048 into register 29
 Cycle  15: Wrote 4032 into register 29
 Cycle  16: Wrote 4028 into register 29
 Cycle  17: Wrote 4024 into register 29
-Cycle  18: Wrote 393 into register 27
+Cycle  18: Wrote 4294967295 into register 27
 Cycle  19: Wrote 16 into register 31
 Cycle  22: Wrote 3968 into register 29
 Cycle  25: Wrote 3968 into register 23

@@ -92,7 +92,7 @@ module VGAController(
 
 	//is Boid in Pixel depends on the x and y
 	wire[PIXEL_ADDRESS_WIDTH-1:0] currentPixelAddress;  	 // Image address for the image data
-	assign currentPixelAddress = x + 640*y;				 // Address calculated coordinate
+	assign currentPixelAddress = x/2 + 320*y;				 // Address calculated coordinate
 
 	// which address to read data from to display
 	reg[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_reg;

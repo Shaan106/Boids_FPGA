@@ -51,7 +51,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	   counter <= counter + 1;
 	end
 	
-	assign clock =  counter[5]; //downclock
+	assign clock =  counter[0]; //downclock
 
 	 
 	wire rwe, mwe;
@@ -126,7 +126,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
     
 //    assign LED[10:0] = boid_address_out_testing[10:0];
-    assign LED[9:0] = x_loc_out_testing[9:0];    
+//    assign LED[9:0] = x_loc_out_testing[9:0];    
     
     assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
      
@@ -156,7 +156,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 
-		MAX_BOIDS = 4,
+		MAX_BOIDS = 16,
 		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
 
 
@@ -173,21 +173,21 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	wire[MAX_BOIDS-1:0] chosen_boid_to_read_onehot;
 	decoder32 ch(.out(chosen_boid_to_read_onehot), .select(chosen_boid_to_read), .enable(1'b1));
 	
-	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address_out_testing;
-	wire[31:0] x_loc_out_testing; //x loc of chosen BITS_FOR_BOIDS
+//	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address_out_testing;
+//	wire[31:0] x_loc_out_testing; //x loc of chosen BITS_FOR_BOIDS
 	
-	//wire[31:0] y_loc_out_testing; //x loc of chosen BITS_FOR_BOIDS
+//	//wire[31:0] y_loc_out_testing; //x loc of chosen BITS_FOR_BOIDS
 	
-	wire[3:0] testLocChoice;
-	assign testLocChoice[0] = SW[0];
-	assign testLocChoice[1] = SW[1];
-	assign testLocChoice[2] = SW[2];
-	assign testLocChoice[3] = SW[3];
+//	wire[3:0] testLocChoice;
+//	assign testLocChoice[0] = SW[0];
+//	assign testLocChoice[1] = SW[1];
+//	assign testLocChoice[2] = SW[2];
+//	assign testLocChoice[3] = SW[3];
 	
-	assign testLocChoice[4] = SW[4];
-	assign testLocChoice[5] = SW[5];
-	assign testLocChoice[6] = SW[6];
-	assign testLocChoice[7] = SW[7];
+//	assign testLocChoice[4] = SW[4];
+//	assign testLocChoice[5] = SW[5];
+//	assign testLocChoice[6] = SW[6];
+//	assign testLocChoice[7] = SW[7];
 	
 
 	genvar i;
@@ -215,21 +215,21 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 			tristate boid_address_output_tristate(.in(boid_address), .en(chosen_boid_to_read_onehot[i]), .out(boid_address_out));
 			
-			tristate boid_address_output_tristate_testing(.in(boid_address), .en(testLocChoice[i]), .out(boid_address_out_testing));
+//			tristate boid_address_output_tristate_testing(.in(boid_address), .en(testLocChoice[i]), .out(boid_address_out_testing));
 			
-			wire[31:0] x_loc_ext;
+//			wire[31:0] x_loc_ext;
 			
-			assign x_loc_ext[9:0] = x_loc;
-			assign x_loc_ext[31:10] = which_boid_to_write_to_one_hot[31:10];
+//			assign x_loc_ext[9:0] = x_loc;
+//			assign x_loc_ext[31:10] = which_boid_to_write_to_one_hot[31:10];
 			
-			tristate boid_x_loc_output_tristate_testing(.in(x_loc_ext), .en(testLocChoice[i]), .out(x_loc_out_testing));
+//			tristate boid_x_loc_output_tristate_testing(.in(x_loc_ext), .en(testLocChoice[i]), .out(x_loc_out_testing));
 			
-			wire[31:0] y_loc_ext;
+//			wire[31:0] y_loc_ext;
 			
-			assign y_loc_ext[8:0] = y_loc;
-			assign y_loc_ext[31:9] = which_boid_to_write_to_one_hot[31:9];
+//			assign y_loc_ext[8:0] = y_loc;
+//			assign y_loc_ext[31:9] = which_boid_to_write_to_one_hot[31:9];
 			
-			tristate boid_y_loc_output_tristate_testing(.in(y_loc_ext), .en(testLocChoice[i+4]), .out(x_loc_out_testing));
+//			tristate boid_y_loc_output_tristate_testing(.in(y_loc_ext), .en(testLocChoice[i+4]), .out(x_loc_out_testing));
 
         end
    endgenerate

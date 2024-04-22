@@ -1,0 +1,137 @@
+Copyright 1986-2021 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2021.1 (win64) Build 3247384 Thu Jun 10 19:36:33 MDT 2021
+| Date         : Mon Apr 22 15:35:01 2024
+| Host         : P2-08 running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file Wrapper_control_sets_placed.rpt
+| Design       : Wrapper
+| Device       : xc7a100t
+------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |    59 |
+|    Minimum number of control sets                        |    59 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   126 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |    59 |
+| >= 0 to < 4        |     3 |
+| >= 4 to < 6        |     1 |
+| >= 6 to < 8        |     1 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     2 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    52 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             118 |           53 |
+| No           | No                    | Yes                    |              50 |           24 |
+| No           | Yes                   | No                     |               6 |            2 |
+| Yes          | No                    | No                     |             304 |           76 |
+| Yes          | No                    | Yes                    |            1352 |          638 |
+| Yes          | Yes                   | No                     |               4 |            1 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+------------------+----------------+--------------+
+|       Clock Signal      |                            Enable Signal                           |                          Set/Reset Signal                          | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+------------------+----------------+--------------+
+|  counter_reg_BUFG[0]    |                                                                    | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |                1 |              1 |         1.00 |
+|  switchRam              |                                                                    |                                                                    |                1 |              1 |         1.00 |
+|  counter_reg_BUFG[0]    |                                                                    | CPU/DX_instr/loop1[4].d_flip_flop/isMulX                           |                1 |              1 |         1.00 |
+|  counter_reg_BUFG[0]    | VGAControlModule/Display/E[0]                                      | VGAControlModule/Display/SR[0]                                     |                1 |              4 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG    |                                                                    | VGAControlModule/boid_read_address_reg[5]_i_1_n_0                  |                2 |              6 |         3.00 |
+|  VGAControlModule/clk25 | VGAControlModule/Display/vPos                                      | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |                4 |             10 |         2.50 |
+|  VGAControlModule/clk25 |                                                                    | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |                3 |             10 |         3.33 |
+|  CLK100MHZ_IBUF_BUFG    |                                                                    |                                                                    |                6 |             16 |         2.67 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_8[0]  |                                                                    |                4 |             19 |         4.75 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_9[0]  |                                                                    |                6 |             19 |         3.17 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_2[0]  |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/LED_OBUF[1] |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_4[0]  |                                                                    |                4 |             19 |         4.75 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/LED_OBUF[0] |                                                                    |                4 |             19 |         4.75 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_3[0]  |                                                                    |                3 |             19 |         6.33 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_5[0]  |                                                                    |                6 |             19 |         3.17 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_6[0]  |                                                                    |                3 |             19 |         6.33 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/E[0]        |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/LED_OBUF[2] |                                                                    |                4 |             19 |         4.75 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/LED_OBUF[3] |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/LED_OBUF[4] |                                                                    |                8 |             19 |         2.38 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_1[0]  |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_10[0] |                                                                    |                4 |             19 |         4.75 |
+|  counter_reg_BUFG[0]    | RegisterFile/one_whole_register27/loop1[2].d_flip_flop/q_reg_7[0]  |                                                                    |                5 |             19 |         3.80 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[5].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               25 |             32 |         1.28 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop2[30].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               15 |             32 |         2.13 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/enableShakespeareMode28         | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               13 |             32 |         2.46 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[18].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               13 |             32 |         2.46 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[19].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               13 |             32 |         2.46 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[22].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               31 |             32 |         1.03 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[23].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               26 |             32 |         1.23 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[10].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               18 |             32 |         1.78 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[15].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               16 |             32 |         2.00 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[7].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               14 |             32 |         2.29 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/enableShakespeareMode29         | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               10 |             32 |         3.20 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[3].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               12 |             32 |         2.67 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[12].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               15 |             32 |         2.13 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[13].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               14 |             32 |         2.29 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[4].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               23 |             32 |         1.39 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[14].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               15 |             32 |         2.13 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[25].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               17 |             32 |         1.88 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[2].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               13 |             32 |         2.46 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[8].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               15 |             32 |         2.13 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/enableShakespeareMode27         | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               17 |             32 |         1.88 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[17].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               19 |             32 |         1.68 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop2[31].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               12 |             32 |         2.67 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[11].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               16 |             32 |         2.00 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[20].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               13 |             32 |         2.46 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[6].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               12 |             32 |         2.67 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[16].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               17 |             32 |         1.88 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[1].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               19 |             32 |         1.68 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[21].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               11 |             32 |         2.91 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[24].enableShakespeareMode | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               15 |             32 |         2.13 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/loop1[9].enableShakespeareMode  | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               10 |             32 |         3.20 |
+|  counter_reg_BUFG[0]    | CPU/MW_instr/loop1[24].d_flip_flop/enableShakespeareMode26         | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               14 |             32 |         2.29 |
+|  counter_reg_BUFG[0]    |                                                                    | CPU/running_div1/running_div                                       |               19 |             38 |         2.00 |
+| ~counter_reg_BUFG[0]    | CPU/DX_instr/loop1[25].d_flip_flop/en00_out                        | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |               36 |             96 |         2.67 |
+|  counter_reg_BUFG[0]    |                                                                    |                                                                    |               46 |            101 |         2.20 |
+| ~counter_reg_BUFG[0]    | CPU/DX_instr/loop1[25].d_flip_flop/q_reg_1                         | RegisterFile/one_whole_register29/loop1[31].d_flip_flop/CPU_RESETN |              105 |            254 |         2.42 |
++-------------------------+--------------------------------------------------------------------+--------------------------------------------------------------------+------------------+----------------+--------------+
+
+

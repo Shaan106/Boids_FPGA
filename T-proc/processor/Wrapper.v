@@ -42,7 +42,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     output[3:0] VGA_B;  // Blue Signal output with 
 	
 	reg[14:0] counter;
-	wire clock; // 50 mhz clock
+	wire clock; // 50 mhz clock 
 	wire reset;
 	
     assign reset = ~CPU_RESETN; 

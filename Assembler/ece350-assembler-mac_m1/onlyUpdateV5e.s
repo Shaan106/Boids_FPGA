@@ -49,7 +49,7 @@ loop_over_all_boids:
     add  $r26, $t1, $0 # copy y for read to BPU
 
     addi $r27, $0, 0 # we for boid 0 <----- important to change
-
+    # print
     nop # time to read in vals
     nop
 
@@ -72,7 +72,7 @@ loop_over_all_boids:
     add  $r26, $t1, $0 # copy y for read to BPU
 
     addi $r27, $0, 1 # we for boid 1 <----- important to change
-
+    # print
     nop # time to read in vals
     nop
 
@@ -98,7 +98,7 @@ loop_over_all_boids:
     sra $r26, $t1, 20
 
     addi $r27, $0, 2 # we for boid 1 <----- important to change
-
+    # print
     nop # time to read in vals
     nop
 
@@ -121,7 +121,7 @@ loop_over_all_boids:
     add  $r26, $t1, $0 # copy y for read to BPU
 
     addi $r27, $0, 3 # we for boid 1 <----- important to change
-
+    # print
     nop # time to read in vals
     nop
 

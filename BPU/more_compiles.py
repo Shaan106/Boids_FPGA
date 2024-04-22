@@ -29,6 +29,7 @@ for i, line in enumerate(lines):  # for each one allocate some space on the stac
         name = lines[i-1].strip()[:-1]
         lines[0] = lines[0] + f"addi    $sp,$sp,-{space}\n"
         sp -= space
+        assert sp > 100, f"Stack pointer is too low: {sp}. Try increasing the total_stack_space."
         print(name, space, sp)
         lines[i] = ""
         lines[i-1] = ""
@@ -67,7 +68,7 @@ mips_registers = {
     "$k1": 27,
     "$gp": 28,
     "$sp": 29,
-    "$fp": 30,
+    "$fp": 23,  # FIXME: this is wrong
     "$ra": 31,
 }
 for key in mips_registers:
@@ -173,7 +174,17 @@ for i, line in enumerate(lines):
         skip_counter += 1
         lines[i] = new_lines
 
-out_path = "main.s"
+# replace all commas with comma & space
+for i, line in enumerate(lines):
+    lines[i] = line.replace(",", ", ")
+
+# for i in range(32):
+#     lines.insert(0, f"addi    ${i}, $0, 0\n")
+
+# add 2 nops between all lines
+# for i in range(0, len(lines)):
+#     lines[i] = lines[i] + "        add $0, $0, $0\n" + "        add $0, $0, $0\n"
+out_path = "small.s"
 out_file = open(out_path, "w")
 for line in lines:
     out_file.write(line)

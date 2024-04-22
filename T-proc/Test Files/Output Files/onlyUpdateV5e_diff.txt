@@ -1,0 +1,9 @@
+Reg:  8 Expected:           0 Actual:          67
+Reg:  9 Expected:           0 Actual:       61568
+Reg: 16 Expected:           0 Actual:           3
+Reg: 17 Expected:           0 Actual:           3
+Reg: 26 Expected:           0 Actual:           1
+Reg: 27 Expected:           0 Actual:          -1
+Reg: 28 Expected:           0 Actual:       61568
+Reg: 29 Expected:           0 Actual:        4064
+Reg: 30 Expected:           0 Actual:           5

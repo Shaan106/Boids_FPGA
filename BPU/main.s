@@ -1230,13 +1230,13 @@ $L50:
         lw      $2, 28($23)
         add $0,  $0, $0
         sw      $2, 60($23)
-        lw      $26, 52($23)   # BPU interface
-        lw      $28, 56($23)   # BPU interface
-        lw      $27, 60($23)   # BPU interface
+        lw      $26,40($23)   # BPU interface
+        lw      $28,44($23)   # BPU interface
+        lw      $27,48($23)   # BPU interface
         # print
-        add $0, $0, $0
-        add $0, $0, $0
-        addi    $27, $0, -1
+        add $0, $0,$0
+        add $0, $0,$0
+        addi    $27, $0,-1
         lw      $2, 28($23)
         add $0,  $0, $0
         addi    $2, $2, 1

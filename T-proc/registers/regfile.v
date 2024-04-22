@@ -30,7 +30,7 @@ module regfile (
 	// reg 0 - hardwired to 0
 	// returns 0
 	wire[31:0] zero_out;
-	single_reg zero_reg(.q(zero_out), .d(32'b0), .clk(clock), .en(1'b0), .clr(ctrl_reset));
+	register zero_reg(.q(zero_out), .d(32'b0), .clk(clock), .en(1'b0), .clr(ctrl_reset));
 
 	//tristate of outputs
 	tristate zero_tri1(.in(zero_out), .en(decoded_readRegA[0]), .out(data_readRegA));
@@ -48,7 +48,7 @@ module regfile (
 
 			and andgate(enableShakespeareMode, decoded_writeReg[i], ctrl_writeEnable);
 
-			single_reg one_whole_register(.q(reg_out), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode), .clr(ctrl_reset));
+			register one_whole_register(.q(reg_out), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode), .clr(ctrl_reset));
 
 			//tristate of outputs
 			tristate one_whole_register_output_number1(.in(reg_out), .en(decoded_readRegA[i]), .out(data_readRegA));
@@ -63,7 +63,7 @@ module regfile (
 	wire[31:0] reg_out26;
 	wire enableShakespeareMode26;
 	and andgate26(enableShakespeareMode26, decoded_writeReg[26], ctrl_writeEnable);
-	single_reg one_whole_register26(.q(reg_out26), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode26), .clr(ctrl_reset));
+	register one_whole_register26(.q(reg_out26), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode26), .clr(ctrl_reset));
 	//tristate of outputs
 	tristate one_whole_register_output_number126(.in(reg_out26), .en(decoded_readRegA[26]), .out(data_readRegA));
 	tristate one_whole_register_output_number226(.in(reg_out26), .en(decoded_readRegB[26]), .out(data_readRegB));
@@ -71,7 +71,7 @@ module regfile (
 	wire[31:0] reg_out27;
 	wire enableShakespeareMode27;
 	and andgate27(enableShakespeareMode27, decoded_writeReg[27], ctrl_writeEnable);
-	single_reg one_whole_register27(.q(reg_out27), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode27), .clr(ctrl_reset));
+	register one_whole_register27(.q(reg_out27), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode27), .clr(ctrl_reset));
 	//tristate of outputs
 	tristate one_whole_register_output_number127(.in(reg_out27), .en(decoded_readRegA[27]), .out(data_readRegA));
 	tristate one_whole_register_output_number227(.in(reg_out27), .en(decoded_readRegB[27]), .out(data_readRegB));
@@ -80,7 +80,7 @@ module regfile (
 	wire[31:0] reg_out28;
 	wire enableShakespeareMode28;
 	and andgate28(enableShakespeareMode28, decoded_writeReg[28], ctrl_writeEnable);
-	single_reg one_whole_register28(.q(reg_out28), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode28), .clr(ctrl_reset));
+	register one_whole_register28(.q(reg_out28), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode28), .clr(ctrl_reset));
 	//tristate of outputs
 	tristate one_whole_register_output_number128(.in(reg_out28), .en(decoded_readRegA[28]), .out(data_readRegA));
 	tristate one_whole_register_output_number228(.in(reg_out28), .en(decoded_readRegB[28]), .out(data_readRegB));
@@ -89,7 +89,7 @@ module regfile (
 	wire[31:0] reg_out29;
 	wire enableShakespeareMode29;
 	and andgate29(enableShakespeareMode29, decoded_writeReg[29], ctrl_writeEnable);
-	single_reg one_whole_register29(.q(reg_out29), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode29), .clr(ctrl_reset));
+	register one_whole_register29(.q(reg_out29), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode29), .clr(ctrl_reset));
 	//tristate of outputs
 	tristate one_whole_register_output_number129(.in(reg_out29), .en(decoded_readRegA[29]), .out(data_readRegA));
 	tristate one_whole_register_output_number229(.in(reg_out29), .en(decoded_readRegB[29]), .out(data_readRegB));
@@ -107,7 +107,7 @@ module regfile (
 
 			and andgate(enableShakespeareMode, decoded_writeReg[j], ctrl_writeEnable);
 
-			single_reg one_whole_register(.q(reg_out), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode), .clr(ctrl_reset));
+			register one_whole_register(.q(reg_out), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode), .clr(ctrl_reset));
 
 			//tristate of outputs
 			tristate one_whole_register_output_number1(.in(reg_out), .en(decoded_readRegA[j]), .out(data_readRegA));

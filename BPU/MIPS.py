@@ -46,12 +46,12 @@ def main(): # simulate MIPS
             boid_y = registers[26]
             print(f"Boid {boid_index} at ({boid_x}, {boid_y})", executed)
         debug(pc)
-        executed += 1
         line = lines[pc].strip().split('#', 1)[0].strip()
         if line.endswith(':') or "nop" in line:
             functions[line[:-1]] = pc
             pc += 1
             continue
+        executed += 1
         tokens = line.split()
         if not tokens:
             pc += 1

@@ -51,8 +51,8 @@ int active_y = 0;
 
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i+=1) {
-        xPos[i] = 0;
-        yPos[i] = 0;
+        xPos[i] = MARGIN + i;
+        yPos[i] = MARGIN + 1;
         xVel[i] = INITIAL_SPEED;
         yVel[i] = INITIAL_SPEED;
     }

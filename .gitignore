@@ -3,3 +3,10 @@
 /version_1.sim
 /version_1.runs
 /version_1.hw
+/project_1.cache
+/project_1.hw
+/project_1.ip_user_files
+/project_1.runs
+*.jou
+*.log
+*.str

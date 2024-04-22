@@ -51,8 +51,8 @@ int active_y = 0;
 
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i+=1) {
-        xPos[i] = 0;
-        yPos[i] = 0;
+        xPos[i] = MARGIN + i;
+        yPos[i] = MARGIN + (i << 3);
         xVel[i] = INITIAL_SPEED;
         yVel[i] = INITIAL_SPEED;
     }
@@ -184,11 +184,11 @@ void keepWithinBounds(int boid_index) {
 
 // disable read at start
 // make main jump back to itself just in case
-// right before $L40
-//        lw      $26,52($23)   # BPU interface
-//        lw      $28,56($23)   # BPU interface
-//        lw      $27,60($23)   # BPU interface
+//// right before $L40
+//        lw      $26, 52($23)   # BPU interface
+//        lw      $28, 56($23)   # BPU interface
+//        lw      $27, 60($23)   # BPU interface
 //        # print
-//        add $0, $0,$0
-//        add $0, $0,$0
-//        addi    $27, $0,-1
+//        add $0, $0, $0
+//        add $0, $0, $0
+//        addi    $27, $0, -1

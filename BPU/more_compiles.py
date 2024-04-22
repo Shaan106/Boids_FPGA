@@ -29,7 +29,7 @@ for i, line in enumerate(lines):  # for each one allocate some space on the stac
         name = lines[i-1].strip()[:-1]
         lines[0] = lines[0] + f"addi    $sp,$sp,-{space}\n"
         sp -= space
-        assert sp > 100, f"Stack pointer is too low: {sp}. Try increasing the total_stack_space."
+        assert sp > 500, f"Stack pointer is too low: {sp}. Try increasing the total_stack_space."
         print(name, space, sp)
         lines[i] = ""
         lines[i-1] = ""

@@ -79,20 +79,28 @@ $LBB2 = .
         nop
 
 $L10:
+        lw      $3,8($fp)
+        li      $2,268435456                        # 0x10000000
+        addu    $3,$3,$2
         lui     $2,%hi(xPos)
-        lw      $3,8($fp)
+        lw      $4,8($fp)
         nop
-        sll     $3,$3,2
+        sll     $4,$4,2
         addiu   $2,$2,%lo(xPos)
-        addu    $2,$3,$2
-        sw      $0,0($2)
-        lui     $2,%hi(yPos)
-        lw      $3,8($fp)
+        addu    $2,$4,$2
+        sw      $3,0($2)
+        lw      $2,8($fp)
         nop
-        sll     $3,$3,2
+        sll     $3,$2,3
+        li      $2,268435456                        # 0x10000000
+        addu    $3,$3,$2
+        lui     $2,%hi(yPos)
+        lw      $4,8($fp)
+        nop
+        sll     $4,$4,2
         addiu   $2,$2,%lo(yPos)
-        addu    $2,$3,$2
-        sw      $0,0($2)
+        addu    $2,$4,$2
+        sw      $3,0($2)
         lui     $2,%hi(xVel)
         lw      $3,8($fp)
         nop

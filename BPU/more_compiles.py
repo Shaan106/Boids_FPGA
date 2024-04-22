@@ -148,10 +148,15 @@ for i, line in enumerate(lines):
         or      {tokens[1]},{temp_reg},{tokens[2]}\n"""
         lines[i] = new_lines
     elif " li " in line:
-        tokens = line.split()
+        tokens = line.split()  # li $t0, 0x1234 - target, value
         tokens.extend(tokens.pop().split(','))
+        lower_16 = int(tokens[2]) & 0xFFFF
+        upper_16 = int(tokens[2]) >> 16
         new_lines = f"""
-        addi    {tokens[1]},$0,{tokens[2]}\n"""
+        addi    {tokens[1]},$0,{lower_16}\n
+        addi    {temp_reg},$0,{upper_16}\n
+        sll     {temp_reg},{temp_reg},16\n
+        add     {tokens[1]},{tokens[1]},{temp_reg}\n"""
         lines[i] = new_lines
     elif " lui " in line:  # replace iwth addi and then shift left by 16
         tokens = line.split()

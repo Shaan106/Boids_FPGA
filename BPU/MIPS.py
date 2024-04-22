@@ -17,9 +17,6 @@ def debug(pc):
         else:
             debug_flag = None
 
-# int_ = int
-# int = lambda x: int_(x) if
-
 def log(*args):
     return
     print(*args)

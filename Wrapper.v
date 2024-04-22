@@ -52,6 +52,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	end
 	
 	assign clock =  counter[0]; //downclock
+
 	 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -61,7 +62,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "BPU/onlyUpdateV8a"; 
+	localparam INSTR_FILE = "BPU/small"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -124,10 +125,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	assign CPU_y_loc = CPU_y_loc_full[8:0];
 
     
-    assign LED[10:0] = boid_address_out_testing[10:0];
+//    assign LED[10:0] = boid_address_out_testing[10:0];
+    assign LED[9:0] = x_loc_out_testing[9:0];    
     
     assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
-    
+     
 //    assign LED[15:0] = reg_28_data[15:0];
  
 
@@ -172,6 +174,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	decoder32 ch(.out(chosen_boid_to_read_onehot), .select(chosen_boid_to_read), .enable(1'b1));
 	
 	wire[PIXEL_ADDRESS_WIDTH-1:0] boid_address_out_testing;
+	wire[31:0] x_loc_out_testing; //x loc of chosen BITS_FOR_BOIDS
+	
 	wire[3:0] testLocChoice;
 	assign testLocChoice[0] = SW[0];
 	assign testLocChoice[1] = SW[1];
@@ -181,7 +185,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	genvar i;
 	generate 
 		for (i = 0; i < MAX_BOIDS; i = i + 1) begin: loop1
-            wire[31:0] reg_out;
+		  
+		    wire[31:0] reg_out; 
 
 			wire[9:0] x_loc;
 			wire[8:0] y_loc;
@@ -203,6 +208,13 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 			tristate boid_address_output_tristate(.in(boid_address), .en(chosen_boid_to_read_onehot[i]), .out(boid_address_out));
 			
 			tristate boid_address_output_tristate_testing(.in(boid_address), .en(testLocChoice[i]), .out(boid_address_out_testing));
+			
+			wire[31:0] x_loc_ext;
+			
+			assign x_loc_ext[9:0] = x_loc;
+			assign x_loc_ext[31:10] = which_boid_to_write_to_one_hot[31:10];
+			
+			tristate boid_x_loc_output_tristate_testing(.in(x_loc_ext), .en(testLocChoice[i]), .out(x_loc_out_testing));
 
         end
    endgenerate
@@ -286,7 +298,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 	//---------------------data to VGA controller--------------------------
 
-	// at screen refresh end, update boid memory.
+	// at screen refresh end, update boid memory
 
     wire cursorType;
 	wire screenEnd_out;

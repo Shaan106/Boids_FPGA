@@ -57,13 +57,13 @@ $L5:
         nop
 
 xPos:
-        .space  16
+        .space  64
 yPos:
-        .space  16
+        .space  64
 xVel:
-        .space  16
+        .space  64
 yVel:
-        .space  16
+        .space  64
 active_x:
         .space  4
 active_y:
@@ -124,7 +124,7 @@ $L10:
 $L9:
         lw      $2,8($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,16
         bne     $2,$0,$L10
         nop
 
@@ -832,7 +832,7 @@ $LBE14 = .
 $L43:
         lw      $2,36($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,16
         bne     $2,$0,$L49
         nop
 
@@ -1012,7 +1012,7 @@ $LBE11 = .
 $L40:
         lw      $2,28($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,16
         bne     $2,$0,$L52
         nop
 

@@ -1,4 +1,4 @@
-file_path = "small.s"
+file_path = "main.s"
 
 def alphanumeric(s):
     return ''.join(c for c in s if c.isalnum())

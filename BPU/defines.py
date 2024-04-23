@@ -1,21 +1,21 @@
 import math
 
-pixel_width_power = 9  # 2**9 = 512
+width, height = 640, 480
+pixel_width_power = 10  # 2**9 = 512
 int_width_power = 30
 pixel_size_power = int_width_power - pixel_width_power
-margin_power = 6  # 64
+margin = 32  # 64
 force_amplifier = 0
 
-num_boids = 4
+num_boids = 256
 num_neighbors = 4
 
 s = f"""#define PIXEL_WIDTH (1 << {pixel_width_power})
-#define INT_WIDTH (1 << {int_width_power})
 #define PIXEL_SIZE (1 << {pixel_size_power})
 #define PIXEL_SIZE_SHIFT {pixel_size_power}
-#define MARGIN (64 << {pixel_size_power})
-#define WIDTH (1 << {pixel_width_power})
-#define HEIGHT (1 << {pixel_width_power})
+#define MARGIN ({margin} << {pixel_size_power})
+#define WIDTH {width}
+#define HEIGHT {height}
 
 #define NUM_BOIDS {num_boids}
 #define NUM_NEIGHBORS {num_neighbors}
@@ -24,15 +24,14 @@ s = f"""#define PIXEL_WIDTH (1 << {pixel_width_power})
 #define COHESION_FACTOR (6+{force_amplifier})
 #define SEPARATION_FACTOR (4+{force_amplifier})
 #define ALIGNMENT_FACTOR (2+{force_amplifier})
+#define SCARY_FACTOR 4
 #define MAX_SPEED 23
 #define PERCEPTION_RADIUS (10 << {pixel_size_power})
 #define EDGE_PUSH (1 << ({pixel_size_power}))
 #define LEFT_BOUND MARGIN
 #define RIGHT_BOUND (WIDTH << {pixel_size_power}) - MARGIN
 #define TOP_BOUND MARGIN
-#define BOTTOM_BOUND (HEIGHT << PIXEL_SIZE_SHIFT) - MARGIN
-#define SPAWN_WIDTH (INT_WIDTH - 2 * MARGIN)
-#define SPAWN_HEIGHT (INT_WIDTH - 2 * MARGIN)
+#define BOTTOM_BOUND (HEIGHT << {pixel_size_power}) - MARGIN
 #define SPAWN_VEL (2 * INITIAL_SPEED + 1)"""
 
 s2 = """

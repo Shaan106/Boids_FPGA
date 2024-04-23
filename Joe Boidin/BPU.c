@@ -3,30 +3,28 @@
 #include <math.h>
 #include <SDL2/SDL.h>
 
-#define PIXEL_WIDTH 512
-#define INT_WIDTH 1073741824
-#define PIXEL_SIZE 2097152
-#define PIXEL_SIZE_SHIFT 21
-#define MARGIN 134217728
-#define WIDTH 512
-#define HEIGHT 512
-#define NUM_BOIDS 512
+#define PIXEL_WIDTH 1024
+#define PIXEL_SIZE 1048576
+#define PIXEL_SIZE_SHIFT 20
+#define MARGIN 33554432
+#define WIDTH 640
+#define HEIGHT 480
+#define NUM_BOIDS 256
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
-#define INITIAL_SPEED 20971520
+#define INITIAL_SPEED 10485760
 #define COHESION_FACTOR 6
 #define SEPARATION_FACTOR 4
 #define ALIGNMENT_FACTOR 2
-#define MAX_SPEED 23
-#define PERCEPTION_RADIUS 20971520
-#define EDGE_PUSH 2097152
-#define LEFT_BOUND 134217728
-#define RIGHT_BOUND 939524096
-#define TOP_BOUND 134217728
-#define BOTTOM_BOUND 939524096
-#define SPAWN_WIDTH 805306368
-#define SPAWN_HEIGHT 805306368
-#define SPAWN_VEL 41943041
+#define SCARY_FACTOR 4
+#define MAX_SPEED 22
+#define PERCEPTION_RADIUS 10485760
+#define EDGE_PUSH 1048576
+#define LEFT_BOUND 33554432
+#define RIGHT_BOUND 637534208
+#define TOP_BOUND 33554432
+#define BOTTOM_BOUND 469762048
+#define SPAWN_VEL 20971521
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
 
@@ -40,14 +38,10 @@ int active_y = 0;
 
 void initBoids() {
     for (int i = 0; i < NUM_BOIDS; i++) {
-        xPos[i] = i % SPAWN_WIDTH + MARGIN;
-        yPos[i] = 1 % SPAWN_HEIGHT + MARGIN;
+        xPos[i] = i + MARGIN;
+        yPos[i] = 1 + MARGIN;
         xVel[i] = INITIAL_SPEED;
         yVel[i] = INITIAL_SPEED;
-        // xPos[i] = rand() % SPAWN_WIDTH + MARGIN;
-        // yPos[i] = rand() % SPAWN_HEIGHT + MARGIN;
-        // xVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
-        // yVel[i] = rand() % SPAWN_VEL - INITIAL_SPEED;
     }
 }
 
@@ -84,7 +78,6 @@ void avoid_others(int boid_index, int neighbors[]) {
     for (int i = 0; i < NUM_NEIGHBORS; i++) {
         int neighbor = neighbors[i];
         if (distance(boid_index, neighbor) < PERCEPTION_RADIUS) {
-            printf("Force: %d\n", (xPos[boid_index] - xPos[neighbor]));
             repelX += (xPos[boid_index] - xPos[neighbor]);
             repelY += (yPos[boid_index] - yPos[neighbor]);
         }
@@ -102,6 +95,27 @@ void match_velocity(int boid_index, int neighbors[]) {
     }
     active_x += (avgDX) >> ALIGNMENT_FACTOR;
     active_y += (avgDY) >> ALIGNMENT_FACTOR;
+}
+
+int mouse_x = 100;
+int mouse_y = 100;
+void scary(int boid_index) {
+    return;
+    int move_x = 0;
+    int move_y = 0;
+    // load mouse position
+//    SDL_GetMouseState(&mouse_x, &mouse_y);
+
+    int dis_x = abs(xPos[boid_index] - mouse_x * PIXEL_SIZE);
+    int dis_y = abs(yPos[boid_index] - mouse_y * PIXEL_SIZE);
+    int d = dis_x + dis_y;
+
+    if (d < (PERCEPTION_RADIUS << 2)) {
+        move_x = PERCEPTION_RADIUS - dis_y;
+        move_y = PERCEPTION_RADIUS - dis_x;
+    }
+    active_x += move_x << SCARY_FACTOR;  // make shifts
+    active_y += move_y << SCARY_FACTOR;
 }
 
 void limit_speed() {
@@ -139,6 +153,7 @@ void updateBoids() {
         fly_towards_center(boid_index, neighbors);
         avoid_others(boid_index, neighbors);
         match_velocity(boid_index, neighbors);
+        scary(boid_index);
         limit_speed();
         keepWithinBounds(boid_index);
         xVel[boid_index] = active_x;
@@ -163,6 +178,22 @@ int main() {
             if (event.type == SDL_QUIT) {
                 running = 0;
             }
+            if (event.type == SDL_KEYDOWN) {
+                switch (event.key.keysym.sym) {
+                    case SDLK_UP:
+                        mouse_y -= 10;
+                        break;
+                    case SDLK_DOWN:
+                        mouse_y += 10;
+                        break;
+                    case SDLK_LEFT:
+                        mouse_x -= 10;
+                        break;
+                    case SDLK_RIGHT:
+                        mouse_x += 10;
+                        break;
+                }
+            }
         }
 
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -177,6 +208,13 @@ int main() {
             int line_length = 4;
             SDL_RenderDrawLine(renderer, xPos[boid] / PIXEL_SIZE, yPos[boid] / PIXEL_SIZE, (xPos[boid] / PIXEL_SIZE + (int)(line_length * cos(atan2(yVel[boid], xVel[boid])))), (yPos[boid] / PIXEL_SIZE + (int)(line_length * sin(atan2(yVel[boid], xVel[boid])))));
         }
+
+        // draw the mouse position in red as a circle
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderDrawPoint(renderer, mouse_x, mouse_y);
+        SDL_RenderDrawPoint(renderer, mouse_x + 1, mouse_y);
+        SDL_RenderDrawPoint(renderer, mouse_x, mouse_y + 1);
+        SDL_RenderDrawPoint(renderer, mouse_x + 1, mouse_y + 1);
 
         SDL_RenderPresent(renderer);
         SDL_Delay(10); // Approximately 30 FPS

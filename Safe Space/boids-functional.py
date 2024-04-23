@@ -114,14 +114,6 @@ def scary(boid):
             move_x = -move_x
         if boid['y'] < mouse_y*pixel_size:
             move_y = -move_y
-        # print(move_x * scary_factor, move_y * scary_factor)
-    # boid['dx'] += move_x * scary_factor  # make shifts
-    # boid['dy'] += move_y * scary_factor
-    # print()
-    # if move_x != 0:
-    #     print("-----------------")
-    #     print(move_x * scary_factor, move_y * scary_factor)
-    #     print(boid['dx'], boid['dy'])
     boid['dx'] += move_x * scary_factor  # make shifts
     boid['dy'] += move_y * scary_factor
 

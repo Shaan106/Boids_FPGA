@@ -120,16 +120,16 @@ module VGAController(
 //	reg[9:0] scary_boid_width = 10'd10;
 //	reg[8:0] scary_boid_height = 9'd10;
 	
-	assign is_draw_scary = (x > scary_boid_x && x < scary_boid_x + 10 && y > scary_boid_y && y < scary_boid_y + 10);
+	assign is_draw_scary = (x > scary_boid_x && x < scary_boid_x + 50 && y > scary_boid_y && y < scary_boid_y + 50);
 
 	// Quickly assign the output colors to their channels using concatenation
 //	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;
 //	assign {VGA_R, VGA_G, VGA_B} = active ? currentPixel_colour_info : 12'b0;
 
-    wire scaryBoidColour;
+    wire[3:0] scaryBoidColour;
     assign scaryBoidColour = is_draw_scary ? 4'b0 : currentPixel_colour_info[11:8];
 	
-	assign VGA_R = active ?  scaryBoidColour : 4'b0;
+	assign VGA_R = active ? scaryBoidColour : 4'b0;
 	assign VGA_G = active ? currentPixel_colour_info[7:4] : 4'b0;
 	assign VGA_B = active ? currentPixel_colour_info[3:0] : 4'b0;
 	

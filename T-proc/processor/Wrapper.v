@@ -161,7 +161,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 
-		MAX_BOIDS = 128,
+		MAX_BOIDS = 64,
 		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
 
 
@@ -280,7 +280,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 		.LED(LED),
 		
-		.reset_pause(special_switch_reset_pause)
+		.reset_pause(special_switch_reset_pause),
+		.switch_colour(switch_colour)
 	);
 
 
@@ -303,6 +304,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
     wire special_switch_reset_pause = ~SW[15];
+    wire switch_colour = SW[14];
     
     //slowing down refresh rate
     
@@ -385,8 +387,8 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
         scary_boid_x = BTNR ? scary_boid_x + 1 : scary_boid_x;
         scary_boid_x = BTNL ? scary_boid_x - 1 : scary_boid_x;
         
-        scary_boid_y = BTNU ? scary_boid_y + 1 : scary_boid_y;
-        scary_boid_y = BTND ? scary_boid_y - 1 : scary_boid_y;
+        scary_boid_y = BTND ? scary_boid_y + 1 : scary_boid_y;
+        scary_boid_y = BTNU ? scary_boid_y - 1 : scary_boid_y;
         
    end
    

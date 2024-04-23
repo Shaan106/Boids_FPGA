@@ -1,7 +1,7 @@
 module RAM_resettable #(
     parameter DEPTH = 1024,
     parameter ADDR_WIDTH = 10
-) (clk,we,write_addr,write_data,read_addr,read_data,reset,LED,reset_pause);
+) (clk,we,write_addr,write_data,read_addr,read_data,reset,LED,reset_pause,switch_colour);
 
     input clk, we, reset;
     input [ADDR_WIDTH-1:0] write_addr, read_addr;
@@ -10,6 +10,7 @@ module RAM_resettable #(
 
     input [15:0] LED;
     input reset_pause;
+    input switch_colour;
     
     // Control which RAM we're writing to
     reg current_ram = 0;
@@ -81,8 +82,15 @@ module RAM_resettable #(
     assign read_data = (current_ram) ? ram2_dataOut : ram1_dataOut;
 
     // writing corect data to correct RAM
-    assign ram1_dataIn = (current_ram) ? 1'b0 : write_data; // if current ram is 0 then write new boid to ram1
-    assign ram2_dataIn = (current_ram) ? write_data : 1'b0; // if current ram is 1 then write new boid to ram2
+//    assign ram1_dataIn = (current_ram) ? 1'b0 : write_data; // if current ram is 0 then write new boid to ram1
+//    assign ram2_dataIn = (current_ram) ? write_data : 1'b0; // if current ram is 1 then write new boid to ram2
+
+
+    wire off_colour = switch_colour ? 1'b1 : 1'b0;
+    wire on_colour = switch_colour ? ~write_data : write_data;
+
+    assign ram1_dataIn = (current_ram) ? off_colour : on_colour; // if current ram is 0 then write new boid to ram1
+    assign ram2_dataIn = (current_ram) ? on_colour : off_colour; // if current ram is 1 then write new boid to ram2
     
 //    assign ram1_dataIn = write_data;
 //    assign ram2_dataIn = write_data;

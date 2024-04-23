@@ -1344,6 +1344,8 @@ main:
         add $0,  $0, $0
 
 $L53:
+        addi    $25, $0, 1
+        addi    $25, $0, 0
         jal     updateBoids
         add $0,  $0, $0
 

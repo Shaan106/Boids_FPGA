@@ -176,13 +176,15 @@ void keepWithinBounds(int boid_index) {
     return 0;
  }
 
-// disable read at start
-// make main jump back to itself just in case
-//// right before $L40
-//        lw      $26, 48($23)   # BPU interface
-//        lw      $28, 52($23)   # BPU interface
-//        lw      $27, 56($23)   # BPU interface
+// talk to BPU drawer - right before $L40
+//        lw      $26, 48($22)   # BPU interface
+//        lw      $28, 52($22)   # BPU interface
+//        lw      $27, 56($22)   # BPU interface
 //        # print
 //        add $0, $0, $0
 //        add $0, $0, $0
 //        addi    $27, $0, -1
+
+// swap screen buffer - after $L53
+//        addi    $25, $0, 1
+//        addi    $25, $0, 0

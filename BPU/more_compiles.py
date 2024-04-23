@@ -58,17 +58,17 @@ mips_registers = {
     "$s1": 17,
     "$s2": 18,
     "$s3": 19,
-    "$s4": 20,
+    "$s4": 20,  # check not used: this is temp_reg for
     "$s5": 21,
-    "$s6": 22,
-    "$s7": 23,
-    "$t8": 24,
-    "$t9": 25,
-    "$k0": 26,
-    "$k1": 27,
-    "$gp": 28,
+    "$s6": 22,  # check not used: this is frame pointer
+    "$s7": 23,  # refresh pulse
+    "$t8": 24,  # mouse x
+    "$t9": 25,  # mouse y
+    "$k0": 26,  # BPU Interface: y
+    "$k1": 27,  # BPU Interface: boid_index
+    "$gp": 28,  # BPU Interface: x
     "$sp": 29,
-    "$fp": 23,  # FIXME: this is wrong
+    "$fp": 22,  # check not used: this is used for exceptions
     "$ra": 31,
 }
 for key in mips_registers:

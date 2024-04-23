@@ -57,13 +57,13 @@ $L5:
         nop
 
 xPos:
-        .space  1024
+        .space  512
 yPos:
-        .space  1024
+        .space  512
 xVel:
-        .space  1024
+        .space  512
 yVel:
-        .space  1024
+        .space  512
 active_x:
         .space  4
 active_y:
@@ -124,7 +124,7 @@ $L10:
 $L9:
         lw      $2,8($fp)
         nop
-        slt     $2,$2,256
+        slt     $2,$2,128
         bne     $2,$0,$L10
         nop
 
@@ -324,7 +324,7 @@ $LBB4 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,2
+        sra     $2,$2,3
         lw      $3,8($fp)
         nop
         addu    $2,$3,$2
@@ -337,7 +337,7 @@ $LBB4 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,2
+        sra     $2,$2,3
         lw      $3,12($fp)
         nop
         addu    $2,$3,$2
@@ -350,7 +350,7 @@ $LBE4 = .
 $L22:
         lw      $2,16($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,8
         bne     $2,$0,$L23
         nop
 
@@ -482,7 +482,7 @@ $LBE6 = .
 $L25:
         lw      $2,32($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,8
         bne     $2,$0,$L27
         nop
 
@@ -546,7 +546,7 @@ $LBB8 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,2
+        sra     $2,$2,3
         lw      $3,8($fp)
         nop
         addu    $2,$3,$2
@@ -559,7 +559,7 @@ $LBB8 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,2
+        sra     $2,$2,3
         lw      $3,12($fp)
         nop
         addu    $2,$3,$2
@@ -572,7 +572,7 @@ $LBE8 = .
 $L29:
         lw      $2,16($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,8
         bne     $2,$0,$L30
         nop
 
@@ -687,10 +687,10 @@ $L31:
 
 $LFB9 = .
 updateBoids:
-        addiu   $sp,$sp,-96
-        sw      $31,92($sp)
-        sw      $fp,88($sp)
-        sw      $16,84($sp)
+        addiu   $sp,$sp,-112
+        sw      $31,108($sp)
+        sw      $fp,104($sp)
+        sw      $16,100($sp)
         move    $fp,$sp
         sw      $0,24($fp)
 $LBB10 = .
@@ -720,7 +720,7 @@ $L42:
 $L41:
         lw      $2,32($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,8
         bne     $2,$0,$L42
         nop
 
@@ -818,7 +818,7 @@ $LBE16 = .
 $L44:
         lw      $2,44($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,8
         bne     $2,$0,$L48
         nop
 
@@ -832,7 +832,7 @@ $LBE14 = .
 $L43:
         lw      $2,36($fp)
         nop
-        slt     $2,$2,256
+        slt     $2,$2,128
         bne     $2,$0,$L49
         nop
 
@@ -975,7 +975,7 @@ $LBE11 = .
 $L40:
         lw      $2,28($fp)
         nop
-        slt     $2,$2,256
+        slt     $2,$2,128
         bne     $2,$0,$L50
         nop
 
@@ -983,10 +983,10 @@ $LBE10 = .
         nop
         nop
         move    $sp,$fp
-        lw      $31,92($sp)
-        lw      $fp,88($sp)
-        lw      $16,84($sp)
-        addiu   $sp,$sp,96
+        lw      $31,108($sp)
+        lw      $fp,104($sp)
+        lw      $16,100($sp)
+        addiu   $sp,$sp,112
         jr      $31
         nop
 

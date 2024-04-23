@@ -3,8 +3,12 @@ module regfile (
 	ctrl_writeEnable, ctrl_reset, ctrl_writeReg,
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
 	data_readRegA, data_readRegB,
-
-	reg_out25, reg_out26, reg_out27, reg_out28, reg_out29
+    
+    reg_out23, reg_out24,
+    
+	reg_out25, reg_out26, reg_out27, reg_out28, reg_out29,
+	
+	reg_in23, reg_in24, reg_in23_wen, reg_in24_wen
 );
 
 	//LOOK AT LOGISIM
@@ -15,7 +19,11 @@ module regfile (
 
 	output [31:0] data_readRegA, data_readRegB;
 
+    output[31:0] reg_out23, reg_out24;
 	output[31:0] reg_out25, reg_out26, reg_out27, reg_out28, reg_out29;
+	
+	input[31:0] reg_in23, reg_in24;
+	input reg_in23_wen, reg_in24_wen;
 
 	wire [31:0] decoded_writeReg, decoded_readRegA, decoded_readRegB;
 
@@ -39,7 +47,7 @@ module regfile (
 	// reg 1 - 25
    	genvar i;
    	generate
-        for (i = 1; i <= 24; i = i + 1) begin: loop1
+        for (i = 1; i <= 22; i = i + 1) begin: loop1
 
             wire[31:0] reg_out;
 			//enables
@@ -57,6 +65,24 @@ module regfile (
         end
 
    	endgenerate
+   	
+   	//reg 23 - 24
+   	
+//   	input[31:0] reg_in23, reg_in24;
+//	input reg_in23_wen, reg_in24_wen;
+   	
+   	wire[31:0] reg_out23;
+	
+	register one_whole_register23(.q(reg_out23), .d(reg_in23), .clk(clock), .en(reg_in23_wen), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number123(.in(reg_out23), .en(decoded_readRegA[23]), .out(data_readRegA));
+	tristate one_whole_register_output_number223(.in(reg_out23), .en(decoded_readRegB[23]), .out(data_readRegB));
+	
+	wire[31:0] reg_out24;
+	register one_whole_register24(.q(reg_out24), .d(reg_in24), .clk(clock), .en(reg_in24_wen), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number124(.in(reg_out24), .en(decoded_readRegA[24]), .out(data_readRegA));
+	tristate one_whole_register_output_number224(.in(reg_out24), .en(decoded_readRegB[24]), .out(data_readRegB));
 
 	//reg 25 - 29
 	

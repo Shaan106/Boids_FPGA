@@ -1,6 +1,6 @@
 import math
 
-pixel_width_power = 8  # 2**9 = 512
+pixel_width_power = 9  # 2**9 = 512
 int_width_power = 30
 pixel_size_power = int_width_power - pixel_width_power
 margin_power = 6  # 64

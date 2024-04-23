@@ -19,7 +19,7 @@ for i in range(len(lines)):
 
 
 # handle .space
-total_stack_space = 4096
+total_stack_space = 4096 * 2
 sp = total_stack_space  # overflows bad so we need to allocate some space for the stack
 lines.insert(0, f"addi    $sp,$sp,{total_stack_space}\n")
 for i, line in enumerate(lines):  # for each one allocate some space on the stack then replace all calls to it with the address

@@ -5,7 +5,7 @@
 #define MARGIN 268435456
 #define WIDTH 256
 #define HEIGHT 256
-#define NUM_BOIDS 4
+#define NUM_BOIDS 256
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
 #define INITIAL_SPEED 41943040
@@ -151,10 +151,6 @@ void keepWithinBounds(int boid_index) {
             }
 
         }
-        for (int i = 0; i < NUM_NEIGHBORS; i+=1) {
-            int neighbor = neighbors[i];
-            int n_x = xPos[neighbor];
-        }
         active_x = xVel[boid_index];
         active_y = yVel[boid_index];
         fly_towards_center(boid_index, neighbors);
@@ -185,9 +181,9 @@ void keepWithinBounds(int boid_index) {
 // disable read at start
 // make main jump back to itself just in case
 //// right before $L40
-//        lw      $26, 52($23)   # BPU interface
-//        lw      $28, 56($23)   # BPU interface
-//        lw      $27, 60($23)   # BPU interface
+//        lw      $26, 48($23)   # BPU interface
+//        lw      $28, 52($23)   # BPU interface
+//        lw      $27, 56($23)   # BPU interface
 //        # print
 //        add $0, $0, $0
 //        add $0, $0, $0

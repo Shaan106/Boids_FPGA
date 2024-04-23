@@ -57,13 +57,13 @@ $L5:
         nop
 
 xPos:
-        .space  16
+        .space  1024
 yPos:
-        .space  16
+        .space  1024
 xVel:
-        .space  16
+        .space  1024
 yVel:
-        .space  16
+        .space  1024
 active_x:
         .space  4
 active_y:
@@ -124,7 +124,7 @@ $L10:
 $L9:
         lw      $2,8($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,256
         bne     $2,$0,$L10
         nop
 
@@ -687,10 +687,10 @@ $L31:
 
 $LFB9 = .
 updateBoids:
-        addiu   $sp,$sp,-112
-        sw      $31,108($sp)
-        sw      $fp,104($sp)
-        sw      $16,100($sp)
+        addiu   $sp,$sp,-96
+        sw      $31,92($sp)
+        sw      $fp,88($sp)
+        sw      $16,84($sp)
         move    $fp,$sp
         sw      $0,24($fp)
 $LBB10 = .
@@ -698,7 +698,7 @@ $LBB10 = .
         b       $L40
         nop
 
-$L52:
+$L50:
 $LBB11 = .
 $LBB12 = .
         sw      $0,32($fp)
@@ -712,7 +712,7 @@ $L42:
         addiu   $3,$fp,24
         addu    $2,$3,$2
         li      $3,-1                 # 0xffffffffffffffff
-        sw      $3,52($2)
+        sw      $3,40($2)
         lw      $2,32($fp)
         nop
         addiu   $2,$2,1
@@ -746,7 +746,7 @@ $L48:
         sll     $2,$2,2
         addiu   $3,$fp,24
         addu    $2,$3,$2
-        lw      $3,52($2)
+        lw      $3,40($2)
         li      $2,-1                 # 0xffffffffffffffff
         bne     $3,$2,$L45
         nop
@@ -758,7 +758,7 @@ $L48:
         addu    $2,$3,$2
         lw      $3,40($fp)
         nop
-        sw      $3,52($2)
+        sw      $3,40($2)
         lw      $2,24($fp)
         nop
         addiu   $2,$2,1
@@ -778,7 +778,7 @@ $L45:
         sll     $2,$2,2
         addiu   $3,$fp,24
         addu    $2,$3,$2
-        lw      $2,52($2)
+        lw      $2,40($2)
         nop
         move    $5,$2
         lw      $4,28($fp)
@@ -795,9 +795,9 @@ $LBB16 = .
         sll     $2,$2,2
         addiu   $3,$fp,24
         addu    $2,$3,$2
-        lw      $2,52($2)
+        lw      $2,40($2)
         nop
-        sw      $2,72($fp)
+        sw      $2,60($fp)
         lw      $2,44($fp)
         nop
         sll     $2,$2,2
@@ -805,8 +805,8 @@ $LBB16 = .
         addu    $2,$3,$2
         lw      $3,40($fp)
         nop
-        sw      $3,52($2)
-        lw      $2,72($fp)
+        sw      $3,40($2)
+        lw      $2,60($fp)
         nop
         sw      $2,40($fp)
 $L47:
@@ -832,48 +832,11 @@ $LBE14 = .
 $L43:
         lw      $2,36($fp)
         nop
-        slt     $2,$2,4
+        slt     $2,$2,256
         bne     $2,$0,$L49
         nop
 
 $LBE13 = .
-$LBB17 = .
-        sw      $0,48($fp)
-        b       $L50
-        nop
-
-$L51:
-$LBB18 = .
-        lw      $2,48($fp)
-        nop
-        sll     $2,$2,2
-        addiu   $3,$fp,24
-        addu    $2,$3,$2
-        lw      $2,52($2)
-        nop
-        sw      $2,64($fp)
-        lui     $2,%hi(xPos)
-        lw      $3,64($fp)
-        nop
-        sll     $3,$3,2
-        addiu   $2,$2,%lo(xPos)
-        addu    $2,$3,$2
-        lw      $2,0($2)
-        nop
-        sw      $2,68($fp)
-$LBE18 = .
-        lw      $2,48($fp)
-        nop
-        addiu   $2,$2,1
-        sw      $2,48($fp)
-$L50:
-        lw      $2,48($fp)
-        nop
-        slt     $2,$2,4
-        bne     $2,$0,$L51
-        nop
-
-$LBE17 = .
         lui     $2,%hi(xVel)
         lw      $3,28($fp)
         nop
@@ -892,19 +855,19 @@ $LBE17 = .
         lw      $3,0($2)
         lui     $2,%hi(active_y)
         sw      $3,%lo(active_y)($2)
-        addiu   $2,$fp,76
+        addiu   $2,$fp,64
         move    $5,$2
         lw      $4,28($fp)
         jal     fly_towards_center
         nop
 
-        addiu   $2,$fp,76
+        addiu   $2,$fp,64
         move    $5,$2
         lw      $4,28($fp)
         jal     avoid_others
         nop
 
-        addiu   $2,$fp,76
+        addiu   $2,$fp,64
         move    $5,$2
         lw      $4,28($fp)
         jal     match_velocity
@@ -990,7 +953,7 @@ $LBE17 = .
         lw      $2,0($2)
         nop
         sra     $2,$2,22
-        sw      $2,52($fp)
+        sw      $2,48($fp)
         lui     $2,%hi(yPos)
         lw      $3,28($fp)
         nop
@@ -1000,10 +963,10 @@ $LBE17 = .
         lw      $2,0($2)
         nop
         sra     $2,$2,22
-        sw      $2,56($fp)
+        sw      $2,52($fp)
         lw      $2,28($fp)
         nop
-        sw      $2,60($fp)
+        sw      $2,56($fp)
 $LBE11 = .
         lw      $2,28($fp)
         nop
@@ -1012,18 +975,18 @@ $LBE11 = .
 $L40:
         lw      $2,28($fp)
         nop
-        slt     $2,$2,4
-        bne     $2,$0,$L52
+        slt     $2,$2,256
+        bne     $2,$0,$L50
         nop
 
 $LBE10 = .
         nop
         nop
         move    $sp,$fp
-        lw      $31,108($sp)
-        lw      $fp,104($sp)
-        lw      $16,100($sp)
-        addiu   $sp,$sp,112
+        lw      $31,92($sp)
+        lw      $fp,88($sp)
+        lw      $16,84($sp)
+        addiu   $sp,$sp,96
         jr      $31
         nop
 
@@ -1038,17 +1001,17 @@ main:
 
         li      $2,1                        # 0x1
         sw      $2,24($fp)
-        b       $L54
+        b       $L52
         nop
 
-$L55:
+$L53:
         jal     updateBoids
         nop
 
-$L54:
+$L52:
         lw      $2,24($fp)
         nop
-        bne     $2,$0,$L55
+        bne     $2,$0,$L53
         nop
 
         move    $2,$0

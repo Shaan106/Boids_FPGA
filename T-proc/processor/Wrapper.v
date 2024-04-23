@@ -293,25 +293,30 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     reg ledA = 0; // for testing purposes.
     
     
-//    reg[8:0] RAM_refresh_rate; 
+//    wire RAM_refresh_pulse_choice = counter[20] & ~counter[19] &  ~counter[18] &  ~counter[17] &  ~counter[16] &  ~counter[15] &  ~counter[14] &  ~counter[13] &  ~counter[12] &  ~counter[11] &  ~counter[10] &  ~counter[9] &  ~counter[8] &  ~counter[7] &  ~counter[6] &  ~counter[5] &  ~counter[4] &  ~counter[3] &  ~counter[2] &  ~counter[1] &  ~counter[0];
     
-//    wire RAM_refresh_pulse = RAM_refresh_rate[0];
 
-    wire RAM_refresh_pulse_choice = counter[20] & ~counter[19] &  ~counter[18] &  ~counter[17] &  ~counter[16] &  ~counter[15] &  ~counter[14] &  ~counter[13] &  ~counter[12] &  ~counter[11] &  ~counter[10] &  ~counter[9] &  ~counter[8] &  ~counter[7] &  ~counter[6] &  ~counter[5] &  ~counter[4] &  ~counter[3] &  ~counter[2] &  ~counter[1] &  ~counter[0];
-    
-//    wire RAM_refresh_pulse_test = counter[20] & ~counter[19] &  ~counter[18] &  ~counter[17] &  ~counter[16] &  ~counter[15] &  ~counter[14] &  ~counter[13] &  ~counter[12] &  ~counter[11] &  ~counter[10] &  ~counter[9] &  ~counter[8] &  ~counter[7] &  ~counter[6] &  ~counter[5] &  ~counter[4] &  ~counter[3] &  ~counter[2] &  ~counter[1];
-    
-    
     //choosing display method.
     
-    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out :  RAM_refresh_pulse_choice; 
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refresh_slow_wire; 
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
-    wire special_switch_reset_pause = SW[15];
+    wire special_switch_reset_pause = ~SW[15];
     
-//    always @(posedge screenEnd_out) begin
-//	   RAM_refresh_rate <= RAM_refresh_rate + 1;
-//	end
+    //slowing down refresh rate
+    
+    reg[4:0] refresh_slow_reg;
+    
+    always @(posedge screenEnd_out) begin
+        refresh_slow_reg <= refresh_slow_reg + 1; 
+    end
+    
+    wire[4:0] refresh_slow_intermediate;
+    wire refresh_slow_wire;
+    
+    assign refresh_slow_intermediate = refresh_slow_reg[3] & refresh_slow_reg[2] & refresh_slow_reg[1] & refresh_slow_reg[0];
+    assign refresh_slow_wire = refresh_slow_intermediate & screenEnd_out;
+   
 
 	always @(posedge clock) begin
 	
@@ -360,8 +365,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 								   .screenEnd_out(screenEnd_out),
                                    .LED(LED),
 								   .boid_read_address(boid_read_address_wire),
-								   .boid_read_data(boid_read_data) //outputs whether there is a boid in the pixel given by address
-								   
+								   .boid_read_data(boid_read_data), //outputs whether there is a boid in the pixel given by address
+								   .scary_boid_x(scary_boid_x),
+								   .scary_boid_y(scary_boid_y)
 								   );
    
    // --------------------- Scary user boid -----------------------------------

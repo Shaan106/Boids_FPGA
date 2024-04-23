@@ -1,7 +1,7 @@
 module RAM_resettable #(
     parameter DEPTH = 1024,
     parameter ADDR_WIDTH = 10
-) (clk,we,write_addr,write_data,read_addr,read_data,reset,LED);
+) (clk,we,write_addr,write_data,read_addr,read_data,reset,LED,reset_pause);
 
     input clk, we, reset;
     input [ADDR_WIDTH-1:0] write_addr, read_addr;
@@ -9,6 +9,7 @@ module RAM_resettable #(
     output read_data;
 
     input [15:0] LED;
+    input reset_pause;
     
     // Control which RAM we're writing to
     reg current_ram = 0;
@@ -68,7 +69,12 @@ module RAM_resettable #(
     // Track address we're resetting right now
     reg [ADDR_WIDTH-1:0] reset_addr = 0;
     always @(posedge clk) begin
-        reset_addr <= reset_addr + 1;
+    
+        if (reset_pause) begin
+            reset_addr = reset_addr + 1;
+        end else begin 
+            reset_addr = 0;
+        end
     end
 
     // reading from the correct RAM

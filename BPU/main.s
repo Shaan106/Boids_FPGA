@@ -845,7 +845,6 @@ scary:
         sw      $4, 48($22)
         sw      $0, 8($22)
         sw      $0, 12($22)
-
         sw      $23, 4084($2)
         sw      $24, 4080($2)
 
@@ -1484,6 +1483,13 @@ $L48:
         lw      $2, 28($22)
         add $0,  $0, $0
         sw      $2, 56($22)
+        lw      $28, 48($22)   # BPU interface
+        lw      $26, 52($22)   # BPU interface
+        lw      $27, 56($22)   # BPU interface
+        # print
+        add $0, $0, $0
+        add $0, $0, $0
+        addi    $27, $0, -1
         lw      $2, 28($22)
         add $0,  $0, $0
         addi    $2, $2, 1
@@ -1533,6 +1539,8 @@ main:
         add $0,  $0, $0
 
 $L58:
+        addi    $25, $0, 1
+        addi    $25, $0, 0
         jal     updateBoids
         add $0,  $0, $0
 

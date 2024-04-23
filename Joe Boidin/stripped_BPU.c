@@ -207,7 +207,7 @@ void scary(int boid_index) {
     return 0;
  }
 
-// talk to BPU drawer - right before $L40
+// talk to BPU drawer - right before $L45
 //        lw      $28, 48($22)   # BPU interface
 //        lw      $26, 52($22)   # BPU interface
 //        lw      $27, 56($22)   # BPU interface

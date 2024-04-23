@@ -126,12 +126,27 @@ module VGAController(
 //	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;
 //	assign {VGA_R, VGA_G, VGA_B} = active ? currentPixel_colour_info : 12'b0;
 
-    wire[3:0] scaryBoidColour;
-    assign scaryBoidColour = is_draw_scary ? 4'b0 : currentPixel_colour_info[11:8];
+    wire[3:0] scaryBoidColourR;
+    assign scaryBoidColourR = is_draw_scary ? 4'b1111 : currentPixel_colour_info[11:8];
+    
+     wire[3:0] scaryBoidColourG;
+    assign scaryBoidColourG = is_draw_scary ? 4'b0000 : currentPixel_colour_info[7:4];
+    
+     wire[3:0] scaryBoidColourB;
+    assign scaryBoidColourB = is_draw_scary ? 4'b0000 : currentPixel_colour_info[3:0];
 	
-	assign VGA_R = active ? scaryBoidColour : 4'b0;
-	assign VGA_G = active ? currentPixel_colour_info[7:4] : 4'b0;
-	assign VGA_B = active ? currentPixel_colour_info[3:0] : 4'b0;
+//	assign VGA_R = active ? currentPixel_colour_info[11:8] : 4'b0;
+//	assign VGA_G = active ? currentPixel_colour_info[7:4] : 4'b0;
+//	assign VGA_B = active ? currentPixel_colour_info[3:0] : 4'b0;
+	
+	assign VGA_R = active ? scaryBoidColourR : 4'b0;
+	assign VGA_G = active ? scaryBoidColourG : 4'b0;
+	assign VGA_B = active ? scaryBoidColourB : 4'b0;
+	
+//	wire[11:0] scaryBoidColour;
+//	assign scaryBoidColour = is_draw_scary ? 12'b111100000000 : currentPixel_colour_info;
+	
+//	assign {VGA_R, VGA_G, VGA_B} = active ? scaryBoidColour : 12'b0;
 	
 //	always @(posedge screenEnd) begin
 

@@ -42,7 +42,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "../../BPU/main"; 
+	localparam INSTR_FILE = "../../BPU/boids_MVP_02"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -303,7 +303,10 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     wire refreshSignalFromCPU;
     assign refreshSignalFromCPU = reg_25_data & clock;
     
-    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refreshSignalFromCPU; 
+    wire refreshSignalFromCPU2;
+    assign refreshSignalFromCPU2 = reg_25_data;
+    
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refreshSignalFromCPU2; 
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
     wire special_switch_reset_pause = ~SW[15];

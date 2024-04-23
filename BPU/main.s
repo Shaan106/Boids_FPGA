@@ -158,7 +158,7 @@ $L9:
         lw      $2, 8($22)
         add $0,  $0, $0
 
-        addi    $20, $0, 256
+        addi    $20, $0, 64
         blt     $2, $20, slt_set_one_14
         addi    $2, $0, 0
         j       slt_end_14
@@ -1307,7 +1307,7 @@ $L48:
         lw      $2, 36($22)
         add $0,  $0, $0
 
-        addi    $20, $0, 256
+        addi    $20, $0, 64
         blt     $2, $20, slt_set_one_30
         addi    $2, $0, 0
         j       slt_end_30
@@ -1498,7 +1498,7 @@ $L45:
         lw      $2, 28($22)
         add $0,  $0, $0
 
-        addi    $20, $0, 256
+        addi    $20, $0, 64
         blt     $2, $20, slt_set_one_31
         addi    $2, $0, 0
         j       slt_end_31

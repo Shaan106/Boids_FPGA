@@ -104,8 +104,6 @@ void scary(int boid_index) {
     int move_y = 0;
     // load mouse position
     SDL_GetMouseState(&mouse_x, &mouse_y);
-    mouse_x = 0;
-    mouse_y = 0;
     int m_x = mouse_x << PIXEL_SIZE_SHIFT;
     int m_y = mouse_y << PIXEL_SIZE_SHIFT;
 

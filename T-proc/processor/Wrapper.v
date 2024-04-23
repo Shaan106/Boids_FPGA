@@ -41,7 +41,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     output[3:0] VGA_G;  // Green Signal Bits
     output[3:0] VGA_B;  // Blue Signal output with 
 	
-	reg[14:0] counter;
+	reg[21:0] counter;
 	wire clock; // 50 mhz clock 
 	wire reset;
 	
@@ -62,7 +62,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "../../BPU/mvp_v1"; 
+	localparam INSTR_FILE = "../../BPU/main"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -97,7 +97,11 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 						
 	// Processor Memory (RAM)
-	RAM ProcMem(.clk(clock), 
+	RAM  #(
+	    .DATA_WIDTH(32),
+		.ADDRESS_WIDTH(13), // how many bits to address 
+		.DEPTH(8192) //size of RAM
+	) ProcMem(.clk(clock), 
 		.wEn(mwe), 
 		.addr(memAddr[11:0]), 
 		.dataIn(memDataIn), 
@@ -156,7 +160,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		PIXEL_COUNT = VIDEO_WIDTH*VIDEO_HEIGHT, 	             // Number of pixels on the screen
 		PIXEL_ADDRESS_WIDTH = $clog2(PIXEL_COUNT) + 1,           // Use built in log2 command
 
-		MAX_BOIDS = 16,
+		MAX_BOIDS = 128,
 		BITS_FOR_BOIDS = $clog2(MAX_BOIDS); // how many bits needed to access MAX_BOIDS amount of data.
 
 
@@ -273,7 +277,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		.write_data(1'b1), //if we is on, then write data = 1
 		.read_data(boid_read_data), //read data is a reg - it's a 1 or 0.
 
-		.LED(LED)
+		.LED(LED),
+		
+		.reset_pause(special_switch_reset_pause)
 	);
 
 
@@ -285,10 +291,32 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
 
     reg ledA = 0; // for testing purposes.
+    
+    
+//    reg[8:0] RAM_refresh_rate; 
+    
+//    wire RAM_refresh_pulse = RAM_refresh_rate[0];
+
+    wire RAM_refresh_pulse_choice = counter[20] & ~counter[19] &  ~counter[18] &  ~counter[17] &  ~counter[16] &  ~counter[15] &  ~counter[14] &  ~counter[13] &  ~counter[12] &  ~counter[11] &  ~counter[10] &  ~counter[9] &  ~counter[8] &  ~counter[7] &  ~counter[6] &  ~counter[5] &  ~counter[4] &  ~counter[3] &  ~counter[2] &  ~counter[1] &  ~counter[0];
+    
+//    wire RAM_refresh_pulse_test = counter[20] & ~counter[19] &  ~counter[18] &  ~counter[17] &  ~counter[16] &  ~counter[15] &  ~counter[14] &  ~counter[13] &  ~counter[12] &  ~counter[11] &  ~counter[10] &  ~counter[9] &  ~counter[8] &  ~counter[7] &  ~counter[6] &  ~counter[5] &  ~counter[4] &  ~counter[3] &  ~counter[2] &  ~counter[1];
+    
+    
+    //choosing display method.
+    
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out :  RAM_refresh_pulse_choice; 
+    wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
+    
+    wire special_switch_reset_pause = SW[15];
+    
+//    always @(posedge screenEnd_out) begin
+//	   RAM_refresh_rate <= RAM_refresh_rate + 1;
+//	end
 
 	always @(posedge clock) begin
+	
 	   
-	   if (screenEnd_out) begin
+	   if (RAM_refresh_pulse) begin // put RAM_refresh_pulse_choice in here and then it creates chaotic system
 	       ledA = ~ledA;
 	       writing_to_boids_disp = 1;
 	       switchRam = 1; // could change this to choose RAM out here.
@@ -335,6 +363,27 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 								   .boid_read_data(boid_read_data) //outputs whether there is a boid in the pixel given by address
 								   
 								   );
+   
+   // --------------------- Scary user boid -----------------------------------
+   
+   reg[9:0] scary_boid_x = 10'b100;
+   reg[8:0] scary_boid_y = 9'b100;
+   
+   
+   assign LED[9:0] = scary_boid_x;
+   
+   
+   always @(posedge screenEnd_out) begin
+        
+        scary_boid_x = BTNR ? scary_boid_x + 1 : scary_boid_x;
+        scary_boid_x = BTNL ? scary_boid_x - 1 : scary_boid_x;
+        
+        scary_boid_y = BTNU ? scary_boid_y + 1 : scary_boid_y;
+        scary_boid_y = BTND ? scary_boid_y - 1 : scary_boid_y;
+        
+   end
+   
+   
    
 
 

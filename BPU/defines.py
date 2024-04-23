@@ -4,7 +4,7 @@ width, height = 640, 480
 pixel_width_power = 10  # 2**9 = 512
 int_width_power = 30
 pixel_size_power = int_width_power - pixel_width_power
-margin = 32  # 64
+margin = 64  # 64
 force_amplifier = 0
 
 num_boids = 256
@@ -24,8 +24,8 @@ s = f"""#define PIXEL_WIDTH (1 << {pixel_width_power})
 #define COHESION_FACTOR (6+{force_amplifier})
 #define SEPARATION_FACTOR (4+{force_amplifier})
 #define ALIGNMENT_FACTOR (2+{force_amplifier})
-#define SCARY_FACTOR 4
-#define MAX_SPEED 23
+#define SCARY_FACTOR 2
+#define MAX_SPEED 22
 #define PERCEPTION_RADIUS (10 << {pixel_size_power})
 #define EDGE_PUSH (1 << ({pixel_size_power}))
 #define LEFT_BOUND MARGIN

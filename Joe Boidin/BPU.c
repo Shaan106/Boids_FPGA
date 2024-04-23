@@ -6,24 +6,24 @@
 #define PIXEL_WIDTH 1024
 #define PIXEL_SIZE 1048576
 #define PIXEL_SIZE_SHIFT 20
-#define MARGIN 33554432
+#define MARGIN 67108864
 #define WIDTH 640
 #define HEIGHT 480
-#define NUM_BOIDS 128
+#define NUM_BOIDS 256
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
 #define INITIAL_SPEED 10485760
 #define COHESION_FACTOR 6
 #define SEPARATION_FACTOR 4
 #define ALIGNMENT_FACTOR 2
-#define SCARY_FACTOR 4
+#define SCARY_FACTOR 2
 #define MAX_SPEED 22
 #define PERCEPTION_RADIUS 10485760
 #define EDGE_PUSH 1048576
-#define LEFT_BOUND 33554432
-#define RIGHT_BOUND 637534208
-#define TOP_BOUND 33554432
-#define BOTTOM_BOUND 469762048
+#define LEFT_BOUND 67108864
+#define RIGHT_BOUND 603979776
+#define TOP_BOUND 67108864
+#define BOTTOM_BOUND 436207616
 #define SPAWN_VEL 20971521
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
@@ -100,22 +100,31 @@ void match_velocity(int boid_index, int neighbors[]) {
 int mouse_x = 100;
 int mouse_y = 100;
 void scary(int boid_index) {
-    return;
     int move_x = 0;
     int move_y = 0;
     // load mouse position
-//    SDL_GetMouseState(&mouse_x, &mouse_y);
+    SDL_GetMouseState(&mouse_x, &mouse_y);
+    mouse_x = 0;
+    mouse_y = 0;
+    int m_x = mouse_x << PIXEL_SIZE_SHIFT;
+    int m_y = mouse_y << PIXEL_SIZE_SHIFT;
 
-    int dis_x = abs(xPos[boid_index] - mouse_x * PIXEL_SIZE);
-    int dis_y = abs(yPos[boid_index] - mouse_y * PIXEL_SIZE);
+    int dis_x = abs(xPos[boid_index] - m_x);
+    int dis_y = abs(yPos[boid_index] - m_y);
     int d = dis_x + dis_y;
 
-    if (d < (PERCEPTION_RADIUS << 2)) {
-        move_x = PERCEPTION_RADIUS - dis_y;
-        move_y = PERCEPTION_RADIUS - dis_x;
+    if (d < (PERCEPTION_RADIUS << 3)) {
+        move_x = dis_x;
+        move_y = dis_y;
+        if (xPos[boid_index] > m_x) {
+            move_x = -move_x;
+        }
+        if (yPos[boid_index] > m_y) {
+            move_y = -move_y;
+        }
     }
-    active_x += move_x << SCARY_FACTOR;  // make shifts
-    active_y += move_y << SCARY_FACTOR;
+    active_x -= move_x << SCARY_FACTOR;  // make shifts
+    active_y -= move_y << SCARY_FACTOR;
 }
 
 void limit_speed() {

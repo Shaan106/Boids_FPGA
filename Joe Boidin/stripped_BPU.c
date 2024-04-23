@@ -1,25 +1,25 @@
-#define PIXEL_WIDTH 1024
-#define PIXEL_SIZE 1048576
-#define PIXEL_SIZE_SHIFT 20
-#define MARGIN 33554432
-#define WIDTH 640
+#define PIXEL_WIDTH 512
+#define PIXEL_SIZE 2097152
+#define PIXEL_SIZE_SHIFT 21
+#define MARGIN 67108864
+#define WIDTH 512
 #define HEIGHT 480
-#define NUM_BOIDS 128
+#define NUM_BOIDS 256
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
-#define INITIAL_SPEED 10485760
+#define INITIAL_SPEED 20971520
 #define COHESION_FACTOR 6
 #define SEPARATION_FACTOR 4
 #define ALIGNMENT_FACTOR 2
-#define SCARY_FACTOR 4
-#define MAX_SPEED 22
-#define PERCEPTION_RADIUS 10485760
-#define EDGE_PUSH 1048576
-#define LEFT_BOUND 33554432
-#define RIGHT_BOUND 637534208
-#define TOP_BOUND 33554432
-#define BOTTOM_BOUND 469762048
-#define SPAWN_VEL 20971521
+#define SCARY_FACTOR 2
+#define MAX_SPEED 23
+#define PERCEPTION_RADIUS 20971520
+#define EDGE_PUSH 2097152
+#define LEFT_BOUND 67108864
+#define RIGHT_BOUND 1006632960
+#define TOP_BOUND 67108864
+#define BOTTOM_BOUND 939524096
+#define SPAWN_VEL 41943041
 // gcc -o boidin BPU.c -I/opt/homebrew/Cellar/sdl2/2.30.2/include -L/opt/homebrew/Cellar/sdl2/2.30.2/lib -lSDL2
 // ./boidin
 
@@ -111,6 +111,36 @@ void keepWithinBounds(int boid_index) {
     active_y += (avgDY) >> ALIGNMENT_FACTOR;
  }
 
+int mouse_x = 0;
+int mouse_y = 0;
+void scary(int boid_index) {
+    int move_x = 0;
+    int move_y = 0;
+    // load mouse position
+    mouse_x = 1;
+    mouse_y = 1;
+
+    int m_x = mouse_x << PIXEL_SIZE_SHIFT;
+    int m_y = mouse_y << PIXEL_SIZE_SHIFT;
+
+    int dis_x = abs(xPos[boid_index] - m_x);
+    int dis_y = abs(yPos[boid_index] - m_y);
+    int d = dis_x + dis_y;
+
+    if (d < (PERCEPTION_RADIUS << 3)) {
+        move_x = dis_x;
+        move_y = dis_y;
+        if (xPos[boid_index] > m_x) {
+            move_x = -move_x;
+        }
+        if (yPos[boid_index] > m_y) {
+            move_y = -move_y;
+        }
+    }
+    active_x -= move_x << SCARY_FACTOR;  // make shifts
+    active_y -= move_y << SCARY_FACTOR;
+}
+
  void limit_speed() {
     int speed = abs(active_x) + abs(active_y);
     int mag = log_2(speed);
@@ -154,6 +184,7 @@ void keepWithinBounds(int boid_index) {
         fly_towards_center(boid_index, neighbors);
         avoid_others(boid_index, neighbors);
         match_velocity(boid_index, neighbors);
+        scary(boid_index);
         limit_speed();
         keepWithinBounds(boid_index);
         xVel[boid_index] = active_x;
@@ -177,8 +208,8 @@ void keepWithinBounds(int boid_index) {
  }
 
 // talk to BPU drawer - right before $L40
-//        lw      $26, 48($22)   # BPU interface
-//        lw      $28, 52($22)   # BPU interface
+//        lw      $28, 48($22)   # BPU interface
+//        lw      $26, 52($22)   # BPU interface
 //        lw      $27, 56($22)   # BPU interface
 //        # print
 //        add $0, $0, $0
@@ -188,3 +219,7 @@ void keepWithinBounds(int boid_index) {
 // swap screen buffer - after $L53
 //        addi    $25, $0, 1
 //        addi    $25, $0, 0
+
+// scary - at start of scary: (3rd and 4th sw)
+//        sw      $23, 4084($2)
+//        sw      $24, 4080($2)

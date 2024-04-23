@@ -57,13 +57,13 @@ $L5:
         nop
 
 xPos:
-        .space  512
+        .space  1024
 yPos:
-        .space  512
+        .space  1024
 xVel:
-        .space  512
+        .space  1024
 yVel:
-        .space  512
+        .space  1024
 active_x:
         .space  4
 active_y:
@@ -80,7 +80,7 @@ $LBB2 = .
 
 $L10:
         lw      $3,8($fp)
-        li      $2,33554432       # 0x2000000
+        li      $2,67108864       # 0x4000000
         addu    $3,$3,$2
         lui     $2,%hi(xPos)
         lw      $4,8($fp)
@@ -92,7 +92,7 @@ $L10:
         lw      $2,8($fp)
         nop
         sll     $3,$2,3
-        li      $2,33554432       # 0x2000000
+        li      $2,67108864       # 0x4000000
         addu    $3,$3,$2
         lui     $2,%hi(yPos)
         lw      $4,8($fp)
@@ -107,7 +107,7 @@ $L10:
         sll     $3,$3,2
         addiu   $2,$2,%lo(xVel)
         addu    $2,$3,$2
-        li      $3,10485760       # 0xa00000
+        li      $3,20971520       # 0x1400000
         sw      $3,0($2)
         lui     $2,%hi(yVel)
         lw      $3,8($fp)
@@ -115,7 +115,7 @@ $L10:
         sll     $3,$3,2
         addiu   $2,$2,%lo(yVel)
         addu    $2,$3,$2
-        li      $3,10485760       # 0xa00000
+        li      $3,20971520       # 0x1400000
         sw      $3,0($2)
         lw      $2,8($fp)
         nop
@@ -124,7 +124,7 @@ $L10:
 $L9:
         lw      $2,8($fp)
         nop
-        slt     $2,$2,128
+        slt     $2,$2,256
         bne     $2,$0,$L10
         nop
 
@@ -150,14 +150,14 @@ keepWithinBounds:
         addiu   $2,$2,%lo(xPos)
         addu    $2,$3,$2
         lw      $3,0($2)
-        li      $2,33554432       # 0x2000000
+        li      $2,67108864       # 0x4000000
         slt     $2,$3,$2
         beq     $2,$0,$L12
         nop
 
         lui     $2,%hi(active_x)
         lw      $3,%lo(active_x)($2)
-        li      $2,1048576              # 0x100000
+        li      $2,2097152              # 0x200000
         addu    $3,$3,$2
         lui     $2,%hi(active_x)
         sw      $3,%lo(active_x)($2)
@@ -172,7 +172,7 @@ $L12:
         addiu   $2,$2,%lo(xPos)
         addu    $2,$3,$2
         lw      $3,0($2)
-        li      $2,637534208                        # 0x26000000
+        li      $2,1006632960                 # 0x3c000000
         ori     $2,$2,0x1
         slt     $2,$3,$2
         bne     $2,$0,$L13
@@ -180,7 +180,7 @@ $L12:
 
         lui     $2,%hi(active_x)
         lw      $3,%lo(active_x)($2)
-        li      $2,-1048576       # 0xfffffffffff00000
+        li      $2,-2097152       # 0xffffffffffe00000
         addu    $3,$3,$2
         lui     $2,%hi(active_x)
         sw      $3,%lo(active_x)($2)
@@ -192,14 +192,14 @@ $L13:
         addiu   $2,$2,%lo(yPos)
         addu    $2,$3,$2
         lw      $3,0($2)
-        li      $2,33554432       # 0x2000000
+        li      $2,67108864       # 0x4000000
         slt     $2,$3,$2
         beq     $2,$0,$L14
         nop
 
         lui     $2,%hi(active_y)
         lw      $3,%lo(active_y)($2)
-        li      $2,1048576              # 0x100000
+        li      $2,2097152              # 0x200000
         addu    $3,$3,$2
         lui     $2,%hi(active_y)
         sw      $3,%lo(active_y)($2)
@@ -214,7 +214,7 @@ $L14:
         addiu   $2,$2,%lo(yPos)
         addu    $2,$3,$2
         lw      $3,0($2)
-        li      $2,469762048                        # 0x1c000000
+        li      $2,939524096                        # 0x38000000
         ori     $2,$2,0x1
         slt     $2,$3,$2
         bne     $2,$0,$L16
@@ -222,7 +222,7 @@ $L14:
 
         lui     $2,%hi(active_y)
         lw      $3,%lo(active_y)($2)
-        li      $2,-1048576       # 0xfffffffffff00000
+        li      $2,-2097152       # 0xffffffffffe00000
         addu    $3,$3,$2
         lui     $2,%hi(active_y)
         sw      $3,%lo(active_y)($2)
@@ -428,7 +428,7 @@ $LBB6 = .
         nop
 
         move    $3,$2
-        li      $2,10485760       # 0xa00000
+        li      $2,20971520       # 0x1400000
         slt     $2,$3,$2
         beq     $2,$0,$L26
         nop
@@ -602,7 +602,143 @@ $LBE7 = .
         jr      $31
         nop
 
+mouse_x:
+        .space  4
+mouse_y:
+        .space  4
 $LFB8 = .
+scary:
+        addiu   $sp,$sp,-48
+        sw      $fp,44($sp)
+        move    $fp,$sp
+        sw      $4,48($fp)
+        sw      $0,8($fp)
+        sw      $0,12($fp)
+        lui     $2,%hi(mouse_x)
+        li      $3,1                        # 0x1
+        sw      $3,%lo(mouse_x)($2)
+        lui     $2,%hi(mouse_y)
+        li      $3,1                        # 0x1
+        sw      $3,%lo(mouse_y)($2)
+        lui     $2,%hi(mouse_x)
+        lw      $2,%lo(mouse_x)($2)
+        nop
+        sll     $2,$2,21
+        sw      $2,16($fp)
+        lui     $2,%hi(mouse_y)
+        lw      $2,%lo(mouse_y)($2)
+        nop
+        sll     $2,$2,21
+        sw      $2,20($fp)
+        lui     $2,%hi(xPos)
+        lw      $3,48($fp)
+        nop
+        sll     $3,$3,2
+        addiu   $2,$2,%lo(xPos)
+        addu    $2,$3,$2
+        lw      $3,0($2)
+        lw      $2,16($fp)
+        nop
+        subu    $2,$3,$2
+        bgez    $2,$L32
+        nop
+
+        subu    $2,$0,$2
+$L32:
+        sw      $2,24($fp)
+        lui     $2,%hi(yPos)
+        lw      $3,48($fp)
+        nop
+        sll     $3,$3,2
+        addiu   $2,$2,%lo(yPos)
+        addu    $2,$3,$2
+        lw      $3,0($2)
+        lw      $2,20($fp)
+        nop
+        subu    $2,$3,$2
+        bgez    $2,$L33
+        nop
+
+        subu    $2,$0,$2
+$L33:
+        sw      $2,28($fp)
+        lw      $3,24($fp)
+        lw      $2,28($fp)
+        nop
+        addu    $2,$3,$2
+        sw      $2,32($fp)
+        lw      $3,32($fp)
+        li      $2,167772160                        # 0xa000000
+        slt     $2,$3,$2
+        beq     $2,$0,$L34
+        nop
+
+        lw      $2,24($fp)
+        nop
+        sw      $2,8($fp)
+        lw      $2,28($fp)
+        nop
+        sw      $2,12($fp)
+        lui     $2,%hi(xPos)
+        lw      $3,48($fp)
+        nop
+        sll     $3,$3,2
+        addiu   $2,$2,%lo(xPos)
+        addu    $2,$3,$2
+        lw      $2,0($2)
+        lw      $3,16($fp)
+        nop
+        slt     $2,$3,$2
+        beq     $2,$0,$L35
+        nop
+
+        lw      $2,8($fp)
+        nop
+        subu    $2,$0,$2
+        sw      $2,8($fp)
+$L35:
+        lui     $2,%hi(yPos)
+        lw      $3,48($fp)
+        nop
+        sll     $3,$3,2
+        addiu   $2,$2,%lo(yPos)
+        addu    $2,$3,$2
+        lw      $2,0($2)
+        lw      $3,20($fp)
+        nop
+        slt     $2,$3,$2
+        beq     $2,$0,$L34
+        nop
+
+        lw      $2,12($fp)
+        nop
+        subu    $2,$0,$2
+        sw      $2,12($fp)
+$L34:
+        lui     $2,%hi(active_x)
+        lw      $3,%lo(active_x)($2)
+        lw      $2,8($fp)
+        nop
+        sll     $2,$2,2
+        subu    $3,$3,$2
+        lui     $2,%hi(active_x)
+        sw      $3,%lo(active_x)($2)
+        lui     $2,%hi(active_y)
+        lw      $3,%lo(active_y)($2)
+        lw      $2,12($fp)
+        nop
+        sll     $2,$2,2
+        subu    $3,$3,$2
+        lui     $2,%hi(active_y)
+        sw      $3,%lo(active_y)($2)
+        nop
+        move    $sp,$fp
+        lw      $fp,44($sp)
+        addiu   $sp,$sp,48
+        jr      $31
+        nop
+
+$LFB9 = .
 limit_speed:
         addiu   $sp,$sp,-48
         sw      $31,44($sp)
@@ -611,20 +747,20 @@ limit_speed:
         lui     $2,%hi(active_x)
         lw      $2,%lo(active_x)($2)
         nop
-        bgez    $2,$L32
+        bgez    $2,$L37
         nop
 
         subu    $2,$0,$2
-$L32:
+$L37:
         move    $3,$2
         lui     $2,%hi(active_y)
         lw      $2,%lo(active_y)($2)
         nop
-        bgez    $2,$L33
+        bgez    $2,$L38
         nop
 
         subu    $2,$0,$2
-$L33:
+$L38:
         addu    $2,$3,$2
         sw      $2,28($fp)
         lw      $4,28($fp)
@@ -634,19 +770,19 @@ $L33:
         sw      $2,32($fp)
         lw      $2,32($fp)
         nop
-        addiu   $2,$2,-22
+        addiu   $2,$2,-23
         sw      $2,36($fp)
         lw      $2,36($fp)
         nop
-        bltz    $2,$L38
+        bltz    $2,$L43
         nop
 
 $LBB9 = .
         sw      $0,24($fp)
-        b       $L36
+        b       $L41
         nop
 
-$L37:
+$L42:
         lui     $2,%hi(active_x)
         lw      $2,%lo(active_x)($2)
         nop
@@ -663,21 +799,21 @@ $L37:
         nop
         addiu   $2,$2,1
         sw      $2,24($fp)
-$L36:
+$L41:
         lw      $3,24($fp)
         lw      $2,36($fp)
         nop
         slt     $2,$3,$2
-        bne     $2,$0,$L37
+        bne     $2,$0,$L42
         nop
 
-        b       $L31
+        b       $L36
         nop
 
-$L38:
+$L43:
 $LBE9 = .
         nop
-$L31:
+$L36:
         move    $sp,$fp
         lw      $31,44($sp)
         lw      $fp,40($sp)
@@ -685,7 +821,7 @@ $L31:
         jr      $31
         nop
 
-$LFB9 = .
+$LFB10 = .
 updateBoids:
         addiu   $sp,$sp,-96
         sw      $31,92($sp)
@@ -695,17 +831,17 @@ updateBoids:
         sw      $0,24($fp)
 $LBB10 = .
         sw      $0,28($fp)
-        b       $L40
+        b       $L45
         nop
 
-$L50:
+$L55:
 $LBB11 = .
 $LBB12 = .
         sw      $0,32($fp)
-        b       $L41
+        b       $L46
         nop
 
-$L42:
+$L47:
         lw      $2,32($fp)
         nop
         sll     $2,$2,2
@@ -717,30 +853,30 @@ $L42:
         nop
         addiu   $2,$2,1
         sw      $2,32($fp)
-$L41:
+$L46:
         lw      $2,32($fp)
         nop
         slt     $2,$2,4
-        bne     $2,$0,$L42
+        bne     $2,$0,$L47
         nop
 
 $LBE12 = .
 $LBB13 = .
         sw      $0,36($fp)
-        b       $L43
+        b       $L48
         nop
 
-$L49:
+$L54:
 $LBB14 = .
         lw      $2,36($fp)
         nop
         sw      $2,40($fp)
 $LBB15 = .
         sw      $0,44($fp)
-        b       $L44
+        b       $L49
         nop
 
-$L48:
+$L53:
         lw      $2,44($fp)
         nop
         sll     $2,$2,2
@@ -748,7 +884,7 @@ $L48:
         addu    $2,$3,$2
         lw      $3,40($2)
         li      $2,-1                 # 0xffffffffffffffff
-        bne     $3,$2,$L45
+        bne     $3,$2,$L50
         nop
 
         lw      $2,44($fp)
@@ -763,10 +899,10 @@ $L48:
         nop
         addiu   $2,$2,1
         sw      $2,24($fp)
-        b       $L46
+        b       $L51
         nop
 
-$L45:
+$L50:
         lw      $5,40($fp)
         lw      $4,28($fp)
         jal     distance
@@ -786,7 +922,7 @@ $L45:
         nop
 
         slt     $2,$16,$2
-        beq     $2,$0,$L47
+        beq     $2,$0,$L52
         nop
 
 $LBB16 = .
@@ -809,31 +945,31 @@ $LBB16 = .
         lw      $2,60($fp)
         nop
         sw      $2,40($fp)
-$L47:
+$L52:
 $LBE16 = .
         lw      $2,44($fp)
         nop
         addiu   $2,$2,1
         sw      $2,44($fp)
-$L44:
+$L49:
         lw      $2,44($fp)
         nop
         slt     $2,$2,4
-        bne     $2,$0,$L48
+        bne     $2,$0,$L53
         nop
 
-$L46:
+$L51:
 $LBE15 = .
 $LBE14 = .
         lw      $2,36($fp)
         nop
         addiu   $2,$2,1
         sw      $2,36($fp)
-$L43:
+$L48:
         lw      $2,36($fp)
         nop
-        slt     $2,$2,128
-        bne     $2,$0,$L49
+        slt     $2,$2,256
+        bne     $2,$0,$L54
         nop
 
 $LBE13 = .
@@ -871,6 +1007,10 @@ $LBE13 = .
         move    $5,$2
         lw      $4,28($fp)
         jal     match_velocity
+        nop
+
+        lw      $4,28($fp)
+        jal     scary
         nop
 
         jal     limit_speed
@@ -952,7 +1092,7 @@ $LBE13 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,20
+        sra     $2,$2,21
         sw      $2,48($fp)
         lui     $2,%hi(yPos)
         lw      $3,28($fp)
@@ -962,7 +1102,7 @@ $LBE13 = .
         addu    $2,$3,$2
         lw      $2,0($2)
         nop
-        sra     $2,$2,20
+        sra     $2,$2,21
         sw      $2,52($fp)
         lw      $2,28($fp)
         nop
@@ -972,11 +1112,11 @@ $LBE11 = .
         nop
         addiu   $2,$2,1
         sw      $2,28($fp)
-$L40:
+$L45:
         lw      $2,28($fp)
         nop
-        slt     $2,$2,128
-        bne     $2,$0,$L50
+        slt     $2,$2,256
+        bne     $2,$0,$L55
         nop
 
 $LBE10 = .
@@ -990,7 +1130,7 @@ $LBE10 = .
         jr      $31
         nop
 
-$LFB10 = .
+$LFB11 = .
 main:
         addiu   $sp,$sp,-40
         sw      $31,36($sp)
@@ -1001,17 +1141,17 @@ main:
 
         li      $2,1                        # 0x1
         sw      $2,24($fp)
-        b       $L52
+        b       $L57
         nop
 
-$L53:
+$L58:
         jal     updateBoids
         nop
 
-$L52:
+$L57:
         lw      $2,24($fp)
         nop
-        bne     $2,$0,$L53
+        bne     $2,$0,$L58
         nop
 
         move    $2,$0

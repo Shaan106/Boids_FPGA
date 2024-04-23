@@ -53,6 +53,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 	
 	assign clock =  counter[0]; //downclock
 
+//    assign clock = CLK100MHZ;
 	 
 	wire rwe, mwe;
 	wire[4:0] rd, rs1, rs2;
@@ -85,7 +86,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		.addr(instAddr[11:0]), 
 		.dataOut(instData));
 	
-	wire[31:0] reg_26_data, reg_27_data, reg_28_data, reg_29_data;
+	wire[31:0] reg_25_data, reg_26_data, reg_27_data, reg_28_data, reg_29_data;
 
 	// Register File
 	regfile RegisterFile(.clock(clock), 
@@ -93,7 +94,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
-		.reg_out26(reg_26_data), .reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
+		.reg_out25(reg_25_data), .reg_out26(reg_26_data), .reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
 
 						
 	// Processor Memory (RAM)
@@ -298,7 +299,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
     //choosing display method.
     
-    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refresh_slow_wire; 
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : reg_25_data; 
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
     wire special_switch_reset_pause = ~SW[15];

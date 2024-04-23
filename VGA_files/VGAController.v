@@ -95,7 +95,9 @@ module VGAController(
 
 	//is Boid in Pixel depends on the x and y
 	wire[PIXEL_ADDRESS_WIDTH-1:0] currentPixelAddress;  	 // Image address for the image data
-	assign currentPixelAddress = x/2 + 320*y;				 // Address calculated coordinate
+	assign currentPixelAddress = x/2 + 320*y;	// for scale up factor 2
+//    assign currentPixelAddress = x + 640*y;
+
 
 	// which address to read data from to display
 	reg[PIXEL_ADDRESS_WIDTH-1:0] boid_read_address_reg;
@@ -118,7 +120,7 @@ module VGAController(
 //	reg[9:0] scary_boid_width = 10'd10;
 //	reg[8:0] scary_boid_height = 9'd10;
 	
-	assign is_draw_scary = (x > scary_boid_x && x < scary_boid_x + 10 && y > scary_boid_y  && y < scary_boid_y);
+	assign is_draw_scary = (x > scary_boid_x && x < scary_boid_x + 10 && y > scary_boid_y && y < scary_boid_y + 10);
 
 	// Quickly assign the output colors to their channels using concatenation
 //	assign {VGA_R, VGA_G, VGA_B} = currentPixel_colour_info;

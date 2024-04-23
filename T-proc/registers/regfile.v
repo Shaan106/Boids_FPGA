@@ -4,7 +4,7 @@ module regfile (
 	ctrl_readRegA, ctrl_readRegB, data_writeReg,
 	data_readRegA, data_readRegB,
 
-	reg_out26, reg_out27, reg_out28, reg_out29
+	reg_out25, reg_out26, reg_out27, reg_out28, reg_out29
 );
 
 	//LOOK AT LOGISIM
@@ -15,7 +15,7 @@ module regfile (
 
 	output [31:0] data_readRegA, data_readRegB;
 
-	output[31:0] reg_out26, reg_out27, reg_out28, reg_out29;
+	output[31:0] reg_out25, reg_out26, reg_out27, reg_out28, reg_out29;
 
 	wire [31:0] decoded_writeReg, decoded_readRegA, decoded_readRegB;
 
@@ -39,7 +39,7 @@ module regfile (
 	// reg 1 - 25
    	genvar i;
    	generate
-        for (i = 1; i <= 25; i = i + 1) begin: loop1
+        for (i = 1; i <= 24; i = i + 1) begin: loop1
 
             wire[31:0] reg_out;
 			//enables
@@ -58,7 +58,15 @@ module regfile (
 
    	endgenerate
 
-	//reg 26 - 29
+	//reg 25 - 29
+	
+	wire[31:0] reg_out25;
+	wire enableShakespeareMode25;
+	and andgate25(enableShakespeareMode25, decoded_writeReg[25], ctrl_writeEnable);
+	register one_whole_register25(.q(reg_out25), .d(data_writeReg), .clk(clock), .en(enableShakespeareMode25), .clr(ctrl_reset));
+	//tristate of outputs
+	tristate one_whole_register_output_number125(.in(reg_out25), .en(decoded_readRegA[25]), .out(data_readRegA));
+	tristate one_whole_register_output_number225(.in(reg_out25), .en(decoded_readRegB[25]), .out(data_readRegB));
 
 	wire[31:0] reg_out26;
 	wire enableShakespeareMode26;

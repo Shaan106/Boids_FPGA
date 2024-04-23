@@ -4,7 +4,7 @@
 #define MARGIN 33554432
 #define WIDTH 640
 #define HEIGHT 480
-#define NUM_BOIDS 256
+#define NUM_BOIDS 128
 #define NUM_NEIGHBORS 4
 #define NEIGBHBOR_SHIFT 2
 #define INITIAL_SPEED 10485760

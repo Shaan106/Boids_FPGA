@@ -86,7 +86,26 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		.addr(instAddr[11:0]), 
 		.dataOut(instData));
 	
+	wire[31:0] reg_23_data, reg_24_data;
 	wire[31:0] reg_25_data, reg_26_data, reg_27_data, reg_28_data, reg_29_data;
+	
+//	CPU_writing_scary_x_r23 = BTNR | BTNL;
+//   assign CPU_writing_scary_y_r24 = BTNU | BTND;
+   
+   wire reg_23_input_wen, reg_24_input_wen; //for scary boid x and y
+   
+   assign reg_23_input_wen = CPU_writing_scary_x_r23;
+   assign reg_24_input_wen = CPU_writing_scary_y_r24;
+   
+   wire[31:0] reg_23_input_data, reg_24_input_data;
+   
+   assign reg_23_input_data[31:10] = 22'b0;
+   assign reg_23_input_data[9:0] = scary_boid_x;
+   
+   assign reg_24_input_data[31:9] = 23'b0;
+   assign reg_24_input_data[8:0] = scary_boid_y;
+   
+   assign LED[15:0] = reg_23_data[15:0];
 
 	// Register File
 	regfile RegisterFile(.clock(clock), 
@@ -94,7 +113,9 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 		.ctrl_writeReg(rd),
 		.ctrl_readRegA(rs1), .ctrl_readRegB(rs2), 
 		.data_writeReg(rData), .data_readRegA(regA), .data_readRegB(regB),
-		.reg_out25(reg_25_data), .reg_out26(reg_26_data), .reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data));
+		.reg_out23(reg_23_data), .reg_out24(reg_24_data),
+		.reg_out25(reg_25_data), .reg_out26(reg_26_data), .reg_out27(reg_27_data), .reg_out28(reg_28_data), .reg_out29(reg_29_data),
+		.reg_in23(reg_23_input_data), .reg_in24(reg_24_input_data), .reg_in23_wen(reg_23_input_wen), .reg_in24_wen(reg_24_input_wen));
 
 						
 	// Processor Memory (RAM)
@@ -133,7 +154,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 //    assign LED[10:0] = boid_address_out_testing[10:0];
 //    assign LED[9:0] = x_loc_out_testing[9:0];    
     
-    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
+//    assign LED[15:11] = which_boid_to_write_to_one_hot[4:0];
      
 //    assign LED[15:0] = reg_28_data[15:0];
  
@@ -300,7 +321,10 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
 
     //choosing display method.
     
-    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : reg_25_data; 
+    wire refreshSignalFromCPU;
+    assign refreshSignalFromCPU = reg_25_data & clock;
+    
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refreshSignalFromCPU; 
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
     wire special_switch_reset_pause = ~SW[15];
@@ -379,8 +403,15 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
    reg[8:0] scary_boid_y = 9'b100;
    
    
-   assign LED[9:0] = scary_boid_x;
+//   assign LED[9:0] = scary_boid_x;
    
+//   wire update
+
+   wire CPU_writing_scary_x_r23;
+   wire CPU_writing_scary_y_r24;
+   
+   assign CPU_writing_scary_x_r23 = BTNR | BTNL;
+   assign CPU_writing_scary_y_r24 = BTNU | BTND;
    
    always @(posedge screenEnd_out) begin
         
@@ -390,7 +421,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
         scary_boid_y = BTND ? scary_boid_y + 1 : scary_boid_y;
         scary_boid_y = BTNU ? scary_boid_y - 1 : scary_boid_y;
         
-   end
+   end 
    
    
    

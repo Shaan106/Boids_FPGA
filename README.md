@@ -41,8 +41,8 @@ We then wrote a python script, [*more_compiles.py*](BPU/more_compiles.py) that t
 - supporting lui and li with addi instructinos
 - implementing slt and beq from blt and bne
 ### MIPS Simulator
-
-
+![MIPS](images/simulation.png)
+The MIPS simulator was a simple MIPS interpreter that I built in Python to debug the MIPS assembly code. The interpreter was built with a debug mode that would permit running a fixed numebr of lines or up to a breakpoint. This was useful for debugging the MIPS assembly code and ensuring that the code was running as expected. It helped catch numerous errors in both the compiler and final processor implementation.
 ### Hardware Layout
 Our initial plan was to create the boids algorithm using parallel computation, and so our hardware is laid out in a way to support GPU-like computation of the boids, where each boid has its own "BPU" - Boid Processing Unit. In order to comply with the final project's requirements we had to retrofit our 5-stage pipelined CPU into our computational scheme, sacrificing the computational speed we would get from the BPU implementation and in return having to use less memory and massively sprawling hardware structures that could have reached the limits of our FPGA's capabilities.
 
@@ -62,15 +62,25 @@ Initially our plan was to build a
 ### VGA
 
 ### Iverilog
+Our final testing location was the Iverilog simulator. This allowed us to test our MIPS processor and the BPU interface. We were able to run the MIPS processor and the BPU interface in the Iverilog simulator and verify that the processor was running as expected. This was a crucial step in the development of our project as it allowed us to verify that the processor was running as expected before moving to the FPGA.
 
+Iverilog was primarily useful for the supported print statements and avoiding the ~5 minute compile time of the FPGA. This allowed us to quickly iterate on the MIPS processor and the BPU interface.
 ## 
 
 
 ## Future Work
-What improvements you would make / new features you would add if you had more time
 
 ### Compiler Optimization
+| Optimization Level | Cycle's til 1st Write| Speedup |
+|---| --- | --- |
+| O0 | 52,165 | 1 |
+| O1 | 9,103 | 5x |
+| O2 | INFINITE LOOP | n/a |
+| O3 | ~6500 | 9x |
 
+Near the end of the project, we started exploring additional means to maek the project faster. We found that the MIPS compiler had optimization flags that could be used to speed up the code. MIPS O1 had a massive speedup over O0 by using all registers and removing redundant instructions. I believe we had an interpreter issue with O2, but O3 was able to speed up the code even further. O3 does some crazy inling and redundancy removal that made the code run 9x faster than O0. This was a massive speedup and would have been a great addition to the project.
+
+The reason this wasn't an easy addition was because the optimization made it harder to find the values needed to interface with the BPU and the ≥O1 used all registers making it difficult to save valeus.
 ### Parallel Hardware Implementation
 - mealy FSM 
 

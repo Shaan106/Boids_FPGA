@@ -1,27 +1,6 @@
 `timescale 1ns / 1ps
 /**
- * 
- * READ THIS DESCRIPTION:
- *
- * This is the Wrapper module that will serve as the header file combining your processor, 
- * RegFile and Memory elements together.
- *
- * This file will be used to generate the bitstream to upload to the FPGA.
- * We have provided a sibling file, Wrapper_tb.v so that you can test your processor's functionality.
- * 
- * We will be using our own separate Wrapper_tb.v to test your code. You are allowed to make changes to the Wrapper files 
- * for your own individual testing, but we expect your final processor.v and memory modules to work with the 
- * provided Wrapper interface.
- * 
- * Refer to Lab 5 documents for detailed instructions on how to interface 
- * with the memory elements. Each imem and dmem modules will take 12-bit 
- * addresses and will allow for storing of 32-bit values at each address. 
- * Each memory module should receive a single clock. At which edges, is 
- * purely a design choice (and thereby up to you). 
- * 
- * You must change line 36 to add the memory file of the test you created using the assembler
- * For example, you would add sample inside of the quotes on line 38 after assembling sample.s
- *
+  * Shaan & Tate Evil Incorporated.
  **/
 
 module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vSync, VGA_R, VGA_G, VGA_B);
@@ -63,7 +42,7 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
  
 
 	// ADD YOUR MEMORY FILE HERE
-	localparam INSTR_FILE = "../../BPU/main"; 
+	localparam INSTR_FILE = "../../BPU/boids_MVP_02"; 
 	
 	// Main Processing Unit
 	processor CPU(.clock(clock), .reset(reset), 
@@ -324,7 +303,10 @@ module Wrapper (CLK100MHZ, CPU_RESETN, LED, SW, BTNU, BTNL, BTND,BTNR, hSync, vS
     wire refreshSignalFromCPU;
     assign refreshSignalFromCPU = reg_25_data & clock;
     
-    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refreshSignalFromCPU; 
+    wire refreshSignalFromCPU2;
+    assign refreshSignalFromCPU2 = reg_25_data;
+    
+    wire RAM_refresh_pulse_1 = SW[1] ? screenEnd_out : refreshSignalFromCPU2; 
     wire RAM_refresh_pulse = SW[0] ?  1'b0 : RAM_refresh_pulse_1; //choice 1
     
     wire special_switch_reset_pause = ~SW[15];

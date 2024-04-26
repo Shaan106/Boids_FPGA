@@ -42,7 +42,7 @@ def main(): # simulate MIPS
             boid_x = registers[28]
             boid_y = registers[26]
             print(f"Boid {boid_index} at ({boid_x}, {boid_y})", executed)
-        debug(pc)
+        # debug(pc)
         line = lines[pc].strip().split('#', 1)[0].strip()
         if line.endswith(':') or "nop" in line:
             functions[line[:-1]] = pc

@@ -2,7 +2,7 @@
 
 file_path = "compiled.s"
 file = open(file_path, "r")
-temp_reg = "$20"
+temp_reg = "$28"
 print(f"Temp register: {temp_reg}. Make sure it is not used in the code.")
 lines = file.readlines()
 
@@ -19,7 +19,7 @@ for i in range(len(lines)):
 
 
 # handle .space
-total_stack_space = 4096 * 2
+total_stack_space = 4096
 sp = total_stack_space  # overflows bad so we need to allocate some space for the stack
 lines.insert(0, f"addi    $sp,$sp,{total_stack_space}\n")
 for i, line in enumerate(lines):  # for each one allocate some space on the stack then replace all calls to it with the address
@@ -33,7 +33,7 @@ for i, line in enumerate(lines):  # for each one allocate some space on the stac
         print(name, space, sp)
         lines[i] = ""
         lines[i-1] = ""
-        for j in range(i+1, len(lines)):
+        for j in range(len(lines)):
             if name in lines[j]:
                 lines[j] = lines[j].replace(name, f"{sp}")
 # # swap names to register numbers
@@ -60,7 +60,7 @@ mips_registers = {
     "$s3": 19,
     "$s4": 20,  # check not used: this is temp_reg for
     "$s5": 21,
-    "$s6": 22,  # check not used: this is frame pointer
+    "$s6": 22,  # check not used: this is frame pointer  # TODO: fix registers
     "$s7": 23,  # refresh pulse
     "$t8": 24,  # mouse x
     "$t9": 25,  # mouse y
@@ -68,7 +68,7 @@ mips_registers = {
     "$k1": 27,  # BPU Interface: boid_index
     "$gp": 28,  # BPU Interface: x
     "$sp": 29,
-    "$fp": 22,  # check not used: this is used for exceptions
+    "$fp": 30,  # check not used: this is used for exceptions
     "$ra": 31,
 }
 for key in mips_registers:

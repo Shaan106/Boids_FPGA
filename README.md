@@ -1,6 +1,18 @@
 # Final Project - Boid Hardware
 > Tate Staples and Shaan Yadav
 
+## Table of Contents
+- [Overview](#overview)
+- [Demo](#demo)
+- [Software](#software)
+    - [Boid Algorithm](#boid-algorithm)
+    - [Pygame Boids](#pygame-boids)
+    - [C Boids](#c-boids)
+    - [Compiling](#compiling)
+    - [MIPS Simulator](#mips-simulator)
+- [Hardware](#hardware)
+    - [BPU Interface](#bpu-interface)
+    - [Canvas RAM](#canvas-ram)
 
 ## Overview
 The goal of this project was to build an efficient low level implementation of the [Boid Algorithm](https://en.wikipedia.org/wiki/Boids). The Boid Algorithm is a simple algorithm that simulates the flocking behavior of birds. The algorithm is based on three simple rules:
@@ -8,12 +20,21 @@ The goal of this project was to build an efficient low level implementation of t
 2. **Alignment**: Boids will try to align their velocities with other boids.
 3. **Cohesion**: Boids will try to move towards the center of mass of other boids.
 
-## Boid Alogrithm
-The algorithm is simple to implement and can be run in parallel, making it a good candidate for hardware acceleration. We then created a asynchronous double buffer graphics processor to display the boids on a VGA monitor.
+## Demo
+
+Here is a link to a brief demo of our project: [demo](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
+
+
+[![IMAGE ALT TEXT HERE](images/demo_link.png)](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
 
 ![B](images/boids.png)
 ## Software
 This project was very software heavy, as our project was implementing an algorithm. Due to the complexity of the algorithm, we decided to iterate through multiple implementations to find the most efficient one. 
+
+### Boid Algorithm
+
+The algorithm is simple to implement and can be run in parallel, making it a good candidate for hardware acceleration. We then created a asynchronous double buffer graphics processor to display the boids on a VGA monitor.
+
 ### Pygame Boids
 ![Python](images/pygame_boids2.png)
 
@@ -46,7 +67,7 @@ We then wrote a python script, [*more_compiles.py*](BPU/more_compiles.py) that t
 ![MIPS](images/simulation.png)
 The MIPS simulator was a simple MIPS interpreter that I built in Python to debug the MIPS assembly code. The interpreter was built with a debug mode that would permit running a fixed numebr of lines or up to a breakpoint. This was useful for debugging the MIPS assembly code and ensuring that the code was running as expected. It helped catch numerous errors in both the compiler and final processor implementation.
 
-### Hardware Layout
+## Hardware
 Our initial plan was to create the boids algorithm using parallel computation, and so our hardware is laid out in a way to support GPU-like computation of the boids, where each boid has its own "BPU" - Boid Processing Unit. The layout allows for parallel computation and updates of the boids, with each BPU being responsible for a single boid.
 
 In order to comply with the final project's requirements we had to retrofit our 5-stage pipelined CPU into our computational scheme, moving from computing from parallel threads to computing sequentially within our CPU. This meant sacrificing the computational speed we would get from the BPU implementation and in return having to use less memory and significantly less extensive hardware structures that could have reached the limits of our FPGA's capabilities.
@@ -118,6 +139,17 @@ Our final testing location was the Iverilog simulator. This allowed us to test o
 
 Iverilog was primarily useful for the supported print statements and avoiding the ~5 minute compile time of the FPGA. This allowed us to quickly iterate on the MIPS processor and the BPU interface.
 
+## CPU
+The CPU was a 5-stage pipelined processor that was built from scratch. It has optimizations such as bypassing, a wallace tree 1-cycle multiplier and appropriately handles hazards and flushing. Its instruction set is specified below. All of this was built from scratch using only structural verilog (no use of genvars or high level verilog).
+
+The overall design of the processor can be seen below.
+
+![Image](images/CPU_full.png)
+![Image](images/instruction_set.png)
+
+![Image](images/CPU_left.png)
+![Image](images/CPU_right.png)
+
 
 ## Future Work
 
@@ -142,18 +174,6 @@ The state space of the FSM would have included all possible x and y locations of
 
 ![Image](images/BPU_FSM.png)
 
-## Media
-
-This is a placeholder video (highly recommended), the demo video will be added soon.
-
-[![IMAGE ALT TEXT HERE](images/BPU.png)](https://www.youtube.com/embed/S7uzxjlEncg?si=QZIsieHNVYNisdWj)
-
-<iframe width="100%" height="auto" src="https://www.youtube.com/embed/S7uzxjlEncg?si=QZIsieHNVYNisdWj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-
-Demo images:
-
-
-
 ## Bloopers (Challenges)
 - Wasted 3/4 hours not realizing the provided processor testbench only supported 512 lines of execution
 - Waster 5/6 hours because we didn't read li documentation and didn't realize that the li instruction only supported 16 bit immediate values (this created a disparity between simulated MIPS and hardware MIPS)
@@ -161,4 +181,16 @@ Demo images:
 - MIPS default \$sp is \$30. We had some wacky issues with overflows because exceptions would move the stack reference (not good)
 - Turns out trying to find one pixel on a VGA screen is very hard, spent a lot of hours thinking our system was broken when we simply could not see
 - The VGA screens work very strangely, and actually shut off if you provide them a value all the time. You actually need to have an "active" signal that tells you when to update the screen (ie when there is a new frame), if you provide any information whatsoever at any other time the screen will fail
-- Really quite cool way to take the average of two vectors represented in binary is by using the fact you can take the average of two numbers as follows: ` (x&y) + ((x^y)>>1)`
+- Really quite cool way to take the average of two vectors represented in binary is by using the fact you can take the average of two numbers as follows: ` (x&y) + ((x^y)>>1)`, and then boids can be all averaged using a "bracket" style process
+- CPU design took a lot of time, a lot of debugging, and a significant lack of sleep
+
+Thanks for reading!
+
+## Media
+
+Some images of our project
+
+![Image](images/media1.png)
+![Image](images/media2.png)
+![Image](images/media3.png)
+![Image](images/media4.png)

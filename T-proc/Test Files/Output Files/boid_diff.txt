@@ -1,8 +1,0 @@
-Reg:  2 Expected:           0 Actual:           2
-Reg: 20 Expected:           0 Actual:           4
-Reg: 23 Expected:           0 Actual:        4064
-Reg: 26 Expected:           0 Actual:          64
-Reg: 27 Expected:           0 Actual:           2
-Reg: 28 Expected:           0 Actual:          64
-Reg: 29 Expected:           0 Actual:        4064
-Reg: 31 Expected:           0 Actual:           3

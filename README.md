@@ -146,6 +146,8 @@ The state space of the FSM would have included all possible x and y locations of
 
 This is a placeholder video (highly recommended), the demo video will be added soon.
 
+[![IMAGE ALT TEXT HERE](images/BPU.png)](https://www.youtube.com/embed/S7uzxjlEncg?si=QZIsieHNVYNisdWj)
+
 <iframe width="100%" height="auto" src="https://www.youtube.com/embed/S7uzxjlEncg?si=QZIsieHNVYNisdWj" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 Demo images:

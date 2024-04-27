@@ -1,6 +1,18 @@
 # Final Project - Boid Hardware
 > Tate Staples and Shaan Yadav
 
+## Overview
+The goal of this project was to build an efficient low level implementation of the [Boid Algorithm](https://en.wikipedia.org/wiki/Boids). The Boid Algorithm is a simple algorithm that simulates the flocking behavior of birds. The algorithm is based on three simple rules:
+1. **Separation**: Boids will avoid collisions with other boids.
+2. **Alignment**: Boids will try to align their velocities with other boids.
+3. **Cohesion**: Boids will try to move towards the center of mass of other boids.
+
+## Demo
+
+Here is a link to a brief demo of our project: [demo](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
+
+[![IMAGE ALT TEXT HERE](images/demo_link.png)](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
+
 ## Table of Contents
 - [Overview](#overview)
 - [Demo](#demo)
@@ -13,27 +25,25 @@
 - [Hardware](#hardware)
     - [BPU Interface](#bpu-interface)
     - [Canvas RAM](#canvas-ram)
+    - [VGA](#vga)
+    - [Timing of components](#timing-of-components)
+    - [Iverilog](#iverilog)
+- [CPU](#cpu)
+- [Future Work](#future-work)
+    - [Compiler Optimization](#compiler-optimization)
+    - [Parallel BPU Implementation](#parallel-bpu-implementation)
+- [Bloopers (Challenges)](#bloopers-challenges)
+- [Media](#media)
 
-## Overview
-The goal of this project was to build an efficient low level implementation of the [Boid Algorithm](https://en.wikipedia.org/wiki/Boids). The Boid Algorithm is a simple algorithm that simulates the flocking behavior of birds. The algorithm is based on three simple rules:
-1. **Separation**: Boids will avoid collisions with other boids.
-2. **Alignment**: Boids will try to align their velocities with other boids.
-3. **Cohesion**: Boids will try to move towards the center of mass of other boids.
 
-## Demo
-
-Here is a link to a brief demo of our project: [demo](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
-
-
-[![IMAGE ALT TEXT HERE](images/demo_link.png)](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
-
-![B](images/boids.png)
 ## Software
 This project was very software heavy, as our project was implementing an algorithm. Due to the complexity of the algorithm, we decided to iterate through multiple implementations to find the most efficient one. 
 
 ### Boid Algorithm
 
 The algorithm is simple to implement and can be run in parallel, making it a good candidate for hardware acceleration. We then created a asynchronous double buffer graphics processor to display the boids on a VGA monitor.
+
+![B](images/boids.png)
 
 ### Pygame Boids
 ![Python](images/pygame_boids2.png)

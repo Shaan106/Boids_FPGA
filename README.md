@@ -9,7 +9,7 @@ The goal of this project was to build an efficient low level implementation of t
 
 ## Demo
 
-Here is a link to a brief demo of our project: [demo](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
+Here is a link to a brief demo of our project: [https://youtu.be/ht7rk9lN3hA?si=nm8mqO105J0s3qD8](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
 
 [![IMAGE ALT TEXT HERE](images/demo_link.png)](https://www.youtube.com/embed/ht7rk9lN3hA?si=ShflnYgObScCwDLL)
 

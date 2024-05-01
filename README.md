@@ -1,6 +1,8 @@
 # Final Project - Boid Hardware
 > Tate Staples and Shaan Yadav
 
+Github: https://github.com/Shaan106/Boids_FPGA
+
 ## Overview
 The goal of this project was to build an efficient low level implementation of the [Boid Algorithm](https://en.wikipedia.org/wiki/Boids). The Boid Algorithm is a simple algorithm that simulates the flocking behavior of birds. The algorithm is based on three simple rules:
 1. **Separation**: Boids will avoid collisions with other boids.
